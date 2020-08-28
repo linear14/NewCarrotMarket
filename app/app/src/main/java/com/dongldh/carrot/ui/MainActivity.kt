@@ -1,7 +1,8 @@
-package com.dongldh.carrot
+package com.dongldh.carrot.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.dongldh.carrot.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
