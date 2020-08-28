@@ -1,6 +1,6 @@
 app/.idea/
 server/.idea/
-server/manage.py
+server/carrot_api/settings.py
 server/carrotvenv/
 server/carrot_api/__pycache__/
 server/user/__pycache__/
