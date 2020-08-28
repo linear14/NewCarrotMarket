@@ -1,0 +1,8 @@
+app/.idea/
+server/.idea/
+server/manage.py
+server/carrotvenv/
+server/carrot_api/__pycache__/
+server/user/__pycache__/
+
+
