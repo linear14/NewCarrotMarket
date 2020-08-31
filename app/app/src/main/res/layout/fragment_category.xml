@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F36897">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_home"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/colorSurface"
+            app:contentInsetStart="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="center"
+                    android:text="@string/nav_title_category"
+                    style="@style/toolbarTitleStyle" />
+
+                <ImageView
+                    android:id="@+id/image_search_toolbar_category"
+                    android:layout_width="@dimen/toolbar_image_item"
+                    android:layout_height="@dimen/toolbar_image_item"
+                    android:src="@drawable/ic_outline_search_24"
+                    android:padding="@dimen/padding_half"
+                    android:layout_marginEnd="@dimen/margin_half"
+                    app:layout_constraintEnd_toStartOf="@id/image_notification_toolbar_category"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/image_notification_toolbar_category"
+                    android:layout_width="@dimen/toolbar_image_item"
+                    android:layout_height="@dimen/toolbar_image_item"
+                    android:src="@drawable/ic_outline_notifications_24"
+                    android:padding="@dimen/padding_half"
+                    android:layout_marginEnd="@dimen/margin_half"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

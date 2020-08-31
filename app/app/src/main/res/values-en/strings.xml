@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CarrotMarket</string>
+
+    <string name="nav_title_home">Home</string>
+    <string name="nav_title_category">Category</string>
+    <string name="nav_title_write">Write</string>
+    <string name="nav_title_chat">Chat</string>
+    <string name="nav_title_my_carrot">My Carrot</string>
+</resources>

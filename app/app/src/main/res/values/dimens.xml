@@ -21,6 +21,7 @@
     <dimen name="text_smaller">14sp</dimen>
 
     <!-- component size -->
+    <dimen name="toolbar_image_item">40dp</dimen>
 
 
 </resources>

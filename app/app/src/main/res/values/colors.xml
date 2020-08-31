@@ -14,4 +14,7 @@
     <color name="colorTempLow">#008000</color>
     <color name="colorTempMedium">#0000A0</color>
     <color name="colorTempHigh">#C11B17</color>
+
+    <color name="colorBottomNavigationUnSelected">#C8C8C8</color>
+    <color name="colorBottomNavigationSelected">#000000</color>
 </resources>
