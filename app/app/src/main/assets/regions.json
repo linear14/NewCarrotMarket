@@ -1,0 +1,247 @@
+[
+  {
+    "name" : "화서동",
+    "latitude" : 1,
+    "longitude" : 1
+  },
+  {
+    "name" : "정자동",
+    "latitude" : 1,
+    "longitude" : 2
+  },
+  {
+    "name" : "천천동",
+    "latitude" : 1,
+    "longitude" : 3
+  },
+  {
+    "name" : "서천동",
+    "latitude" : 1,
+    "longitude" : 4
+  },
+  {
+    "name" : "세류동",
+    "latitude" : 1,
+    "longitude" : 5
+  },
+  {
+    "name" : "매탄동",
+    "latitude" : 1,
+    "longitude" : 6
+  },
+  {
+    "name" : "이목동",
+    "latitude" : 1,
+    "longitude" : 7
+  },
+  {
+    "name" : "우만동",
+    "latitude" : 2,
+    "longitude" : 1
+  },
+  {
+    "name" : "이의동",
+    "latitude" : 2,
+    "longitude" : 2
+  },
+  {
+    "name" : "탑동",
+    "latitude" : 2,
+    "longitude" : 3
+  },
+  {
+    "name" : "조원동",
+    "latitude" : 2,
+    "longitude" : 4
+  },
+  {
+    "name" : "장안동",
+    "latitude" : 2,
+    "longitude" : 5
+  },
+  {
+    "name" : "행궁동",
+    "latitude" : 2,
+    "longitude" : 6
+  },
+  {
+    "name" : "영화동",
+    "latitude" : 2,
+    "longitude" : 7
+  },
+  {
+    "name" : "북수동",
+    "latitude" : 3,
+    "longitude" : 1
+  },
+  {
+    "name" : "송죽동",
+    "latitude" : 3,
+    "longitude" : 2
+  },
+  {
+    "name" : "고등동",
+    "latitude" : 3,
+    "longitude" : 3
+  },
+  {
+    "name" : "연무동",
+    "latitude" : 3,
+    "longitude" : 4
+  },
+  {
+    "name" : "지동",
+    "latitude" : 3,
+    "longitude" : 5
+  },
+  {
+    "name" : "인계동",
+    "latitude" : 3,
+    "longitude" : 6
+  },
+  {
+    "name" : "율전동",
+    "latitude" : 3,
+    "longitude" : 7
+  },
+  {
+    "name" : "금곡동",
+    "latitude" : 4,
+    "longitude" : 1
+  },
+  {
+    "name" : "고색동",
+    "latitude" : 4,
+    "longitude" : 2
+  },
+  {
+    "name" : "권선동",
+    "latitude" : 4,
+    "longitude" : 3
+  },
+  {
+    "name" : "호매실동",
+    "latitude" : 4,
+    "longitude" : 4
+  },
+  {
+    "name" : "원천동",
+    "latitude" : 4,
+    "longitude" : 5
+  },
+  {
+    "name" : "당수동",
+    "latitude" : 4,
+    "longitude" : 6
+  },
+  {
+    "name" : "곡선동",
+    "latitude" : 4,
+    "longitude" : 7
+  },
+  {
+    "name" : "영덕동",
+    "latitude" : 5,
+    "longitude" : 1
+  },
+  {
+    "name" : "영통동",
+    "latitude" : 5,
+    "longitude" : 2
+  },
+  {
+    "name" : "상현동",
+    "latitude" : 5,
+    "longitude" : 3
+  },
+  {
+    "name" : "망포동",
+    "latitude" : 5,
+    "longitude" : 4
+  },
+  {
+    "name" : "태장동",
+    "latitude" : 5,
+    "longitude" : 5
+  },
+  {
+    "name" : "고천동",
+    "latitude" : 5,
+    "longitude" : 6
+  },
+  {
+    "name" : "기안동",
+    "latitude" : 5,
+    "longitude" : 7
+  },
+  {
+    "name" : "오전동",
+    "latitude" : 6,
+    "longitude" : 1
+  },
+  {
+    "name" : "당정동",
+    "latitude" : 6,
+    "longitude" : 2
+  },
+  {
+    "name" : "당동",
+    "latitude" : 6,
+    "longitude" : 3
+  },
+  {
+    "name" : "대야미동",
+    "latitude" : 6,
+    "longitude" : 4
+  },
+  {
+    "name" : "화산동",
+    "latitude" : 6,
+    "longitude" : 5
+  },
+  {
+    "name" : "병점동",
+    "latitude" : 6,
+    "longitude" : 6
+  },
+  {
+    "name" : "신갈동",
+    "latitude" : 6,
+    "longitude" : 7
+  },
+  {
+    "name" : "안녕동",
+    "latitude" : 7,
+    "longitude" : 1
+  },
+  {
+    "name" : "학의동",
+    "latitude" : 7,
+    "longitude" : 2
+  },
+  {
+    "name" : "금정동",
+    "latitude" : 7,
+    "longitude" : 3
+  },
+  {
+    "name" : "죽전동",
+    "latitude" : 7,
+    "longitude" : 4
+  },
+  {
+    "name" : "갈산동",
+    "latitude" : 7,
+    "longitude" : 5
+  },
+  {
+    "name" : "보정동",
+    "latitude" : 7,
+    "longitude" : 6
+  },
+  {
+    "name" : "산본동",
+    "latitude" : 7,
+    "longitude" : 7
+  }
+]
