@@ -14,9 +14,10 @@
     </style>
 
 
-    <!-- font style -->
+    <!-- custom style -->
     <style name="customTextViewFontStyle" parent="@android:style/Widget.DeviceDefault.TextView">
         <item name="android:fontFamily">@font/font</item>
+        <item name="android:textColor">@color/colorDefaultText</item>
     </style>
 
     <style name="customButtonFontStyle" parent="@android:style/Widget.DeviceDefault.Button.Borderless">
@@ -25,6 +26,8 @@
 
     <style name="customEditTextFontStyle" parent="@android:style/Widget.DeviceDefault.EditText">
         <item name="android:fontFamily">@font/font</item>
+        <item name="android:textColorHint">@color/colorHint</item>
+        <item name="android:textColor">@color/colorDefaultText</item>
     </style>
 
     <style name="customRadioButtonFontStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.RadioButton">
@@ -36,7 +39,7 @@
     </style>
 
     <style name="toolbarTitleStyle" parent="@android:style/Widget.DeviceDefault.TextView">
-        <item name="android:textSize">@dimen/text_big</item>
+        <item name="android:textSize">@dimen/text_bigger</item>
         <item name="android:textColor">@color/colorDefaultText</item>
         <item name="android:textStyle">bold</item>
         <item name="android:paddingStart">@dimen/padding_normal</item>

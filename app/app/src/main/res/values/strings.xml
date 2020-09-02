@@ -7,4 +7,9 @@
     <string name="nav_title_write">글쓰기</string>
     <string name="nav_title_chat">채팅</string>
     <string name="nav_title_my_carrot">나의 당근</string>
+
+    <!-- activity_region_list.xml -->
+    <string name="hint_search_region_list">내 동네 이름으로 검색</string>
+    <string name="no_result_region">검색 결과가 없습니다</string>
+    <string name="re_search_region">동네 이름 다시 검색하기</string>
 </resources>

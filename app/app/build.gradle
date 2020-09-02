@@ -69,6 +69,7 @@ dependencies {
     implementation "org.koin:koin-androidx-fragment:$koin_version"
     implementation "org.koin:koin-androidx-ext:$koin_version"
     implementation "androidx.work:work-runtime-ktx:2.4.0"
+    implementation "androidx.paging:paging-runtime:2.1.2"
 
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
     testImplementation 'junit:junit:4.12'

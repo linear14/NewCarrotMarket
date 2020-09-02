@@ -4,22 +4,13 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.dongldh.carrot.R
-import com.dongldh.carrot.data.AppDatabase
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        /***  Test Code  ***/
-        GlobalScope.launch {
-            val list = AppDatabase.getInstance(applicationContext).regionDao().selectAllRegions()
-        }
-
         init()
     }
 

@@ -243,5 +243,180 @@
     "name" : "산본동",
     "latitude" : 7,
     "longitude" : 7
+  },
+  {
+    "name" : "가산동",
+    "latitude" : 8,
+    "longitude" : 1
+  },
+  {
+    "name" : "송산동",
+    "latitude" : 8,
+    "longitude" : 2
+  },
+  {
+    "name" : "풍덕동",
+    "latitude" : 8,
+    "longitude" : 3
+  },
+  {
+    "name" : "고기동",
+    "latitude" : 8,
+    "longitude" : 4
+  },
+  {
+    "name" : "대장동",
+    "latitude" : 8,
+    "longitude" : 5
+  },
+  {
+    "name" : "속달동",
+    "latitude" : 8,
+    "longitude" : 6
+  },
+  {
+    "name" : "마북동",
+    "latitude" : 8,
+    "longitude" : 7
+  },
+  {
+    "name" : "세교동",
+    "latitude" : 9,
+    "longitude" : 1
+  },
+  {
+    "name" : "본오동",
+    "latitude" : 9,
+    "longitude" : 2
+  },
+  {
+    "name" : "포일동",
+    "latitude" : 9,
+    "longitude" : 3
+  },
+  {
+    "name" : "상하동",
+    "latitude" : 9,
+    "longitude" : 4
+  },
+  {
+    "name" : "하산운동",
+    "latitude" : 9,
+    "longitude" : 5
+  },
+  {
+    "name" : "지곶동",
+    "latitude" : 9,
+    "longitude" : 6
+  },
+  {
+    "name" : "서랑동",
+    "latitude" : 9,
+    "longitude" : 7
+  },
+  {
+    "name" : "이동",
+    "latitude" : 10,
+    "longitude" : 1
+  },
+  {
+    "name" : "영천동",
+    "latitude" : 10,
+    "longitude" : 2
+  },
+  {
+    "name" : "부흥동",
+    "latitude" : 10,
+    "longitude" : 3
+  },
+  {
+    "name" : "청계동",
+    "latitude" : 10,
+    "longitude" : 4
+  },
+  {
+    "name" : "달안동",
+    "latitude" : 10,
+    "longitude" : 5
+  },
+  {
+    "name" : "부림동",
+    "latitude" : 10,
+    "longitude" : 6
+  },
+  {
+    "name" : "관양동",
+    "latitude" : 10,
+    "longitude" : 7
+  },
+  {
+    "name" : "사이동",
+    "latitude" : 11,
+    "longitude" : 1
+  },
+  {
+    "name" : "내삼미동",
+    "latitude" : 11,
+    "longitude" : 2
+  },
+  {
+    "name" : "금암동",
+    "latitude" : 11,
+    "longitude" : 3
+  },
+  {
+    "name" : "사동",
+    "latitude" : 11,
+    "longitude" : 4
+  },
+  {
+    "name" : "동백동",
+    "latitude" : 11,
+    "longitude" : 5
+  },
+  {
+    "name" : "수암동",
+    "latitude" : 11,
+    "longitude" : 6
+  },
+  {
+    "name" : "성포동",
+    "latitude" : 11,
+    "longitude" : 7
+  },
+  {
+    "name" : "가장동",
+    "latitude" : 12,
+    "longitude" : 1
+  },
+  {
+    "name" : "월피동",
+    "latitude" : 12,
+    "longitude" : 2
+  },
+  {
+    "name" : "방교동",
+    "latitude" : 12,
+    "longitude" : 3
+  },
+  {
+    "name" : "금토동",
+    "latitude" : 12,
+    "longitude" : 4
+  },
+  {
+    "name" : "중앙동",
+    "latitude" : 12,
+    "longitude" : 5
+  },
+  {
+    "name" : "새솔동",
+    "latitude" : 12,
+    "longitude" : 6
+  },
+  {
+    "name" : "조남동",
+    "latitude" : 12,
+    "longitude" : 7
   }
 ]

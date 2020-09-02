@@ -7,4 +7,9 @@
     <string name="nav_title_write">Write</string>
     <string name="nav_title_chat">Chat</string>
     <string name="nav_title_my_carrot">My Carrot</string>
+
+    <!-- activity_region_list.xml -->
+    <string name="hint_search_region_list">Find my region</string>
+    <string name="no_result_region">There is no result</string>
+    <string name="re_search_region">Search Again</string>
 </resources>
