@@ -12,4 +12,7 @@
     <string name="hint_search_region_list">Find my region</string>
     <string name="no_result_region">There is no result</string>
     <string name="re_search_region">Search Again</string>
+    <string name="btn_search_entire_region">Show all regions</string>
+    <string name="entire_region">Entire regions</string>
+    <string name="filtered_region_by_word">Result searched by \'s\'</string>
 </resources>

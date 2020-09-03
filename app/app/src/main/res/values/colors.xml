@@ -8,6 +8,7 @@
     <color name="colorSurface">#FFFFFF</color>
 
     <color name="colorDefaultText">#000000</color>
+    <color name="colorWhiteText">#FFFFFF</color>
     <color name="colorDescription">#C8C8C8</color>
     <color name="colorHint">#DCDCDC</color>
 

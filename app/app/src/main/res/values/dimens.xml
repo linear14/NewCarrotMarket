@@ -24,6 +24,8 @@
     <!-- component size -->
     <dimen name="toolbar_image_item">40dp</dimen>
     <dimen name="separator_height">1dp</dimen>
+    <dimen name="button_height_small">32dp</dimen>
 
-
+    <!-- round -->
+    <dimen name="corner_round_normal">16dp</dimen>
 </resources>
