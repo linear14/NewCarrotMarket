@@ -28,11 +28,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     private fun init() {
         supportFragmentManager.beginTransaction().replace(R.id.fragment, HomeFragment()).commit()
-        initListeners()
+        attachListeners()
 
     }
 
-    private fun initListeners() {
+    private fun attachListeners() {
         bottom_navigation.setOnNavigationItemSelectedListener(this)
     }
 

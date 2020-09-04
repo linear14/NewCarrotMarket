@@ -21,6 +21,10 @@ class RegionListAdapter : PagedListAdapter<Region, RecyclerView.ViewHolder>(Regi
         }
     }
 
+    override fun getItemId(position: Int): Long {
+        getItem(position)?.let { return it.id } ?: return NO_ITEM_AT_THIS_POSITION
+    }
+
     inner class RegionListViewHolder(val binding: ItemRegionListBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Region) {
             binding.apply {
@@ -28,6 +32,10 @@ class RegionListAdapter : PagedListAdapter<Region, RecyclerView.ViewHolder>(Regi
                 executePendingBindings()
             }
         }
+    }
+
+    companion object {
+        private const val NO_ITEM_AT_THIS_POSITION = -1000L
     }
 }
 

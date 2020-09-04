@@ -10,14 +10,14 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.dongldh.carrot.data.AppDatabase
 import com.dongldh.carrot.data.Region
+import com.dongldh.carrot.util.STATE_BLANK
 import com.dongldh.carrot.util.STATE_INIT
 
 class RegionListViewModel(
     application: Application
 ): AndroidViewModel(application) {
-
     /*** filterText : 검색어 ***/
-    var filterText = MutableLiveData<String>(STATE_INIT)
+    var filterTextLiveData = MutableLiveData<String>(STATE_INIT)
     private var allRegionsLiveData: LiveData<PagedList<Region>>? = null
 
     private val config = PagedList.Config.Builder().setEnablePlaceholders(false).setPageSize(16).build()
@@ -29,11 +29,15 @@ class RegionListViewModel(
     fun getRegionsLiveData() = allRegionsLiveData
 
     private fun setRegionsInitOrWhenFilterTextChanged() {
-        allRegionsLiveData = Transformations.switchMap(filterText) { str -> getRegionsInitOrWhenFilterTextChanged(str) }
+        allRegionsLiveData = Transformations.switchMap(filterTextLiveData) { str -> getRegionsInitOrWhenFilterTextChanged(str) }
     }
 
     private fun getRegionsInitOrWhenFilterTextChanged(str: String): LiveData<PagedList<Region>> =
-        if(str == STATE_INIT) getRegionsAll() else getRegionsFiltered(str)
+        when(str) {
+            STATE_INIT -> getRegionsAll()
+            STATE_BLANK -> getRegionsFiltered(STATE_BLANK)
+            else -> getRegionsFiltered(str)
+        }
 
 
     private fun getRegionsAll(): LiveData<PagedList<Region>> {
