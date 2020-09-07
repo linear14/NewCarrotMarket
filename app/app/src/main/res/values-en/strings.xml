@@ -7,6 +7,9 @@
     <string name="nav_title_write">Write</string>
     <string name="nav_title_chat">Chat</string>
     <string name="nav_title_my_carrot">My Carrot</string>
+    <string name="nav_title_profile">Set Profile</string>
+
+    <string name="nav_action_next">Next</string>
 
     <!-- activity_region_list.xml -->
     <string name="hint_search_region_list">Find my region</string>
@@ -15,4 +18,11 @@
     <string name="btn_search_entire_region">Show all regions</string>
     <string name="entire_region">Entire regions</string>
     <string name="filtered_region_by_word">Result searched by \'s\'</string>
+
+    <!-- activity_sign_up.xml -->
+    <string name="hint_write_nickname_label">Nickname</string>
+    <string name="hint_write_nickname">Enter your nickname</string>
+    <string name="sign_up_description">\'Carrot Market\' is a community based on trust.\nPlease enroll your profile image and nickname.</string>
+    <string name="nickname_min">Nickname must be at least 2 characters.</string>
+    <string name="nickname_max">Nickname must be up to 8 characters.</string>
 </resources>

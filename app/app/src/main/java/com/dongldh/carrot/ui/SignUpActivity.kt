@@ -1,10 +1,13 @@
 package com.dongldh.carrot.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.dongldh.carrot.R
-import com.dongldh.carrot.data.User
-import com.dongldh.carrot.firebase.UserDataController
+import com.dongldh.carrot.firebase.UserFirestoreManager
 import com.dongldh.carrot.util.Util
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -13,39 +16,53 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 class SignUpActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore
-    lateinit var userDataController: UserDataController
+    lateinit var userDataController: UserFirestoreManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
-        userDataController = UserDataController(db)
+        userDataController = UserFirestoreManager(db)
 
-        btn_sign_up.setOnClickListener {
-            val email = "${intent.getStringExtra("ACCOUNT_ID")}@carrot.com"
-            val password = intent.getStringExtra("ACCOUNT_PASSWORD")?:throw Exception()
-            createUserFirebase(email, password)
-        }
-    }
-
-    private fun createUserFirebase(email: String, password: String) {
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
-            if(task.isSuccessful) {
-                val uid = task.result?.user?.uid!!
-                Util.attachUid(uid)
-                userDataController.addUserInfo(makeNewUser(uid))
+        action_next.setOnClickListener {
+            if(input_nickname.text.toString().length < 2) {
+                Util.toastShort("아이디가 너무 짧습니다.")
+            } else if(input_nickname.text.toString().length > 8) {
+                Util.toastShort("아이디가 너무 깁니다.")
             } else {
-                Util.toastShort("회원가입에 실패하였습니다.(Firebase)")
+                val intent = Intent(this, RegionListActivity::class.java)
+                intent.putExtra("ACCOUNT_ID", this.intent.getStringExtra("ACCOUNT_ID"))
+                intent.putExtra("ACCOUNT_PASSWORD", this.intent.getStringExtra("ACCOUNT_PASSWORD"))
+                intent.putExtra("ACCOUNT_NICKNAME", input_nickname.text.toString())
+                intent.putExtra("ACCOUNT_PROFILE_IMAGE_URL", "https://아직없다")
+                startActivity(intent)
             }
         }
-    }
 
-    private fun makeNewUser(uid: String): User {
-        return User(
-            uid = uid,
-            nickname = input_nickname.text.toString(),
-            profileUrl = "nothing"
-        )
+        input_nickname.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s.toString().length < 2) {
+                    layout_nickname.error = resources.getString(R.string.nickname_min)
+                } else if(s.toString().length > 8) {
+                    layout_nickname.error = resources.getString(R.string.nickname_max)
+                } else {
+                    layout_nickname.error = null
+                }
+            }
+
+        })
+
+        input_nickname.setOnFocusChangeListener { _, hasFocus ->
+            if(hasFocus) {
+                layout_nickname.hint = resources.getString(R.string.hint_write_nickname_label)
+            } else {
+                layout_nickname.hint = resources.getString(R.string.hint_write_nickname)
+            }
+        }
     }
 }

@@ -4,12 +4,17 @@
         <variable
             name="region"
             type="com.dongldh.carrot.data.Region" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
     </data>
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="@{clickListener}">
 
         <TextView
             android:layout_width="match_parent"

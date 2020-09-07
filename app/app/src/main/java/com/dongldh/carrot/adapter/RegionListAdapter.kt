@@ -1,5 +1,6 @@
 package com.dongldh.carrot.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -7,8 +8,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dongldh.carrot.data.Region
 import com.dongldh.carrot.databinding.ItemRegionListBinding
+import com.dongldh.carrot.util.App
+import com.dongldh.carrot.util.UID_DETACHED
 
-class RegionListAdapter : PagedListAdapter<Region, RecyclerView.ViewHolder>(RegionDiffCallback()) {
+class RegionListAdapter(val listener: OnRegionSelectedListener) : PagedListAdapter<Region, RecyclerView.ViewHolder>(RegionDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return RegionListViewHolder(ItemRegionListBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -26,12 +29,27 @@ class RegionListAdapter : PagedListAdapter<Region, RecyclerView.ViewHolder>(Regi
     }
 
     inner class RegionListViewHolder(val binding: ItemRegionListBinding): RecyclerView.ViewHolder(binding.root) {
+        init {
+            // preference에 uid 정보가 저장되어 있다면 로그인이 되어있는 상태라는 의미
+            binding.setClickListener { view ->
+                Log.i("WHAT_IS_MY_UID", App.pref.uid)
+                if(App.pref.uid != UID_DETACHED) {
+
+                } else {
+                    listener.regionSelected(binding.region!!.name)
+                }
+            }
+        }
         fun bind(item: Region) {
             binding.apply {
                 region = item
                 executePendingBindings()
             }
         }
+    }
+
+    interface OnRegionSelectedListener {
+        fun regionSelected(region: String)
     }
 
     companion object {

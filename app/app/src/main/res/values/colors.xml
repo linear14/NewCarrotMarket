@@ -9,7 +9,8 @@
 
     <color name="colorDefaultText">#000000</color>
     <color name="colorWhiteText">#FFFFFF</color>
-    <color name="colorDescription">#C8C8C8</color>
+    <color name="colorTextAccent">#979797</color>
+    <color name="colorDescription">#979797</color>
     <color name="colorHint">#DCDCDC</color>
 
     <color name="colorTempLow">#008000</color>
