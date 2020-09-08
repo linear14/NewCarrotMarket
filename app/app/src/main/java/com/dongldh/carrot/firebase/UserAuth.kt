@@ -1,6 +1,7 @@
 package com.dongldh.carrot.firebase
 
 import android.app.Activity
+import com.dongldh.carrot.R
 import com.dongldh.carrot.data.User
 import com.dongldh.carrot.data.UserCreateAccountRequest
 import com.dongldh.carrot.util.Util
@@ -11,15 +12,14 @@ class UserAuth(private val activity: Activity) {
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
     val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    fun createUserFirebase(userAccountInfo: UserCreateAccountRequest) {
-        val userFirestoreManager = UserFirestoreManager(db)
+    fun createUserFirebaseAuth(userAccountInfo: UserCreateAccountRequest) {
         auth.createUserWithEmailAndPassword(userAccountInfo.email, userAccountInfo.password).addOnCompleteListener(activity) { task ->
             if(task.isSuccessful) {
                 val uid = task.result?.user?.uid!!
-                Util.attachUid(uid)
-                userFirestoreManager.addUserInfo(makeNewUser(uid, userAccountInfo))
+                Util.attachUidToSharedPreference(uid)
+                UserFirestoreManager(db).apply { addUserInfo(makeNewUser(uid, userAccountInfo)) }
             } else {
-                Util.toastShort("회원가입에 실패하였습니다.(Firebase)")
+                Util.toastShort(activity.resources.getString(R.string.firebase_auth_create_user_error))
             }
         }
     }

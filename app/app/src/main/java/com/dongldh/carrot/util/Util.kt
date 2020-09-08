@@ -12,11 +12,11 @@ object Util {
         Toast.makeText(App.applicationContext(), msg, Toast.LENGTH_LONG).show()
     }
 
-    fun attachUid(uid: String?) {
+    fun attachUidToSharedPreference(uid: String?) {
         App.pref.uid = uid
     }
 
-    fun detachUid() {
+    fun detachUidFromSharedPreference() {
         App.pref.uid = UID_DETACHED
     }
 }

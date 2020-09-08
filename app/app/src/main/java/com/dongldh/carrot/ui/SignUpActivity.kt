@@ -4,65 +4,84 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.dongldh.carrot.R
-import com.dongldh.carrot.firebase.UserFirestoreManager
-import com.dongldh.carrot.util.Util
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.dongldh.carrot.util.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
-    lateinit var auth: FirebaseAuth
-    lateinit var db: FirebaseFirestore
-    lateinit var userDataController: UserFirestoreManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
-        userDataController = UserFirestoreManager(db)
+
+        initializeSettingTextInputLayoutErrorMessageAndHint()
 
         action_next.setOnClickListener {
-            if(input_nickname.text.toString().length < 2) {
-                Util.toastShort("아이디가 너무 짧습니다.")
-            } else if(input_nickname.text.toString().length > 8) {
-                Util.toastShort("아이디가 너무 깁니다.")
-            } else {
-                val intent = Intent(this, RegionListActivity::class.java)
-                intent.putExtra("ACCOUNT_ID", this.intent.getStringExtra("ACCOUNT_ID"))
-                intent.putExtra("ACCOUNT_PASSWORD", this.intent.getStringExtra("ACCOUNT_PASSWORD"))
-                intent.putExtra("ACCOUNT_NICKNAME", input_nickname.text.toString())
-                intent.putExtra("ACCOUNT_PROFILE_IMAGE_URL", "https://아직없다")
-                startActivity(intent)
-            }
+            if(verifyProperFormatNickname()) { moveToRegionListActivityWithAccountInfo() }
         }
+    }
 
+    private fun initializeSettingTextInputLayoutErrorMessageAndHint() {
+        setListenerTextInputLayoutErrorMessage()
+        setListenerTextInputLayoutHint()
+    }
+
+    private fun setListenerTextInputLayoutErrorMessage() {
         input_nickname.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s.toString().length < 2) {
-                    layout_nickname.error = resources.getString(R.string.nickname_min)
-                } else if(s.toString().length > 8) {
-                    layout_nickname.error = resources.getString(R.string.nickname_max)
-                } else {
-                    layout_nickname.error = null
-                }
+                layout_nickname.error = getErrorMessageAccordingToLength(s.toString().length)
             }
-
         })
+    }
 
+    private fun setListenerTextInputLayoutHint() {
         input_nickname.setOnFocusChangeListener { _, hasFocus ->
-            if(hasFocus) {
-                layout_nickname.hint = resources.getString(R.string.hint_write_nickname_label)
-            } else {
-                layout_nickname.hint = resources.getString(R.string.hint_write_nickname)
-            }
+            layout_nickname.hint = getTextInputLayoutHintByFocus(hasFocus)
         }
+    }
+
+    private fun getErrorMessageAccordingToLength(length: Int): String? {
+        return when(length) {
+            in NICKNAME_BLANK until NICKNAME_MINIMUM_LENGTH -> resources.getString(R.string.nickname_min)
+            in NICKNAME_MINIMUM_LENGTH .. NICKNAME_MAXIMUM_LENGTH -> null
+            else -> resources.getString(R.string.nickname_max)
+        }
+    }
+
+    private fun getTextInputLayoutHintByFocus(hasFocus: Boolean): String {
+        return when(hasFocus) {
+            true -> resources.getString(R.string.hint_write_nickname_label)
+            else -> resources.getString(R.string.hint_write_nickname)
+        }
+    }
+
+    private fun verifyProperFormatNickname(): Boolean {
+        var correctFormat = false
+        when {
+            input_nickname.text.toString().length < NICKNAME_MINIMUM_LENGTH -> Util.toastShort(resources.getString(R.string.input_nickname_too_short))
+            input_nickname.text.toString().length > NICKNAME_MAXIMUM_LENGTH -> Util.toastShort(resources.getString(R.string.input_nickname_too_long))
+            else -> correctFormat = true
+        }
+        return correctFormat
+    }
+
+    private fun moveToRegionListActivityWithAccountInfo() {
+        val intent = Intent(this, RegionListActivity::class.java)
+        intent.putExtra(ACCOUNT_ID, this.intent.getStringExtra(ACCOUNT_ID))
+        intent.putExtra(ACCOUNT_PASSWORD, this.intent.getStringExtra(ACCOUNT_PASSWORD))
+        intent.putExtra(ACCOUNT_NICKNAME, input_nickname.text.toString())
+        intent.putExtra(ACCOUNT_PROFILE_IMAGE_URL, "https://아직없다")
+        startActivity(intent)
+    }
+
+    companion object {
+        const val NICKNAME_BLANK = 0
+        const val NICKNAME_MINIMUM_LENGTH = 2
+        const val NICKNAME_MAXIMUM_LENGTH = 8
     }
 }

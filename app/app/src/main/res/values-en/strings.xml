@@ -10,6 +10,8 @@
     <string name="nav_title_profile">Set Profile</string>
 
     <string name="nav_action_next">Next</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <!-- activity_region_list.xml -->
     <string name="hint_search_region_list">Find my region</string>
@@ -25,4 +27,22 @@
     <string name="sign_up_description">\'Carrot Market\' is a community based on trust.\nPlease enroll your profile image and nickname.</string>
     <string name="nickname_min">Nickname must be at least 2 characters.</string>
     <string name="nickname_max">Nickname must be up to 8 characters.</string>
+
+    <!-- firebase -->
+    <string name="firebase_auth_create_user_error">Create account Failed.(Auth)</string>
+    <string name="firebase_firestore_save_user_error">Create account Failed.(Firestore)</string>
+    <string name="firebase_create_account_ok">Create account Success.</string>
+    <string name="firebase_sign_in_success">Login Success</string>
+    <string name="firebase_sign_in_failed">Login Failed</string>
+    <string name="firebase_wrong_password">Wrong password</string>
+    <string name="dialog_firebase_not_exist_account">There is no account information\nYou can register as a member with the information you entered.</string>
+
+    <!-- 입력정보 -->
+    <string name="input_id_blank">Please input your ID</string>
+    <string name="input_id_too_long">ID value is too long</string>
+    <string name="input_id_too_short">ID value is too short</string>
+    <string name="input_password_blank">Please input your password</string>
+    <string name="input_password_too_short">Password is too short</string>
+    <string name="input_nickname_too_long">Nickname is too long</string>
+    <string name="input_nickname_too_short">Nickname is too short</string>
 </resources>

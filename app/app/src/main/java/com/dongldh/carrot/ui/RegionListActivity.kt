@@ -3,7 +3,6 @@ package com.dongldh.carrot.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -14,8 +13,7 @@ import com.dongldh.carrot.data.UserCreateAccountRequest
 import com.dongldh.carrot.databinding.ActivityRegionListBinding
 import com.dongldh.carrot.firebase.UserAuth
 import com.dongldh.carrot.manager.KeyBoardManager
-import com.dongldh.carrot.util.STATE_BLANK
-import com.dongldh.carrot.util.STATE_INIT
+import com.dongldh.carrot.util.*
 import com.dongldh.carrot.viewmodel.RegionListViewModel
 import org.koin.android.ext.android.inject
 
@@ -30,14 +28,13 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
             lifecycleOwner = this@RegionListActivity
         }
 
-        doAdapterSetting()
+        doAdapterInitialSettingAndSubscribeUi()
         attachListeners()
     }
 
     private inner class SearchTextChanged: TextWatcher {
         override fun afterTextChanged(s: Editable?) {
         }
-
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
         }
 
@@ -51,9 +48,14 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
                 sendFilteredTextToViewModel(str.toString())
             }
         }
-
     }
 
+    private fun doAdapterInitialSettingAndSubscribeUi() {
+        val adapter = RegionListAdapter(this)
+        adapter.setHasStableIds(true)
+        binding.recyclerRegionList.adapter = adapter
+        subscribeUi(adapter)
+    }
 
     private fun subscribeUi(adapter: RegionListAdapter) {
         regionListViewModel.getRegionsLiveData()?.observe(this) { regions ->
@@ -96,23 +98,16 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
         }
     }
 
-    private fun doAdapterSetting() {
-        val adapter = RegionListAdapter(this)
-        adapter.setHasStableIds(true)
-        binding.recyclerRegionList.adapter = adapter
-        subscribeUi(adapter)
-    }
-
     override fun regionSelected(region: String) {
         val userAccountInfo = UserCreateAccountRequest(
-            email = "${intent.getStringExtra("ACCOUNT_ID")}@carrot.com",
-            password = intent.getStringExtra("ACCOUNT_PASSWORD")?:throw Exception(),
-            nickName = intent.getStringExtra("ACCOUNT_NICKNAME")?:throw Exception(),
+            email = "${intent.getStringExtra(ACCOUNT_ID)}@carrot.com",
+            password = intent.getStringExtra(ACCOUNT_PASSWORD)?:throw Exception(),
+            nickName = intent.getStringExtra(ACCOUNT_NICKNAME)?:throw Exception(),
             region = region,
-            profileImageUrl = intent.getStringExtra("ACCOUNT_PROFILE_IMAGE_URL")?:throw Exception()
+            profileImageUrl = intent.getStringExtra(ACCOUNT_PROFILE_IMAGE_URL)?:throw Exception()
         )
 
-        UserAuth(this).createUserFirebase(userAccountInfo)
+        UserAuth(this).createUserFirebaseAuth(userAccountInfo)
     }
 
 }

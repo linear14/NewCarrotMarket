@@ -1,6 +1,5 @@
 package com.dongldh.carrot.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -31,8 +30,7 @@ class RegionListAdapter(val listener: OnRegionSelectedListener) : PagedListAdapt
     inner class RegionListViewHolder(val binding: ItemRegionListBinding): RecyclerView.ViewHolder(binding.root) {
         init {
             // preference에 uid 정보가 저장되어 있다면 로그인이 되어있는 상태라는 의미
-            binding.setClickListener { view ->
-                Log.i("WHAT_IS_MY_UID", App.pref.uid)
+            binding.setClickListener { _ ->
                 if(App.pref.uid != UID_DETACHED) {
 
                 } else {

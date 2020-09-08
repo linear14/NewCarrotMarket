@@ -10,6 +10,8 @@
     <string name="nav_title_profile">프로필 설정</string>
 
     <string name="nav_action_next">다음</string>
+    <string name="yes">예</string>
+    <string name="no">아니오</string>
 
     <!-- activity_region_list.xml -->
     <string name="hint_search_region_list">내 동네 이름으로 검색</string>
@@ -25,5 +27,25 @@
     <string name="sign_up_description">당근마켓은 신뢰를 기반으로 하는 지역 커뮤니티입니다.\n프로필 사진과 닉네임을 입력해주세요.</string>
     <string name="nickname_min">닉네임은 최소 2자 입니다.</string>
     <string name="nickname_max">닉네임은 최대 8자 입니다.</string>
+
+    <!-- firebase -->
+    <string name="firebase_auth_create_user_error">회원가입에 실패하였습니다.(Auth)</string>
+    <string name="firebase_firestore_save_user_error">회원가입에 실패하였습니다.(Firestore)</string>
+    <string name="firebase_create_account_ok">회원가입 성공</string>
+    <string name="firebase_sign_in_success">로그인 성공</string>
+    <string name="firebase_sign_in_failed">로그인 실패</string>
+    <string name="firebase_wrong_password">비밀번호가 틀렸습니다.</string>
+    <string name="dialog_firebase_not_exist_account">등록되지 않은 회원 정보입니다.\n입력하신 정보로 회원 가입을 하시겠습니까?</string>
+
+    <!-- 입력정보 -->
+    <string name="input_id_blank">아이디를 입력해주세요</string>
+    <string name="input_id_too_long">아이디가 너무 깁니다</string>
+    <string name="input_id_too_short">아이디가 너무 짧습니다</string>
+    <string name="input_password_blank">비밀번호를 입력해주세요</string>
+    <string name="input_password_too_short">비밀번호가 너무 짧습니다</string>
+    <string name="input_nickname_too_long">닉네임이 너무 깁니다</string>
+    <string name="input_nickname_too_short">닉네임이 너무 짧습니다</string>
+
+
 
 </resources>
