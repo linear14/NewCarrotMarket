@@ -1,5 +1,6 @@
 package com.dongldh.carrot.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,9 @@ class MyCarrotFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = DataBindingUtil.inflate<FragmentMyCarrotBinding>(inflater, R.layout.fragment_my_carrot, container, false)
+        binding.layoutSetting.setOnClickListener {
+            startActivity(Intent(requireContext(), AppSettingActivity::class.java))
+        }
         return binding.root
     }
 }

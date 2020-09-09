@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/btn_sign_in"
+        android:inputType="textPassword"
         android:hint="비밀번호 입력"/>
 
     <Button
