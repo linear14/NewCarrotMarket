@@ -16,6 +16,7 @@
     <dimen name="padding_quarter">4dp</dimen>
 
     <!-- text size -->
+    <dimen name="text_splash">48sp</dimen>
     <dimen name="text_bigger">20sp</dimen>
     <dimen name="text_big">18sp</dimen>
     <dimen name="text_normal">16sp</dimen>

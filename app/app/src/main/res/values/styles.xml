@@ -13,6 +13,10 @@
         <item name="android:checkboxStyle">@style/customCheckboxFontStyle</item>
     </style>
 
+    <style name="SplashTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
 
     <!-- custom style -->
     <style name="customTextViewFontStyle" parent="@android:style/Widget.DeviceDefault.TextView">

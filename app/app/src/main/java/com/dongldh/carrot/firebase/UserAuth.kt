@@ -10,14 +10,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class UserAuth(private val activity: Activity) {
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
-    val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     fun createUserFirebaseAuth(userAccountInfo: UserCreateAccountRequest) {
         auth.createUserWithEmailAndPassword(userAccountInfo.email, userAccountInfo.password).addOnCompleteListener(activity) { task ->
             if(task.isSuccessful) {
                 val uid = task.result?.user?.uid!!
                 Util.attachUidToSharedPreference(uid)
-                UserFirestoreManager(db).apply { addUserInfo(makeNewUser(uid, userAccountInfo)) }
+                UserFirestoreManager.addUserInfo(makeNewUser(uid, userAccountInfo))
             } else {
                 Util.toastShort(activity.resources.getString(R.string.firebase_auth_create_user_error))
             }
@@ -31,7 +30,8 @@ class UserAuth(private val activity: Activity) {
                 uid = uid,
                 nickname = userAccountInfo.nickName,
                 profileUrl = userAccountInfo.profileImageUrl,
-                region = regionList
+                region = regionList,
+                regionSelected = userAccountInfo.region
             )
     }
 }
