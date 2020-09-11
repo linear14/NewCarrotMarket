@@ -13,6 +13,6 @@ class UserViewModel(uid: String) : ViewModel() {
     }
 
     private fun setCurrentUserByUid(uid: String, currentUser: MutableLiveData<User>) {
-        UserFirestoreManager.setUserInfoLiveDataByUid(uid, currentUser)
+        UserFirestoreManager.getUserInfoLiveDataByUid(uid, currentUser)
     }
 }

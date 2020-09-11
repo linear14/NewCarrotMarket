@@ -46,4 +46,25 @@
     <string name="input_password_too_short">Password is too short</string>
     <string name="input_nickname_too_long">Nickname is too long</string>
     <string name="input_nickname_too_short">Nickname is too short</string>
+
+    <!-- fragment_my_carrot.xml -->
+    <string name="go_detail_profile">Go on Profile</string>
+    <string name="sell_list">SellList</string>
+    <string name="buy_list">BuyList</string>
+    <string name="want_list">WantList</string>
+    <string name="set_my_region">Set my region</string>
+    <string name="certificate_region">Certificate my region</string>
+    <string name="notify_keyword">Keyword alarm</string>
+    <string name="see_collection">Collections</string>
+    <string name="region_life_post">Posts (Region Life)</string>
+    <string name="region_life_comment">Comments (Region Life)</string>
+    <string name="invite_friend">Invite friend</string>
+    <string name="share_carrot">Share Carrot Market</string>
+    <string name="notice">Notice</string>
+    <string name="customer_center">Customer center</string>
+    <string name="setting">Application setting</string>
+
+    <!-- activity_app_setting.xml -->
+    <string name="sign_out">Sign out</string>
+    <string name="remove_account">Remove account</string>
 </resources>

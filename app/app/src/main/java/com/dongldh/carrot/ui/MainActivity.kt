@@ -3,7 +3,6 @@ package com.dongldh.carrot.ui
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.observe
 import com.dongldh.carrot.R
 import com.dongldh.carrot.util.App
 import com.dongldh.carrot.viewmodel.UserViewModel

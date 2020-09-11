@@ -1,9 +1,8 @@
 package com.dongldh.carrot.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.dongldh.carrot.R
+import androidx.appcompat.app.AppCompatActivity
 import com.dongldh.carrot.util.App
 import com.dongldh.carrot.util.UID_DETACHED
 

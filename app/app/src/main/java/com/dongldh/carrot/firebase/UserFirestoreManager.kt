@@ -1,7 +1,6 @@
 package com.dongldh.carrot.firebase
 
 import android.content.Intent
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dongldh.carrot.R
 import com.dongldh.carrot.data.User
@@ -31,7 +30,7 @@ object UserFirestoreManager {
             }
     }
 
-    fun setUserInfoLiveDataByUid(uid: String, userLiveData: MutableLiveData<User>) {
+    fun getUserInfoLiveDataByUid(uid: String, userLiveData: MutableLiveData<User>) {
         val userRef = db.collection(COLLECTION_USERS).document(uid)
         userRef.get().addOnSuccessListener {
             val user = it.toObject(User::class.java)

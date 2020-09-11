@@ -6,7 +6,6 @@ import com.dongldh.carrot.data.User
 import com.dongldh.carrot.data.UserCreateAccountRequest
 import com.dongldh.carrot.util.Util
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 
 class UserAuth(private val activity: Activity) {
     val auth: FirebaseAuth = FirebaseAuth.getInstance()

@@ -116,7 +116,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:background="@drawable/decorate_border_colorseparator_solid_colorsurface_round"
-                        android:text="프로필 보기"
+                        android:text="@string/go_detail_profile"
                         android:textSize="@dimen/text_small"
                         android:textStyle="bold" />
 
@@ -148,7 +148,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_quarter"
-                            android:text="판매내역"/>
+                            android:text="@string/sell_list"/>
 
                     </LinearLayout>
 
@@ -169,7 +169,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_quarter"
-                            android:text="구매내역"/>
+                            android:text="@string/buy_list"/>
 
                     </LinearLayout>
 
@@ -190,7 +190,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_quarter"
-                            android:text="관심목록"/>
+                            android:text="@string/want_list"/>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -214,7 +214,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="내 동네 설정"
+                            android:text="@string/set_my_region"
                             android:textSize="@dimen/text_normal"/>
 
                     </LinearLayout>
@@ -229,7 +229,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="동네 인증하기"
+                            android:text="@string/certificate_region"
                             android:textSize="@dimen/text_normal"/>
 
                     </LinearLayout>
@@ -244,7 +244,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="키워드 알림"
+                            android:text="@string/notify_keyword"
                             android:textSize="@dimen/text_normal"/>
 
                     </LinearLayout>
@@ -259,7 +259,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="모아보기"
+                            android:text="@string/see_collection"
                             android:textSize="@dimen/text_normal"/>
 
                     </LinearLayout>
@@ -274,7 +274,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="동네생활 글"
+                            android:text="@string/region_life_post"
                             android:textSize="@dimen/text_normal"/>
 
                     </LinearLayout>
@@ -289,7 +289,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="동네생활 댓글"
+                            android:text="@string/region_life_comment"
                             android:textSize="@dimen/text_normal"/>
 
                     </LinearLayout>
@@ -304,7 +304,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="친구초대"
+                            android:text="@string/invite_friend"
                             android:textSize="@dimen/text_normal"/>
 
                     </LinearLayout>
@@ -319,7 +319,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="당근마켓 공유"
+                            android:text="@string/share_carrot"
                             android:textSize="@dimen/text_normal"/>
 
                     </LinearLayout>
@@ -334,7 +334,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="공지사항"
+                            android:text="@string/notice"
                             android:textSize="@dimen/text_normal"/>
 
                     </LinearLayout>
@@ -349,7 +349,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="고객센터"
+                            android:text="@string/customer_center"
                             android:textSize="@dimen/text_normal"/>
 
                     </LinearLayout>
@@ -364,7 +364,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="앱 설정"
+                            android:text="@string/setting"
                             android:textSize="@dimen/text_normal"/>
 
                     </LinearLayout>

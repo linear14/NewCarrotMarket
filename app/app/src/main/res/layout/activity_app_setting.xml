@@ -60,16 +60,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_normal"
-                android:text="로그아웃"
-                android:textSize="@dimen/padding_normal"/>
+                android:text="@string/sign_out"
+                android:textSize="@dimen/text_normal"/>
 
             <TextView
-                android:id="@+id/text_delete_account"
+                android:id="@+id/text_remove_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_normal"
-                android:text="탈퇴하기"
-                android:textSize="@dimen/padding_normal"/>
+                android:text="@string/remove_account"
+                android:textSize="@dimen/text_normal"/>
 
 
         </LinearLayout>

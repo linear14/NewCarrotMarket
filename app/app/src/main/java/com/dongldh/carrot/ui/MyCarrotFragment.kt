@@ -25,11 +25,12 @@ class MyCarrotFragment: Fragment() {
     ): View? {
         val binding = DataBindingUtil.inflate<FragmentMyCarrotBinding>(inflater, R.layout.fragment_my_carrot, container, false)
             .apply {
-                // userViewModel = currentUserViewModel
                 layoutSetting.setOnClickListener {
                     startActivity(Intent(requireContext(), AppSettingActivity::class.java))
                 }
             }
+
+        // TODO : 이 부분을 SharedPreference를 통한 데이터 처리를 해야할까?
         currentUserViewModel.currentUser.observe(requireActivity()) { result ->
             binding.textNickname.text = result.nickname
             binding.textRegion.text = result.regionSelected

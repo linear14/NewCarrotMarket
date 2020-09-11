@@ -47,5 +47,26 @@
     <string name="input_nickname_too_long">닉네임이 너무 깁니다</string>
     <string name="input_nickname_too_short">닉네임이 너무 짧습니다</string>
 
+    <!-- fragment_my_carrot.xml -->
+    <string name="go_detail_profile">프로필 보기</string>
+    <string name="sell_list">판매내역</string>
+    <string name="buy_list">구매내역</string>
+    <string name="want_list">관심목록</string>
+    <string name="set_my_region">내 동네 설정</string>
+    <string name="certificate_region">동네 인증하기</string>
+    <string name="notify_keyword">키워드 알림</string>
+    <string name="see_collection">모아보기</string>
+    <string name="region_life_post">동네생활 글</string>
+    <string name="region_life_comment">동네생활 댓글</string>
+    <string name="invite_friend">친구초대</string>
+    <string name="share_carrot">당근마켓 공유</string>
+    <string name="notice">공지사항</string>
+    <string name="customer_center">고객센터</string>
+    <string name="setting">앱 설정</string>
+    
+    <!-- activity_app_setting.xml -->
+    <string name="sign_out">로그아웃</string>
+    <string name="remove_account">탈퇴하기</string>
+
 
 </resources>
