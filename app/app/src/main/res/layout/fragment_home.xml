@@ -23,13 +23,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/layout_region_selector_home"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:gravity="center"
-                    android:text="@string/nav_title_home"
-                    style="@style/toolbarTitleStyle" />
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/padding_normal"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:id="@+id/toolbar_title_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/nav_title_home"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_bigger"
+                        android:textColor="@color/colorDefaultText"
+                        android:paddingEnd="@dimen/padding_quarter"/>
+
+                    <ImageView
+                        android:id="@+id/image_up_down_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_outline_arrow_down_24"
+                        android:layout_gravity="center_vertical"/>
+
+                </LinearLayout>
 
                 <ImageView
                     android:id="@+id/image_search_toolbar_home"
