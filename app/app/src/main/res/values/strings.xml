@@ -68,5 +68,8 @@
     <string name="sign_out">로그아웃</string>
     <string name="remove_account">탈퇴하기</string>
 
+    <!-- etc -->
+    <string name="exceptional_error">알 수 없는 오류가 발생했습니다.\n동일 현상이 계속 나타날 시, 고객센터에 문의해주세요.</string>
+
 
 </resources>

@@ -11,21 +11,29 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.dongldh.carrot.R
+import com.dongldh.carrot.`interface`.OnDialogFragmentDismissListener
 import com.dongldh.carrot.databinding.FragmentHomeBinding
+import com.dongldh.carrot.util.Util
+import com.dongldh.carrot.widget.RegionSelectorDialog
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment: Fragment() {
     var isOpenRegionSelector = false
+
+    lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentHomeBinding>(inflater, R.layout.fragment_home, container, false)
+        binding = DataBindingUtil.inflate<FragmentHomeBinding>(inflater, R.layout.fragment_home, container, false)
         (activity as AppCompatActivity).setSupportActionBar(toolbar_home)
 
-        binding.layoutRegionSelectorHome.setOnClickListener { rotateArrow(binding.imageUpDownArrow) }
+        binding.layoutRegionSelectorHome.setOnClickListener {
+            rotateArrow(binding.imageUpDownArrow)
+            showRegionSelectorWithSettingDismissListener()
+        }
 
         return binding.root
     }
@@ -40,5 +48,22 @@ class HomeFragment: Fragment() {
         }
         arrow.startAnimation(arrowRotation)
         isOpenRegionSelector = !isOpenRegionSelector
+    }
+
+    private fun showRegionSelectorWithSettingDismissListener() {
+        activity?.supportFragmentManager?.let {
+            RegionSelectorDialog().apply {
+                setOnDismissListener(this)
+                show(it, tag)
+            }
+        } ?: Util.toastExceptionalError()
+    }
+
+    private fun setOnDismissListener(dialog: RegionSelectorDialog) {
+        dialog.setOnDialogFragmentDismissListener(object: OnDialogFragmentDismissListener {
+            override fun onDismiss() {
+                rotateArrow(binding.imageUpDownArrow)
+            }
+        })
     }
 }

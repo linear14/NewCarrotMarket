@@ -61,10 +61,13 @@
     <string name="invite_friend">Invite friend</string>
     <string name="share_carrot">Share Carrot Market</string>
     <string name="notice">Notice</string>
-    <string name="customer_center">Customer center</string>
+    <string name="customer_center">Customer service</string>
     <string name="setting">Application setting</string>
 
     <!-- activity_app_setting.xml -->
     <string name="sign_out">Sign out</string>
     <string name="remove_account">Remove account</string>
+
+    <!-- etc -->
+    <string name="exceptional_error">Error Occurred!\nIf the same phenomenon continues to appear, please contact customer service.</string>
 </resources>

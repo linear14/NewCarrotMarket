@@ -1,6 +1,7 @@
 package com.dongldh.carrot.util
 
 import android.widget.Toast
+import com.dongldh.carrot.R
 
 object Util {
 
@@ -10,6 +11,10 @@ object Util {
 
     fun toastLong(msg: String) {
         Toast.makeText(App.applicationContext(), msg, Toast.LENGTH_LONG).show()
+    }
+
+    fun toastExceptionalError() {
+        toastShort(App.applicationContext().resources.getString(R.string.exceptional_error))
     }
 
     fun attachUidToSharedPreference(uid: String?) {
