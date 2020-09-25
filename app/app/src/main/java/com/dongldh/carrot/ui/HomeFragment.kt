@@ -13,12 +13,18 @@ import androidx.fragment.app.Fragment
 import com.dongldh.carrot.R
 import com.dongldh.carrot.`interface`.OnDialogFragmentDismissListener
 import com.dongldh.carrot.databinding.FragmentHomeBinding
+import com.dongldh.carrot.util.App
 import com.dongldh.carrot.util.Util
+import com.dongldh.carrot.viewmodel.UserViewModel
 import com.dongldh.carrot.widget.RegionSelectorDialog
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.core.parameter.parametersOf
 
 class HomeFragment: Fragment() {
     var isOpenRegionSelector = false
+
+    val userViewModel: UserViewModel by sharedViewModel { parametersOf(App.pref.uid) }
 
     lateinit var binding: FragmentHomeBinding
 
@@ -30,6 +36,8 @@ class HomeFragment: Fragment() {
         binding = DataBindingUtil.inflate<FragmentHomeBinding>(inflater, R.layout.fragment_home, container, false)
         (activity as AppCompatActivity).setSupportActionBar(toolbar_home)
 
+        initUi()
+
         binding.layoutRegionSelectorHome.setOnClickListener {
             rotateArrow(binding.imageUpDownArrow)
             showRegionSelectorWithSettingDismissListener()
@@ -37,6 +45,11 @@ class HomeFragment: Fragment() {
 
         return binding.root
     }
+
+    private fun initUi() {
+        binding.toolbarTitleHome.text = App.pref.regionSelected
+    }
+
 
     private fun rotateArrow(arrow: ImageView) {
         val arrowRotation: Animation

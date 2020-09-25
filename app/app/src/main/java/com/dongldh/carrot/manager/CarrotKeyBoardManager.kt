@@ -5,7 +5,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.dongldh.carrot.util.App
 
-object KeyBoardManager {
+object CarrotKeyBoardManager {
     private val inputMethodManager by lazy { App.applicationContext().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager }
 
     // focusView 에 focus 를 두며 키보드가 보여짐

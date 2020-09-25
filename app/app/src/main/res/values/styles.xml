@@ -48,4 +48,10 @@
         <item name="android:textStyle">bold</item>
         <item name="android:paddingStart">@dimen/padding_normal</item>
     </style>
+
+    <!-- component style -->
+    <style name="regionSelectorDefaultStyle" parent="@android:style/Widget.DeviceDefault.TextView">
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:textColor">@color/colorDescription</item>
+    </style>
 </resources>

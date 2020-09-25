@@ -34,7 +34,7 @@ class RegionListAdapter(val listener: OnRegionSelectedListener) : PagedListAdapt
                 if(App.pref.uid != UID_DETACHED) {
 
                 } else {
-                    listener.regionSelected(binding.region!!.name)
+                    listener.regionSelected(binding.region!!.id)
                 }
             }
         }
@@ -47,7 +47,7 @@ class RegionListAdapter(val listener: OnRegionSelectedListener) : PagedListAdapt
     }
 
     interface OnRegionSelectedListener {
-        fun regionSelected(region: String)
+        fun regionSelected(regionId: Long)
     }
 
     companion object {
@@ -55,7 +55,7 @@ class RegionListAdapter(val listener: OnRegionSelectedListener) : PagedListAdapt
     }
 }
 
-private class RegionDiffCallback: DiffUtil.ItemCallback<Region>() {
+class RegionDiffCallback: DiffUtil.ItemCallback<Region>() {
     override fun areItemsTheSame(oldItem: Region, newItem: Region): Boolean {
         return oldItem.id == newItem.id
     }

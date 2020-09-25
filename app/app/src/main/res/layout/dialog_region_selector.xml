@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/decorate_border_no_solid_white_round_shadow">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_region_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     <TextView
-        android:id="@+id/item1"
+        android:id="@+id/action_select_my_region"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="엄청엄청엄청엄청긴텍스트"
-        android:textSize="@dimen/text_big"
+        android:text="@string/set_my_region"
         android:padding="16dp"
-        />
+        style="@style/regionSelectorDefaultStyle" />
 
-    <TextView
-        android:id="@+id/item2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="엄청엄청엄청엄청긴텍스트가보일려나"
-        android:textSize="@dimen/text_big"
-        android:padding="16dp"
-        />
 
 </LinearLayout>

@@ -8,9 +8,9 @@
     <color name="colorSurface">#FFFFFF</color>
 
     <color name="colorDefaultText">#000000</color>
-    <color name="colorWhiteText">#FFFFFF</color>
-    <color name="colorTextAccent">#979797</color>
-    <color name="colorDescription">#979797</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorTextAccent">#7C7C7C</color>
+    <color name="colorDescription">#7C7C7C</color>
     <color name="colorHint">#DCDCDC</color>
 
     <color name="colorTempLow">#008000</color>

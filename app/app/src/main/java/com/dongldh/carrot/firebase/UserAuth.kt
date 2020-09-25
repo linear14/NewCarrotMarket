@@ -4,6 +4,7 @@ import android.app.Activity
 import com.dongldh.carrot.R
 import com.dongldh.carrot.data.User
 import com.dongldh.carrot.data.UserCreateAccountRequest
+import com.dongldh.carrot.util.SharedUtil
 import com.dongldh.carrot.util.Util
 import com.google.firebase.auth.FirebaseAuth
 
@@ -14,7 +15,7 @@ class UserAuth(private val activity: Activity) {
         auth.createUserWithEmailAndPassword(userAccountInfo.email, userAccountInfo.password).addOnCompleteListener(activity) { task ->
             if(task.isSuccessful) {
                 val uid = task.result?.user?.uid!!
-                Util.attachUidToSharedPreference(uid)
+                SharedUtil.attachUidToSharedPreference(uid)
                 UserFirestoreManager.addUserInfo(makeNewUser(uid, userAccountInfo))
             } else {
                 Util.toastShort(activity.resources.getString(R.string.firebase_auth_create_user_error))
@@ -23,14 +24,14 @@ class UserAuth(private val activity: Activity) {
     }
 
     private fun makeNewUser(uid: String, userAccountInfo: UserCreateAccountRequest): User {
-        val regionList = mutableListOf<String>().apply { add(userAccountInfo.region) }
+        val regionList = mutableListOf<Long>().apply { add(userAccountInfo.regionId) }
 
         return User(
                 uid = uid,
                 nickname = userAccountInfo.nickName,
                 profileUrl = userAccountInfo.profileImageUrl,
-                region = regionList,
-                regionSelected = userAccountInfo.region
+                regionIdAll = regionList,
+                regionIdSelected = userAccountInfo.regionId
             )
     }
 }

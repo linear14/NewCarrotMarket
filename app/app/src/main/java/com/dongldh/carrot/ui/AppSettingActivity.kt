@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dongldh.carrot.R
-import com.dongldh.carrot.util.Util
+import com.dongldh.carrot.util.SharedUtil
 import kotlinx.android.synthetic.main.activity_app_setting.*
 
 class AppSettingActivity : AppCompatActivity() {
@@ -13,10 +13,16 @@ class AppSettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_app_setting)
 
         text_sign_out.setOnClickListener {
-            Util.detachUidFromSharedPreference()
+            detachAccountInfoFromSharedPreference()
+
             val intent = Intent(this, SignInActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         }
+    }
+
+    private fun detachAccountInfoFromSharedPreference() {
+        SharedUtil.detachUidFromSharedPreference()
+        SharedUtil.detachRegion()
     }
 }

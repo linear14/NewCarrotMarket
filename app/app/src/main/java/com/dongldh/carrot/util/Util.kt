@@ -16,12 +16,4 @@ object Util {
     fun toastExceptionalError() {
         toastShort(App.applicationContext().resources.getString(R.string.exceptional_error))
     }
-
-    fun attachUidToSharedPreference(uid: String?) {
-        App.pref.uid = uid
-    }
-
-    fun detachUidFromSharedPreference() {
-        App.pref.uid = UID_DETACHED
-    }
 }

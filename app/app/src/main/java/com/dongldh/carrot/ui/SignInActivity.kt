@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dongldh.carrot.R
+import com.dongldh.carrot.firebase.UserFirestoreManager
 import com.dongldh.carrot.util.*
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -49,7 +50,7 @@ class SignInActivity : AppCompatActivity() {
 
     private fun trySignInResult(task: Task<AuthResult>) {
         if (task.isSuccessful) {
-            Util.toastShort(resources.getString(R.string.firebase_create_account_ok))
+            Util.toastShort(resources.getString(R.string.firebase_sign_in_success))
             attachUidToSharedPreferenceAndGoToMainActivity(task)
         } else {
             val errorCode = (task.exception as FirebaseAuthException).errorCode
@@ -58,8 +59,8 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun attachUidToSharedPreferenceAndGoToMainActivity(task: Task<AuthResult>) {
-        Util.attachUidToSharedPreference(task.result?.user?.uid)
-        startActivity(Intent(this, MainActivity::class.java))
+        SharedUtil.attachUidToSharedPreference(task.result?.user?.uid)
+        getUserInfoFromFireStoreAndAttachAccountInfoToSharedPreference()
     }
 
     private fun actionAccordingToError(errorCode: String) {
@@ -88,5 +89,11 @@ class SignInActivity : AppCompatActivity() {
                 putExtra(ACCOUNT_PASSWORD, input_password.text.toString())
             }
         startActivity(intent)
+    }
+
+    private fun getUserInfoFromFireStoreAndAttachAccountInfoToSharedPreference() {
+        App.pref.uid?.let {
+            UserFirestoreManager.getUserInfoByUidAndSavedAccountInfoAndGoToMain(it)
+        }?:Util.toastExceptionalError()
     }
 }

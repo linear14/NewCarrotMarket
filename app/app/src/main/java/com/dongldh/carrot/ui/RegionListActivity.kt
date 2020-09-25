@@ -12,7 +12,7 @@ import com.dongldh.carrot.adapter.RegionListAdapter
 import com.dongldh.carrot.data.UserCreateAccountRequest
 import com.dongldh.carrot.databinding.ActivityRegionListBinding
 import com.dongldh.carrot.firebase.UserAuth
-import com.dongldh.carrot.manager.KeyBoardManager
+import com.dongldh.carrot.manager.CarrotKeyBoardManager
 import com.dongldh.carrot.util.*
 import com.dongldh.carrot.viewmodel.RegionListViewModel
 import org.koin.android.ext.android.inject
@@ -94,16 +94,16 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
         binding.btnSearchEntireRegionList.setOnClickListener { returnToOnCreateState() }
         binding.noResultLayoutRegionList.setOnClickListener {
             clearSearchBarText()
-            KeyBoardManager.keyBoardShowUp(binding.inputToolbarSearchRegionList)
+            CarrotKeyBoardManager.keyBoardShowUp(binding.inputToolbarSearchRegionList)
         }
     }
 
-    override fun regionSelected(region: String) {
+    override fun regionSelected(regionId: Long) {
         val userAccountInfo = UserCreateAccountRequest(
             email = "${intent.getStringExtra(ACCOUNT_ID)}@carrot.com",
             password = intent.getStringExtra(ACCOUNT_PASSWORD)?:throw Exception(),
             nickName = intent.getStringExtra(ACCOUNT_NICKNAME)?:throw Exception(),
-            region = region,
+            regionId = regionId,
             profileImageUrl = intent.getStringExtra(ACCOUNT_PROFILE_IMAGE_URL)?:throw Exception()
         )
 

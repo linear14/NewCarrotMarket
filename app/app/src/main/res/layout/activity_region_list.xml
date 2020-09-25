@@ -112,7 +112,7 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar_region_list"
             android:layout_margin="@dimen/margin_normal"
             android:text="@string/btn_search_entire_region"
-            android:textColor="@color/colorWhiteText"
+            android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_small"
             android:textStyle="bold"
             android:background="@drawable/decorate_border_no_solid_colorprimary_round"/>

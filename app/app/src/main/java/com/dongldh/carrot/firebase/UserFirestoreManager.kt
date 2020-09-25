@@ -7,8 +7,11 @@ import com.dongldh.carrot.data.User
 import com.dongldh.carrot.ui.MainActivity
 import com.dongldh.carrot.util.App
 import com.dongldh.carrot.util.COLLECTION_USERS
+import com.dongldh.carrot.util.SharedUtil
 import com.dongldh.carrot.util.Util
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 object UserFirestoreManager {
     val db: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -20,9 +23,12 @@ object UserFirestoreManager {
             .document(user.uid!!)
             .set(user)
             .addOnSuccessListener {
-                val intent = Intent(App.applicationContext(), MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                App.applicationContext().startActivity(intent)
+                GlobalScope.launch {
+                    SharedUtil.attachRegion(user.regionIdAll, user.regionIdSelected!!)
+                    val intent = Intent(App.applicationContext(), MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    App.applicationContext().startActivity(intent)
+                }
                 Util.toastShort(App.applicationContext().resources.getString(R.string.firebase_create_account_ok))
             }
             .addOnFailureListener{
@@ -37,4 +43,21 @@ object UserFirestoreManager {
             userLiveData.value = user
         }
     }
+
+    fun getUserInfoByUidAndSavedAccountInfoAndGoToMain(uid: String) {
+        val userRef = db.collection(COLLECTION_USERS).document(uid)
+        userRef.get().addOnSuccessListener {
+            val user = it.toObject(User::class.java)
+
+            // TODO 기능분리 하고싶음
+            GlobalScope.launch {
+                SharedUtil.attachRegion(user?.regionIdAll!!, user.regionIdSelected!!)
+
+                val intent = Intent(App.applicationContext(), MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                App.applicationContext().startActivity(intent)
+            }
+        }
+    }
+
 }

@@ -30,6 +30,9 @@
     <dimen name="button_height_with_text_size_small">40dp</dimen>
     <dimen name="image_set_profile_size">240dp</dimen>
 
+    <!-- layout size -->
+    <dimen name="dialog_region_selector_width">200dp</dimen>
+
     <!-- round -->
     <dimen name="corner_round_normal">16dp</dimen>
     <dimen name="corner_round_less_than_normal">8dp</dimen>
