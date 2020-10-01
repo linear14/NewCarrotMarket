@@ -58,7 +58,7 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <TextView
+    <View
         android:id="@+id/separator1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/separator_height"

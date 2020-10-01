@@ -7,7 +7,7 @@
         android:color="@color/colorSurface"/>
 
     <corners
-        android:radius="@dimen/corner_round_less_than_normal"/>
+        android:radius="@dimen/corner_round_half"/>
 
     <stroke
         android:color="@color/colorSeparator"

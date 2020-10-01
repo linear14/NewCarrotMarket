@@ -9,7 +9,7 @@
                 android:left="0.4dp"
                 android:bottom="0.4dp"/>
             <corners
-                android:radius="@dimen/corner_round_less_than_normal"/>
+                android:radius="@dimen/corner_round_half"/>
             <solid android:color="#00CCCCCC"/>
         </shape>
     </item>
@@ -22,7 +22,7 @@
                 android:left="0.4dp"
                 android:bottom="0.4dp"/>
             <corners
-                android:radius="@dimen/corner_round_less_than_normal"/>
+                android:radius="@dimen/corner_round_half"/>
             <solid android:color="#06CCCCCC"/>
         </shape>
     </item>
@@ -35,7 +35,7 @@
                 android:left="0.4dp"
                 android:bottom="0.4dp"/>
             <corners
-                android:radius="@dimen/corner_round_less_than_normal"/>
+                android:radius="@dimen/corner_round_half"/>
             <solid android:color="#09CCCCCC"/>
         </shape>
     </item>
@@ -48,7 +48,7 @@
                 android:left="0.4dp"
                 android:bottom="0.4dp"/>
             <corners
-                android:radius="@dimen/corner_round_less_than_normal"/>
+                android:radius="@dimen/corner_round_half"/>
             <solid android:color="#0BCCCCCC"/>
         </shape>
     </item>
@@ -61,7 +61,7 @@
                 android:left="0.4dp"
                 android:bottom="0.4dp"/>
             <corners
-                android:radius="@dimen/corner_round_less_than_normal"/>
+                android:radius="@dimen/corner_round_half"/>
             <solid android:color="#0DCCCCCC"/>
         </shape>
     </item>
@@ -74,7 +74,7 @@
                 android:left="0.4dp"
                 android:bottom="0.4dp"/>
             <corners
-                android:radius="@dimen/corner_round_less_than_normal"/>
+                android:radius="@dimen/corner_round_half"/>
             <solid android:color="#10CCCCCC"/>
         </shape>
     </item>
@@ -86,7 +86,7 @@
                 android:left="0.4dp"
                 android:bottom="0.4dp"/>
             <corners
-                android:radius="@dimen/corner_round_less_than_normal"/>
+                android:radius="@dimen/corner_round_half"/>
             <solid android:color="#12CCCCCC"/>
         </shape>
     </item>
@@ -98,7 +98,7 @@
                 android:left="0.4dp"
                 android:bottom="0.4dp"/>
             <corners
-                android:radius="@dimen/corner_round_less_than_normal"/>
+                android:radius="@dimen/corner_round_half"/>
             <solid android:color="#15CCCCCC"/>
         </shape>
     </item>
@@ -111,7 +111,7 @@
                 android:left="0.4dp"
                 android:bottom="0.4dp"/>
             <corners
-                android:radius="@dimen/corner_round_less_than_normal"/>
+                android:radius="@dimen/corner_round_half"/>
             <solid android:color="#17CCCCCC"/>
         </shape>
     </item>
@@ -124,7 +124,7 @@
                 android:left="0.4dp"
                 android:bottom="0.4dp"/>
             <corners
-                android:radius="@dimen/corner_round_less_than_normal"/>
+                android:radius="@dimen/corner_round_half"/>
             <solid android:color="#1ACCCCCC"/>
         </shape>
     </item>
@@ -135,7 +135,7 @@
             <solid
                 android:color="@color/colorWhite"/>
             <corners
-                android:radius="@dimen/corner_round_less_than_normal"/>
+                android:radius="@dimen/corner_round_half"/>
         </shape>
     </item>
 

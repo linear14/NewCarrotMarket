@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorDeepSurface">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/colorSurface"
+            app:contentInsetStart="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/action_back"
+                    android:layout_width="@dimen/toolbar_image_item"
+                    android:layout_height="@dimen/toolbar_image_item"
+                    android:src="@drawable/ic_outline_arrow_back_24"
+                    android:padding="@dimen/padding_half"
+                    android:layout_marginHorizontal="@dimen/margin_half"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toEndOf="@id/action_back"
+                    android:gravity="center"
+                    android:text="@string/set_my_region"
+                    style="@style/toolbarTitleStyle" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_select_region"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            android:layout_marginTop="@dimen/margin_one"
+            android:background="@color/colorSurface">
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="동네 선택"
+                style="@style/smallTitleStyle"
+                android:layout_marginTop="@dimen/margin_1.5_times"/>
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text1"
+                android:layout_marginTop="@dimen/margin_1.5_times"
+                android:text="지역은 최소 1개 이상 최대 2개까지 설정 가능해요."
+                style="@style/descriptionStyle"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_first_region"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/decorate_border_colorseparatorlight_solid_colorsurface_round"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/layout_second_region"
+                app:layout_constraintTop_toBottomOf="@id/text2"
+                android:paddingStart="@dimen/padding_normal"
+                android:layout_marginHorizontal="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_double">
+
+                <TextView
+                    android:id="@+id/text_first_region"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="화서동"
+                    android:textSize="@dimen/text_big"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorDefaultText"/>
+
+                <ImageView
+                    android:id="@+id/action_delete_first_region"
+                    android:layout_width="@dimen/image_button_with_padding"
+                    android:layout_height="@dimen/image_button_with_padding"
+                    android:padding="@dimen/padding_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/ic_outline_clear_24"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_second_region"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_normal"
+                android:background="@drawable/decorate_border_colorseparatorlight_solid_colorsurface_round"
+                app:layout_constraintStart_toEndOf="@id/layout_first_region"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/layout_first_region"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/margin_double"
+                android:layout_marginEnd="@dimen/margin_normal">
+
+                <TextView
+                    android:id="@+id/text_second_region"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="서천동"
+                    android:textSize="@dimen/text_big"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorDefaultText" />
+
+                <ImageView
+                    android:id="@+id/action_delete_second_region"
+                    android:layout_width="@dimen/image_button_with_padding"
+                    android:layout_height="@dimen/image_button_with_padding"
+                    android:padding="@dimen/padding_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/ic_outline_clear_24"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <ImageView
+                    android:id="@+id/image_add"
+                    android:layout_width="@dimen/image_button_with_padding"
+                    android:layout_height="@dimen/image_button_with_padding"
+                    android:padding="@dimen/padding_image"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:src="@drawable/ic_outline_add_24" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

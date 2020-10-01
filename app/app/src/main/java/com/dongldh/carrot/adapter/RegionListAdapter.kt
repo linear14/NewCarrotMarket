@@ -29,9 +29,8 @@ class RegionListAdapter(val listener: OnRegionSelectedListener) : PagedListAdapt
 
     inner class RegionListViewHolder(val binding: ItemRegionListBinding): RecyclerView.ViewHolder(binding.root) {
         init {
-            // preference에 uid 정보가 저장되어 있다면 로그인이 되어있는 상태라는 의미
             binding.setClickListener { _ ->
-                if(App.pref.uid != UID_DETACHED) {
+                if(isLoginState()) {
 
                 } else {
                     listener.regionSelected(binding.region!!.id)
@@ -44,6 +43,10 @@ class RegionListAdapter(val listener: OnRegionSelectedListener) : PagedListAdapt
                 executePendingBindings()
             }
         }
+    }
+
+    private fun isLoginState(): Boolean {
+        return App.pref.uid != UID_DETACHED
     }
 
     interface OnRegionSelectedListener {

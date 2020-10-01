@@ -63,7 +63,7 @@
     <string name="notice">공지사항</string>
     <string name="customer_center">고객센터</string>
     <string name="setting">앱 설정</string>
-    
+
     <!-- activity_app_setting.xml -->
     <string name="sign_out">로그아웃</string>
     <string name="remove_account">탈퇴하기</string>
