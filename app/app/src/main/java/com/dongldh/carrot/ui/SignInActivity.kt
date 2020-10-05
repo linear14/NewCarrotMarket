@@ -94,6 +94,6 @@ class SignInActivity : AppCompatActivity() {
     private fun getUserInfoFromFireStoreAndAttachAccountInfoToSharedPreference() {
         App.pref.uid?.let {
             UserFirestoreManager.getUserInfoByUidAndSavedAccountInfoAndGoToMain(it)
-        }?:Util.toastExceptionalError()
+        }?:Util.showErrorToast()
     }
 }

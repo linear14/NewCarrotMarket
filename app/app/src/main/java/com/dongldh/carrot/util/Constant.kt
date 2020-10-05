@@ -5,7 +5,6 @@ const val REGION_JSON = "regions.json"
 
 // SharedPreference
 const val UID_DETACHED = "UID_DETACHED"
-const val REGION_SELECTED_DETACHED = "REGION_SELECTED_DETACHED"
 
 const val COLLECTION_USERS = "users"
 

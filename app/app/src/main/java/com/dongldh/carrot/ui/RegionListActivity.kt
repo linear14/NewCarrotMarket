@@ -98,12 +98,13 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
         }
     }
 
-    override fun regionSelected(regionId: Long) {
+    override fun regionSelected(regionId: Long, regionString: String) {
         val userAccountInfo = UserCreateAccountRequest(
             email = "${intent.getStringExtra(ACCOUNT_ID)}@carrot.com",
             password = intent.getStringExtra(ACCOUNT_PASSWORD)?:throw Exception(),
             nickName = intent.getStringExtra(ACCOUNT_NICKNAME)?:throw Exception(),
             regionId = regionId,
+            regionString = regionString,
             profileImageUrl = intent.getStringExtra(ACCOUNT_PROFILE_IMAGE_URL)?:throw Exception()
         )
 

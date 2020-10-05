@@ -40,16 +40,17 @@ class HomeFragment: Fragment() {
 
         binding.layoutRegionSelectorHome.setOnClickListener {
             rotateArrow(binding.imageUpDownArrow)
-            showRegionSelectorWithSettingDismissListener()
+            showRegionSelectorWithDialogDismissListener()
         }
 
         return binding.root
     }
 
     private fun initUi() {
-        binding.toolbarTitleHome.text = App.pref.regionSelected
+        binding.toolbarTitleHome.text = getSelectedRegionName()
     }
 
+    private fun getSelectedRegionName(): String = App.pref.regionSelected.second
 
     private fun rotateArrow(arrow: ImageView) {
         val arrowRotation: Animation
@@ -63,13 +64,13 @@ class HomeFragment: Fragment() {
         isOpenRegionSelector = !isOpenRegionSelector
     }
 
-    private fun showRegionSelectorWithSettingDismissListener() {
+    private fun showRegionSelectorWithDialogDismissListener() {
         activity?.supportFragmentManager?.let {
             RegionSelectorDialog().apply {
                 setOnDismissListener(this)
                 show(it, tag)
             }
-        } ?: Util.toastExceptionalError()
+        } ?: Util.showErrorToast()
     }
 
     private fun setOnDismissListener(dialog: RegionSelectorDialog) {

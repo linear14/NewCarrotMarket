@@ -61,8 +61,33 @@ class SharedPreference(context: Context) {
             editor.apply()
         }
 
-    var regionSelected: String?
-        get() = pref.getString("REGION_SELECTED", "홈")
-        set(value) = pref.edit().putString("REGION_SELECTED", value).apply()
+    var regionSelected: Pair<Long, String>
+        get() {
+            val json = pref.getString("REGION_SELECTED", null)
+            var pair: Pair<Long, String> = Pair(NO_REGION_DATA, "")
+
+            if(json != null) {
+                try {
+                    val jsonArray = JSONArray(json)
+                    val id = jsonArray.optLong(0)
+                    val name = jsonArray.optString(1)
+                    pair = Pair(id, name)
+                } catch(e: JSONException) {
+                    e.printStackTrace()
+                }
+            }
+            return pair
+        }
+
+        set(value) {
+            val editor = pref.edit()
+            val jsonArray = JSONArray().apply {
+                put(value.first)
+                put(value.second)
+            }
+
+            editor.putString("REGION_SELECTED", jsonArray.toString())
+            editor.apply()
+        }
 
 }

@@ -23,12 +23,12 @@ object UserFirestoreManager {
             .document(user.uid!!)
             .set(user)
             .addOnSuccessListener {
-                GlobalScope.launch {
-                    SharedUtil.attachRegion(user.regionIdAll, user.regionIdSelected!!)
-                    val intent = Intent(App.applicationContext(), MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    App.applicationContext().startActivity(intent)
-                }
+                setUserRegionInfoToSharedPreference(user)
+
+                val intent = Intent(App.applicationContext(), MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                App.applicationContext().startActivity(intent)
+
                 Util.toastShort(App.applicationContext().resources.getString(R.string.firebase_create_account_ok))
             }
             .addOnFailureListener{
@@ -47,17 +47,30 @@ object UserFirestoreManager {
     fun getUserInfoByUidAndSavedAccountInfoAndGoToMain(uid: String) {
         val userRef = db.collection(COLLECTION_USERS).document(uid)
         userRef.get().addOnSuccessListener {
-            val user = it.toObject(User::class.java)
+            val user = it.toObject(User::class.java)!!
+            setUserRegionInfoToSharedPreference(user)
 
-            // TODO 기능분리 하고싶음
-            GlobalScope.launch {
-                SharedUtil.attachRegion(user?.regionIdAll!!, user.regionIdSelected!!)
-
-                val intent = Intent(App.applicationContext(), MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                App.applicationContext().startActivity(intent)
-            }
+            val intent = Intent(App.applicationContext(), MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            App.applicationContext().startActivity(intent)
         }
+    }
+
+    private fun getRegionPair(idList: List<Long>, nameList: List<String>): ArrayList<Pair<Long, String>> {
+        val list = arrayListOf<Pair<Long, String>>()
+        for(i in idList.indices) {
+            list.add(Pair(idList[i], nameList[i]))
+        }
+        return list
+    }
+
+    private fun getRegionSelectedPair(selectedId: Long, selectedName: String): Pair<Long, String> =
+        Pair(selectedId, selectedName)
+
+    private fun setUserRegionInfoToSharedPreference(user: User) {
+        val regionList = getRegionPair(user.regionIdAll, user.regionStringAll)
+        val selectedList = getRegionSelectedPair(user.regionIdSelected!!, user.regionStringSelected!!)
+        SharedUtil.attachRegion(regionList, selectedList)
     }
 
 }

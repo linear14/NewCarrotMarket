@@ -14,7 +14,6 @@ import com.dongldh.carrot.manager.CarrotWindowManager
 import com.dongldh.carrot.ui.SetMyRegionActivity
 import com.dongldh.carrot.util.App
 import com.dongldh.carrot.util.Util
-import kotlinx.android.synthetic.main.dialog_region_selector.*
 import kotlinx.android.synthetic.main.dialog_region_selector.view.*
 
 class RegionSelectorDialog : DialogFragment() {
@@ -44,7 +43,7 @@ class RegionSelectorDialog : DialogFragment() {
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        dialogFragmentDismissListener?.onDismiss() ?: Util.toastExceptionalError()
+        dialogFragmentDismissListener?.onDismiss() ?: Util.showErrorToast()
     }
 
     fun setOnDialogFragmentDismissListener(li: OnDialogFragmentDismissListener) {
@@ -57,7 +56,7 @@ class RegionSelectorDialog : DialogFragment() {
             setGravity(Gravity.TOP or Gravity.START)
             setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             setDialogPosition(this, posX = 15, posY = CarrotWindowManager.getToolbarHeight() - 30)
-        } ?: Util.toastExceptionalError()
+        } ?: Util.showErrorToast()
     }
 
     private fun setDialogPosition(window: Window, posX: Int, posY: Int) {

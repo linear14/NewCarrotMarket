@@ -33,7 +33,7 @@ class RegionListAdapter(val listener: OnRegionSelectedListener) : PagedListAdapt
                 if(isLoginState()) {
 
                 } else {
-                    listener.regionSelected(binding.region!!.id)
+                    listener.regionSelected(binding.region!!.id, binding.region!!.name)
                 }
             }
         }
@@ -50,7 +50,7 @@ class RegionListAdapter(val listener: OnRegionSelectedListener) : PagedListAdapt
     }
 
     interface OnRegionSelectedListener {
-        fun regionSelected(regionId: Long)
+        fun regionSelected(regionId: Long, regionString: String)
     }
 
     companion object {

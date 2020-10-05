@@ -27,14 +27,16 @@ class RegionSelectorAdapter : ListAdapter<Pair<Long, String>, RecyclerView.ViewH
         fun bind(item: Pair<Long, String>) {
             binding.apply {
                 region = item.second
-
-                // TODO 지금 second(String) 으로 되어있는데, 이 부분의 SharedPreference도 현재 선택된 Pair쌍으로 만들어서 후에 id로 처리하는 작업을 하는것을 고려하자
-                if(item.second == App.pref.regionSelected) {
-                    textRegion.setTextSize(TypedValue.COMPLEX_UNIT_SP,16f)
-                    textRegion.setTypeface(null, Typeface.BOLD)
-                }
+                accentuateSelectedRegion(item.first)
 
                 executePendingBindings()
+            }
+        }
+
+        private fun accentuateSelectedRegion(regionId: Long) {
+            if(regionId == App.pref.regionSelected.first) {
+                binding.textRegion.setTextSize(TypedValue.COMPLEX_UNIT_SP,16f)
+                binding.textRegion.setTypeface(null, Typeface.BOLD)
             }
         }
     }

@@ -31,7 +31,7 @@ class SetMyRegionActivity : AppCompatActivity() {
             setTextRegionList(regions)
         }
 
-        setMyRegionViewModel.regionSelectedString.observe(this) {
+        setMyRegionViewModel.regionSelectedPair.observe(this) {
             setCardStyle()
         }
 

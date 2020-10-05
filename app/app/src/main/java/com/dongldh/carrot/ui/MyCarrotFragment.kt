@@ -30,12 +30,13 @@ class MyCarrotFragment: Fragment() {
                 }
             }
 
-        // TODO : 이 부분을 SharedPreference를 통한 데이터 처리를 해야할까?
         currentUserViewModel.currentUser.observe(requireActivity()) { result ->
             binding.textNickname.text = result.nickname
-            binding.textRegion.text = App.pref.regionSelected
+            binding.textRegion.text = getSelectedRegionName()
         }
 
         return binding.root
     }
+
+    private fun getSelectedRegionName(): String = App.pref.regionSelected.second
 }

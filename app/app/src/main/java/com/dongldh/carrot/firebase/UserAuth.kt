@@ -12,26 +12,30 @@ class UserAuth(private val activity: Activity) {
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     fun createUserFirebaseAuth(userAccountInfo: UserCreateAccountRequest) {
-        auth.createUserWithEmailAndPassword(userAccountInfo.email, userAccountInfo.password).addOnCompleteListener(activity) { task ->
-            if(task.isSuccessful) {
-                val uid = task.result?.user?.uid!!
-                SharedUtil.attachUidToSharedPreference(uid)
-                UserFirestoreManager.addUserInfo(makeNewUser(uid, userAccountInfo))
-            } else {
-                Util.toastShort(activity.resources.getString(R.string.firebase_auth_create_user_error))
+        auth.createUserWithEmailAndPassword(userAccountInfo.email, userAccountInfo.password)
+            .addOnCompleteListener(activity) { task ->
+                if (task.isSuccessful) {
+                    val uid = task.result?.user?.uid!!
+                    SharedUtil.attachUidToSharedPreference(uid)
+                    UserFirestoreManager.addUserInfo(makeNewUser(uid, userAccountInfo))
+                } else {
+                    Util.toastShort(activity.resources.getString(R.string.firebase_auth_create_user_error))
+                }
             }
-        }
     }
 
     private fun makeNewUser(uid: String, userAccountInfo: UserCreateAccountRequest): User {
-        val regionList = mutableListOf<Long>().apply { add(userAccountInfo.regionId) }
+        val regionIdList = mutableListOf<Long>().apply { add(userAccountInfo.regionId) }
+        val regionStringList = mutableListOf<String>().apply { add(userAccountInfo.regionString) }
 
         return User(
-                uid = uid,
-                nickname = userAccountInfo.nickName,
-                profileUrl = userAccountInfo.profileImageUrl,
-                regionIdAll = regionList,
-                regionIdSelected = userAccountInfo.regionId
-            )
+            uid = uid,
+            nickname = userAccountInfo.nickName,
+            profileUrl = userAccountInfo.profileImageUrl,
+            regionIdAll = regionIdList,
+            regionStringAll = regionStringList,
+            regionIdSelected = userAccountInfo.regionId,
+            regionStringSelected = userAccountInfo.regionString
+        )
     }
 }
