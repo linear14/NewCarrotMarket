@@ -3,15 +3,18 @@ package com.dongldh.carrot.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import com.dongldh.carrot.R
+import com.dongldh.carrot.`interface`.OnFinishNetworkingListener
 import com.dongldh.carrot.adapter.RegionListAdapter
 import com.dongldh.carrot.data.UserCreateAccountRequest
 import com.dongldh.carrot.databinding.ActivityRegionListBinding
 import com.dongldh.carrot.firebase.UserAuth
+import com.dongldh.carrot.firebase.UserFirestoreManager
 import com.dongldh.carrot.manager.CarrotKeyBoardManager
 import com.dongldh.carrot.util.*
 import com.dongldh.carrot.viewmodel.RegionListViewModel
@@ -20,6 +23,8 @@ import org.koin.android.ext.android.inject
 class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelectedListener {
     lateinit var binding: ActivityRegionListBinding
     private val regionListViewModel: RegionListViewModel by inject()
+
+    private val intentRequest: String by lazy { intent.getStringExtra(INTENT_TYPE) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,19 +101,50 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
             clearSearchBarText()
             CarrotKeyBoardManager.keyBoardShowUp(binding.inputToolbarSearchRegionList)
         }
+        binding.actionBack.setOnClickListener { finish() }
     }
 
     override fun regionSelected(regionId: Long, regionString: String) {
-        val userAccountInfo = UserCreateAccountRequest(
-            email = "${intent.getStringExtra(ACCOUNT_ID)}@carrot.com",
-            password = intent.getStringExtra(ACCOUNT_PASSWORD)?:throw Exception(),
-            nickName = intent.getStringExtra(ACCOUNT_NICKNAME)?:throw Exception(),
-            regionId = regionId,
-            regionString = regionString,
-            profileImageUrl = intent.getStringExtra(ACCOUNT_PROFILE_IMAGE_URL)?:throw Exception()
-        )
+        when(intentRequest) {
+            SET_FIRST_REGION -> {
+                val userAccountInfo = UserCreateAccountRequest(
+                    email = "${intent.getStringExtra(ACCOUNT_ID)}@carrot.com",
+                    password = intent.getStringExtra(ACCOUNT_PASSWORD)?:throw Exception(),
+                    nickName = intent.getStringExtra(ACCOUNT_NICKNAME)?:throw Exception(),
+                    regionId = regionId,
+                    regionString = regionString,
+                    profileImageUrl = intent.getStringExtra(ACCOUNT_PROFILE_IMAGE_URL)?:throw Exception()
+                )
 
-        UserAuth(this).createUserFirebaseAuth(userAccountInfo)
+                UserAuth(this).createUserFirebaseAuth(userAccountInfo)
+            }
+            SET_SECOND_REGION -> {
+                val regionList = App.pref.regionList
+                if(regionList[0].first == regionId) {
+                    Util.toastShort("이미 등록된 지역입니다")
+                } else {
+                    val regionIdAll = ArrayList<Long>().apply {
+                        add(regionList[0].first)
+                        add(regionId)
+                    }
+                    val regionStringAll = ArrayList<String>().apply {
+                        add(regionList[0].second)
+                        add(regionString)
+                    }
+                    UserFirestoreManager.updateUserOnlyRegionList(App.pref.uid ?: UID_DETACHED, regionIdAll, regionStringAll,
+                    object: OnFinishNetworkingListener {
+                        override fun onSuccess() {
+                            finish()
+                        }
+
+                        override fun onFailure() {
+                            Util.toastShort("동네 추가 실패")
+                        }
+
+                    })
+                }
+
+            }
+        }
     }
-
 }

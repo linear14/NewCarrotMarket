@@ -72,6 +72,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun moveToRegionListActivityWithAccountInfo() {
         val intent = Intent(this, RegionListActivity::class.java)
+        intent.putExtra(INTENT_TYPE, SET_FIRST_REGION)
         intent.putExtra(ACCOUNT_ID, this.intent.getStringExtra(ACCOUNT_ID))
         intent.putExtra(ACCOUNT_PASSWORD, this.intent.getStringExtra(ACCOUNT_PASSWORD))
         intent.putExtra(ACCOUNT_NICKNAME, input_nickname.text.toString())

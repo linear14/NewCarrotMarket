@@ -3,6 +3,7 @@ package com.dongldh.carrot.firebase
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import com.dongldh.carrot.R
+import com.dongldh.carrot.`interface`.OnFinishNetworkingListener
 import com.dongldh.carrot.data.User
 import com.dongldh.carrot.ui.MainActivity
 import com.dongldh.carrot.util.App
@@ -10,8 +11,6 @@ import com.dongldh.carrot.util.COLLECTION_USERS
 import com.dongldh.carrot.util.SharedUtil
 import com.dongldh.carrot.util.Util
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 object UserFirestoreManager {
     val db: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -53,6 +52,19 @@ object UserFirestoreManager {
             val intent = Intent(App.applicationContext(), MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             App.applicationContext().startActivity(intent)
+        }
+    }
+
+    fun updateUserOnlyRegionList(uid: String, regionIdAll: ArrayList<Long>, regionStringAll: ArrayList<String>, li: OnFinishNetworkingListener) {
+        val userRef = db.collection(COLLECTION_USERS).document(uid)
+        userRef.update(mapOf(
+            "regionIdAll" to regionIdAll,
+            "regionStringAll" to regionStringAll
+        )).addOnSuccessListener {
+            App.pref.regionList = getRegionPair(regionIdAll, regionStringAll)
+            li.onSuccess()
+        }.addOnFailureListener {
+            li.onFailure()
         }
     }
 

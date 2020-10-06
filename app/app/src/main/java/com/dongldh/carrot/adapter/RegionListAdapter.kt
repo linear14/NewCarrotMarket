@@ -29,13 +29,7 @@ class RegionListAdapter(val listener: OnRegionSelectedListener) : PagedListAdapt
 
     inner class RegionListViewHolder(val binding: ItemRegionListBinding): RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.setClickListener { _ ->
-                if(isLoginState()) {
-
-                } else {
-                    listener.regionSelected(binding.region!!.id, binding.region!!.name)
-                }
-            }
+            binding.setClickListener { listener.regionSelected(binding.region!!.id, binding.region!!.name) }
         }
         fun bind(item: Region) {
             binding.apply {

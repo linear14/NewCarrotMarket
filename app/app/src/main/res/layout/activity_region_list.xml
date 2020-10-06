@@ -26,7 +26,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/image_back_toolbar_region_list"
+                    android:id="@+id/action_back"
                     android:layout_width="@dimen/toolbar_image_item"
                     android:layout_height="@dimen/toolbar_image_item"
                     android:src="@drawable/ic_outline_arrow_back_24"
@@ -41,9 +41,9 @@
                     android:layout_width="@dimen/toolbar_image_item"
                     android:layout_height="@dimen/toolbar_image_item"
                     android:padding="10dp"
-                    app:layout_constraintStart_toEndOf="@id/image_back_toolbar_region_list"
-                    app:layout_constraintTop_toTopOf="@id/image_back_toolbar_region_list"
-                    app:layout_constraintBottom_toBottomOf="@id/image_back_toolbar_region_list"
+                    app:layout_constraintStart_toEndOf="@id/action_back"
+                    app:layout_constraintTop_toTopOf="@id/action_back"
+                    app:layout_constraintBottom_toBottomOf="@id/action_back"
                     android:src="@drawable/ic_outline_search_24"/>
 
                 <EditText

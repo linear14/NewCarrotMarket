@@ -1,5 +1,6 @@
 package com.dongldh.carrot.ui
 
+import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
@@ -10,8 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.observe
 import com.dongldh.carrot.R
-import com.dongldh.carrot.util.App
-import com.dongldh.carrot.util.NO_REGION_DATA
+import com.dongldh.carrot.util.*
 import com.dongldh.carrot.viewmodel.SetMyRegionViewModel
 import kotlinx.android.synthetic.main.activity_set_my_region.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -35,7 +35,14 @@ class SetMyRegionActivity : AppCompatActivity() {
             setCardStyle()
         }
 
+        layout_first_region.setOnClickListener { selectOrSetRegion(0) }
+        layout_second_region.setOnClickListener { selectOrSetRegion(1) }
         action_back.setOnClickListener { finish() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setMyRegionViewModel.initLiveData()
     }
 
     private fun getRegionListSize(): Int {
@@ -113,6 +120,22 @@ class SetMyRegionActivity : AppCompatActivity() {
             REGION_NOT_SELECTED -> {
                 view.visibility = View.VISIBLE
                 view.setColorFilter(R.color.colorGray, PorterDuff.Mode.SRC_ATOP)
+            }
+        }
+    }
+
+    private fun selectOrSetRegion(position: Int) {
+        when(App.pref.regionList.size) {
+            1 -> {
+                if(position == 1) {
+                    val intent = Intent(this, RegionListActivity::class.java)
+                    intent.putExtra(INTENT_TYPE, SET_SECOND_REGION)
+                    startActivity(intent)
+                }
+            }
+            2 -> {
+                val selectedPair = App.pref.regionList[position]
+                App.pref.regionSelected = selectedPair
             }
         }
     }

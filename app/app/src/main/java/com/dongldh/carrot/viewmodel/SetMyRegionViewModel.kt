@@ -17,4 +17,9 @@ class SetMyRegionViewModel: ViewModel() {
         }
         return selectedPosition
     }
+
+    fun initLiveData() {
+        regionList.value = App.pref.regionList
+        regionSelectedPair.value = App.pref.regionSelected
+    }
 }

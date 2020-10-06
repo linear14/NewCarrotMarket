@@ -20,6 +20,4 @@ data class UserCreateAccountRequest(
     val regionId: Long,
     val regionString: String,
     val profileImageUrl: String
-) {
-
-}
+) {}
