@@ -21,22 +21,26 @@
     <string name="btn_search_entire_region">Show all regions</string>
     <string name="entire_region">Entire regions</string>
     <string name="filtered_region_by_word">Result searched by \'s\'</string>
+    <string name="region_already_enroll">Already enrolled region</string>
 
     <!-- activity_sign_up.xml -->
     <string name="hint_write_nickname_label">Nickname</string>
     <string name="hint_write_nickname">Enter your nickname</string>
-    <string name="sign_up_description">\'Carrot Market\' is a community based on trust.\nPlease enroll your profile image and nickname.</string>
-    <string name="nickname_min">Nickname must be at least 2 characters.</string>
-    <string name="nickname_max">Nickname must be up to 8 characters.</string>
+    <string name="sign_up_description">\'Carrot Market\' is a community based on trust\nPlease enroll your profile image and nickname</string>
+    <string name="nickname_min">Nickname must be at least 2 characters</string>
+    <string name="nickname_max">Nickname must be up to 8 characters</string>
 
     <!-- firebase -->
-    <string name="firebase_auth_create_user_error">Create account Failed.(Auth)</string>
-    <string name="firebase_firestore_save_user_error">Create account Failed.(Firestore)</string>
-    <string name="firebase_create_account_ok">Create account Success.</string>
+    <string name="firebase_auth_create_user_error">Create account Failed (Auth)</string>
+    <string name="firebase_firestore_save_user_error">Create account Failed (Firestore)</string>
+    <string name="firebase_create_account_ok">Create account Success</string>
     <string name="firebase_sign_in_success">Login Success</string>
     <string name="firebase_sign_in_failed">Login Failed</string>
     <string name="firebase_wrong_password">Wrong password</string>
-    <string name="dialog_firebase_not_exist_account">There is no account information\nYou can register as a member with the information you entered.</string>
+    <string name="dialog_firebase_not_exist_account">There is no account information\nYou can register as a member with the information you entered</string>
+
+    <string name="fail_update_region">Fail to update region</string>
+    <string name="fail_add_region">Fail to add region</string>
 
     <!-- 입력정보 -->
     <string name="input_id_blank">Please input your ID</string>
@@ -69,5 +73,5 @@
     <string name="remove_account">Remove account</string>
 
     <!-- etc -->
-    <string name="exceptional_error">Error Occurred!\nIf the same phenomenon continues to appear, please contact customer service.</string>
+    <string name="exceptional_error">Error Occurred!\nIf the same phenomenon continues to appear, please contact customer service</string>
 </resources>

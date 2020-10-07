@@ -1,5 +1,5 @@
 package com.dongldh.carrot.`interface`
 
 interface OnDialogFragmentDismissListener {
-    fun onDismiss()
+    fun onDismiss(region: Pair<Long, String>? = null)
 }

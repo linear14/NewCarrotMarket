@@ -61,14 +61,27 @@ object UserFirestoreManager {
             "regionIdAll" to regionIdAll,
             "regionStringAll" to regionStringAll
         )).addOnSuccessListener {
-            App.pref.regionList = getRegionPair(regionIdAll, regionStringAll)
+            App.pref.regionList = getRegionPairList(regionIdAll, regionStringAll)
             li.onSuccess()
         }.addOnFailureListener {
             li.onFailure()
         }
     }
 
-    private fun getRegionPair(idList: List<Long>, nameList: List<String>): ArrayList<Pair<Long, String>> {
+    fun updateSelectedRegion(uid: String, regionPair: Pair<Long,String>, li: OnFinishNetworkingListener) {
+        val userRef = db.collection(COLLECTION_USERS).document(uid)
+        userRef.update(mapOf(
+            "regionIdSelected" to regionPair.first,
+            "regionStringSelected" to regionPair.second
+        )).addOnSuccessListener {
+            App.pref.regionSelected = regionPair
+            li.onSuccess()
+        }.addOnFailureListener {
+            li.onFailure()
+        }
+    }
+
+    private fun getRegionPairList(idList: List<Long>, nameList: List<String>): ArrayList<Pair<Long, String>> {
         val list = arrayListOf<Pair<Long, String>>()
         for(i in idList.indices) {
             list.add(Pair(idList[i], nameList[i]))
@@ -80,7 +93,7 @@ object UserFirestoreManager {
         Pair(selectedId, selectedName)
 
     private fun setUserRegionInfoToSharedPreference(user: User) {
-        val regionList = getRegionPair(user.regionIdAll, user.regionStringAll)
+        val regionList = getRegionPairList(user.regionIdAll, user.regionStringAll)
         val selectedList = getRegionSelectedPair(user.regionIdSelected!!, user.regionStringSelected!!)
         SharedUtil.attachRegion(regionList, selectedList)
     }

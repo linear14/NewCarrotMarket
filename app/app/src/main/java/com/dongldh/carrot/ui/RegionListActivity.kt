@@ -121,7 +121,7 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
             SET_SECOND_REGION -> {
                 val regionList = App.pref.regionList
                 if(regionList[0].first == regionId) {
-                    Util.toastShort("이미 등록된 지역입니다")
+                    Util.toastShort(App.applicationContext().resources.getString(R.string.region_already_enroll))
                 } else {
                     val regionIdAll = ArrayList<Long>().apply {
                         add(regionList[0].first)
@@ -138,13 +138,13 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
                         }
 
                         override fun onFailure() {
-                            Util.toastShort("동네 추가 실패")
+                            Util.toastShort(App.applicationContext().resources.getString(R.string.fail_add_region))
                         }
 
                     })
                 }
-
             }
+
         }
     }
 }

@@ -2,11 +2,16 @@ package com.dongldh.carrot.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dongldh.carrot.R
+import com.dongldh.carrot.`interface`.OnFinishNetworkingListener
+import com.dongldh.carrot.firebase.UserFirestoreManager
 import com.dongldh.carrot.util.App
+import com.dongldh.carrot.util.UID_DETACHED
+import com.dongldh.carrot.util.Util
 
 class SetMyRegionViewModel: ViewModel() {
     val regionList: MutableLiveData<List<Pair<Long, String>>> = MutableLiveData(App.pref.regionList)
-    val regionSelectedPair: MutableLiveData<Pair<Long,String>> = MutableLiveData(App.pref.regionSelected)
+    val regionSelectedPair: MutableLiveData<Pair<Long, String>> = MutableLiveData(App.pref.regionSelected)
 
     fun getSelectedPosition(): Int {
         var selectedPosition = -1
@@ -21,5 +26,17 @@ class SetMyRegionViewModel: ViewModel() {
     fun initLiveData() {
         regionList.value = App.pref.regionList
         regionSelectedPair.value = App.pref.regionSelected
+    }
+
+    fun updateSelectedRegion(selectedPair: Pair<Long, String>) {
+        UserFirestoreManager.updateSelectedRegion(App.pref.uid ?: UID_DETACHED, selectedPair, object: OnFinishNetworkingListener {
+            override fun onSuccess() {
+                regionSelectedPair.value = selectedPair
+            }
+
+            override fun onFailure() {
+                Util.toastShort(App.applicationContext().resources.getString(R.string.fail_update_region))
+            }
+        })
     }
 }

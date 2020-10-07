@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.dialog_region_selector.view.*
 
 class RegionSelectorDialog : DialogFragment() {
     var dialogFragmentDismissListener: OnDialogFragmentDismissListener? = null
+    var region: Pair<Long, String>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,8 +28,15 @@ class RegionSelectorDialog : DialogFragment() {
         val view = inflater.inflate(R.layout.dialog_region_selector, container, false)
         dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
 
-        val adapter = RegionSelectorAdapter()
-        adapter.submitList(App.pref.regionList)
+        val adapter = RegionSelectorAdapter().apply {
+            submitList(App.pref.regionList)
+            setOnRegionSelectedListener(object: RegionSelectorAdapter.OnRegionSelectedListener {
+                override fun regionSelected(region: Pair<Long, String>) {
+                    this@RegionSelectorDialog.region = region
+                    dismiss()
+                }
+            })
+        }
         view.recycler_region_selector.adapter = adapter
 
         view.action_select_my_region.setOnClickListener { startSetMyRegionActivity() }
@@ -43,7 +51,7 @@ class RegionSelectorDialog : DialogFragment() {
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        dialogFragmentDismissListener?.onDismiss() ?: Util.showErrorToast()
+        dialogFragmentDismissListener?.onDismiss(region) ?: Util.showErrorToast()
     }
 
     fun setOnDialogFragmentDismissListener(li: OnDialogFragmentDismissListener) {

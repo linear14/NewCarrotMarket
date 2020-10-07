@@ -135,7 +135,7 @@ class SetMyRegionActivity : AppCompatActivity() {
             }
             2 -> {
                 val selectedPair = App.pref.regionList[position]
-                App.pref.regionSelected = selectedPair
+                setMyRegionViewModel.updateSelectedRegion(selectedPair)
             }
         }
     }

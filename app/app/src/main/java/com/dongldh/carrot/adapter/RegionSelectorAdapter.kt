@@ -11,6 +11,9 @@ import com.dongldh.carrot.databinding.ItemRegionSelectorBinding
 import com.dongldh.carrot.util.App
 
 class RegionSelectorAdapter : ListAdapter<Pair<Long, String>, RecyclerView.ViewHolder>(RegionSelectorDiffCallback()) {
+
+    var regionSelectedListener: OnRegionSelectedListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return RegionSelectorViewHolder(ItemRegionSelectorBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -29,6 +32,10 @@ class RegionSelectorAdapter : ListAdapter<Pair<Long, String>, RecyclerView.ViewH
                 region = item.second
                 accentuateSelectedRegion(item.first)
 
+                regionSelectedListener?.let { li ->
+                    itemView.setOnClickListener { li.regionSelected(item) }
+                }
+
                 executePendingBindings()
             }
         }
@@ -41,8 +48,12 @@ class RegionSelectorAdapter : ListAdapter<Pair<Long, String>, RecyclerView.ViewH
         }
     }
 
+    fun setOnRegionSelectedListener(li: RegionSelectorAdapter.OnRegionSelectedListener) {
+        regionSelectedListener = li
+    }
+
     interface OnRegionSelectedListener {
-        fun regionSelected(region: String)
+        fun regionSelected(region: Pair<Long, String>)
     }
 }
 
