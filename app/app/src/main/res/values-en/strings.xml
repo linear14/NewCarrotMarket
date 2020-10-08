@@ -22,6 +22,7 @@
     <string name="entire_region">Entire regions</string>
     <string name="filtered_region_by_word">Result searched by \'s\'</string>
     <string name="region_already_enroll">Already enrolled region</string>
+    <string name="region_current_enroll">Current enrolled region</string>
 
     <!-- activity_sign_up.xml -->
     <string name="hint_write_nickname_label">Nickname</string>

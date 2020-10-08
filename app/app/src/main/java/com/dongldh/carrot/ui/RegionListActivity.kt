@@ -3,7 +3,6 @@ package com.dongldh.carrot.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -118,6 +117,7 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
 
                 UserAuth(this).createUserFirebaseAuth(userAccountInfo)
             }
+
             SET_SECOND_REGION -> {
                 val regionList = App.pref.regionList
                 if(regionList[0].first == regionId) {
@@ -142,6 +142,25 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
                         }
 
                     })
+                }
+            }
+
+            CHANGE_FIRST_REGION -> {
+                val regionList = App.pref.regionList
+                if(regionList[0].first == regionId) {
+                    Util.toastShort(App.applicationContext().resources.getString(R.string.region_already_enroll))
+                } else {
+                    UserFirestoreManager.remainOnlyOneRegion(App.pref.uid ?: UID_DETACHED, Pair(regionId, regionString),
+                        object: OnFinishNetworkingListener {
+                            override fun onSuccess() {
+                                finish()
+                            }
+
+                            override fun onFailure() {
+                                Util.toastShort(App.applicationContext().resources.getString(R.string.fail_update_region))
+                            }
+
+                        })
                 }
             }
 

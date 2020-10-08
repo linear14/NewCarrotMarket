@@ -81,9 +81,9 @@ object UserFirestoreManager {
         }
     }
 
-    fun remainNotDeletedRegion(uid: String, notDeleteRegion: Pair<Long, String>, li: OnFinishNetworkingListener) {
-        val newRegionIdList = ArrayList<Long>(1).apply { add(notDeleteRegion.first) }
-        val newRegionStringList = ArrayList<String>(1).apply { add(notDeleteRegion.second) }
+    fun remainOnlyOneRegion(uid: String, remainRegion: Pair<Long, String>, li: OnFinishNetworkingListener) {
+        val newRegionIdList = ArrayList<Long>(1).apply { add(remainRegion.first) }
+        val newRegionStringList = ArrayList<String>(1).apply { add(remainRegion.second) }
 
         val userRef = db.collection(COLLECTION_USERS).document(uid)
         userRef.update(mapOf(
@@ -91,7 +91,7 @@ object UserFirestoreManager {
             "regionStringAll" to newRegionStringList
         )).addOnSuccessListener {
             App.pref.regionList = getRegionPairList(newRegionIdList, newRegionStringList)
-            App.pref.regionSelected = notDeleteRegion
+            App.pref.regionSelected = remainRegion
             li.onSuccess()
         }.addOnFailureListener {
             li.onFailure()

@@ -21,7 +21,8 @@
     <string name="btn_search_entire_region">전체 동네 목록 조회</string>
     <string name="entire_region">전체 동네</string>
     <string name="filtered_region_by_word">\'s\' 검색결과</string>
-    <string name="region_already_enroll">이미 등록된 지역입니다</string>
+    <string name="region_already_enroll">이미 등록된 동네입니다</string>
+    <string name="region_current_enroll">현재 등록된 동네입니다</string>
 
     <!-- activity_sign_up.xml -->
     <string name="hint_write_nickname_label">닉네임</string>

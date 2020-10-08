@@ -149,7 +149,7 @@ class SetMyRegionActivity : AppCompatActivity() {
             .setNegativeButton(resources.getString(R.string.negative_cancel)) {}
             .setPositiveButton(resources.getString(R.string.positive_ok)) {
                 val notDeletedRegion = App.pref.regionList[notDeletedPos]
-                setMyRegionViewModel.deleteRegion(notDeleteRegion = notDeletedRegion)
+                setMyRegionViewModel.deleteRegion(remainRegion = notDeletedRegion)
             }
             .show()
     }
@@ -159,7 +159,9 @@ class SetMyRegionActivity : AppCompatActivity() {
             .setMessage(resources.getString(R.string.dialog_update_region))
             .setNegativeButton(resources.getString(R.string.negative_cancel)) {}
             .setPositiveButton(resources.getString(R.string.positive_change)) {
-
+                val intent = Intent(this, RegionListActivity::class.java)
+                intent.putExtra(INTENT_TYPE, CHANGE_FIRST_REGION)
+                startActivity(intent)
             }
             .show()
     }

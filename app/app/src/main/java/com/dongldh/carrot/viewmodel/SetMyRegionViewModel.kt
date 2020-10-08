@@ -40,8 +40,8 @@ class SetMyRegionViewModel: ViewModel() {
         })
     }
 
-    fun deleteRegion(notDeleteRegion: Pair<Long, String>) {
-        UserFirestoreManager.remainNotDeletedRegion(App.pref.uid ?: UID_DETACHED, notDeleteRegion, object: OnFinishNetworkingListener {
+    fun deleteRegion(remainRegion: Pair<Long, String>) {
+        UserFirestoreManager.remainOnlyOneRegion(App.pref.uid ?: UID_DETACHED, remainRegion, object: OnFinishNetworkingListener {
             override fun onSuccess() {
                 initLiveData()
             }
