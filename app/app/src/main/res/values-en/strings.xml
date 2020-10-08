@@ -41,6 +41,8 @@
 
     <string name="fail_update_region">Fail to update region</string>
     <string name="fail_add_region">Fail to add region</string>
+    <string name="fail_delete_region">Fail to delete region</string>
+
 
     <!-- 입력정보 -->
     <string name="input_id_blank">Please input your ID</string>
@@ -71,6 +73,15 @@
     <!-- activity_app_setting.xml -->
     <string name="sign_out">Sign out</string>
     <string name="remove_account">Remove account</string>
+
+    <!-- dialog -->
+    <string name="negative_cancel">Cancel</string>
+    <string name="positive_ok">Okay</string>
+    <string name="positive_change">Go to change</string>
+
+    <string name="dialog_delete_region">Do you want to delete the selected region?</string>
+    <string name="dialog_update_region">At least one region must be selected.\nWould you like to change the current region?</string>
+
 
     <!-- etc -->
     <string name="exceptional_error">Error Occurred!\nIf the same phenomenon continues to appear, please contact customer service</string>

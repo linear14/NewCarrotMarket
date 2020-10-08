@@ -12,7 +12,7 @@
     <!-- padding -->
     <dimen name="padding_three_times">48dp</dimen>
     <dimen name="padding_double">32dp</dimen>
-    <dimen name="padding_larger_than_normal">24dp</dimen>
+    <dimen name="padding_1.5_times">24dp</dimen>
     <dimen name="padding_normal">16dp</dimen>
     <dimen name="padding_image">12dp</dimen>
     <dimen name="padding_half">8dp</dimen>

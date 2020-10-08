@@ -39,4 +39,17 @@ class SetMyRegionViewModel: ViewModel() {
             }
         })
     }
+
+    fun deleteRegion(notDeleteRegion: Pair<Long, String>) {
+        UserFirestoreManager.remainNotDeletedRegion(App.pref.uid ?: UID_DETACHED, notDeleteRegion, object: OnFinishNetworkingListener {
+            override fun onSuccess() {
+                initLiveData()
+            }
+
+            override fun onFailure() {
+                Util.toastShort(App.applicationContext().resources.getString(R.string.fail_delete_region))
+            }
+
+        })
+    }
 }

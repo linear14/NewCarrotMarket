@@ -13,6 +13,7 @@ import androidx.lifecycle.observe
 import com.dongldh.carrot.R
 import com.dongldh.carrot.util.*
 import com.dongldh.carrot.viewmodel.SetMyRegionViewModel
+import com.dongldh.carrot.widget.DialogBase
 import kotlinx.android.synthetic.main.activity_set_my_region.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,6 +38,8 @@ class SetMyRegionActivity : AppCompatActivity() {
 
         layout_first_region.setOnClickListener { selectOrSetRegion(0) }
         layout_second_region.setOnClickListener { selectOrSetRegion(1) }
+        action_delete_first_region.setOnClickListener { if(getRegionListSize() == 1) showUpdateRegionDialog() else showDeleteRegionDialog(notDeletedPos = 1) }
+        action_delete_second_region.setOnClickListener { showDeleteRegionDialog(notDeletedPos = 0) }
         action_back.setOnClickListener { finish() }
     }
 
@@ -104,7 +107,7 @@ class SetMyRegionActivity : AppCompatActivity() {
                 view.visibility = View.VISIBLE
                 view.setTextColor(ContextCompat.getColor(App.applicationContext(), R.color.colorWhite))}
             REGION_NOT_SELECTED -> {
-                View.VISIBLE
+                view.visibility = View.VISIBLE
                 view.setTextColor(ContextCompat.getColor(App.applicationContext(), R.color.colorDefaultText))
             }
         }
@@ -138,6 +141,27 @@ class SetMyRegionActivity : AppCompatActivity() {
                 setMyRegionViewModel.updateSelectedRegion(selectedPair)
             }
         }
+    }
+
+    private fun showDeleteRegionDialog(notDeletedPos: Int) {
+        DialogBase(this)
+            .setMessage(resources.getString(R.string.dialog_delete_region))
+            .setNegativeButton(resources.getString(R.string.negative_cancel)) {}
+            .setPositiveButton(resources.getString(R.string.positive_ok)) {
+                val notDeletedRegion = App.pref.regionList[notDeletedPos]
+                setMyRegionViewModel.deleteRegion(notDeleteRegion = notDeletedRegion)
+            }
+            .show()
+    }
+
+    private fun showUpdateRegionDialog() {
+        DialogBase(this)
+            .setMessage(resources.getString(R.string.dialog_update_region))
+            .setNegativeButton(resources.getString(R.string.negative_cancel)) {}
+            .setPositiveButton(resources.getString(R.string.positive_change)) {
+
+            }
+            .show()
     }
 }
 

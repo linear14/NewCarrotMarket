@@ -68,13 +68,30 @@ object UserFirestoreManager {
         }
     }
 
-    fun updateSelectedRegion(uid: String, regionPair: Pair<Long,String>, li: OnFinishNetworkingListener) {
+    fun updateSelectedRegion(uid: String, regionPair: Pair<Long, String>, li: OnFinishNetworkingListener) {
         val userRef = db.collection(COLLECTION_USERS).document(uid)
         userRef.update(mapOf(
             "regionIdSelected" to regionPair.first,
             "regionStringSelected" to regionPair.second
         )).addOnSuccessListener {
             App.pref.regionSelected = regionPair
+            li.onSuccess()
+        }.addOnFailureListener {
+            li.onFailure()
+        }
+    }
+
+    fun remainNotDeletedRegion(uid: String, notDeleteRegion: Pair<Long, String>, li: OnFinishNetworkingListener) {
+        val newRegionIdList = ArrayList<Long>(1).apply { add(notDeleteRegion.first) }
+        val newRegionStringList = ArrayList<String>(1).apply { add(notDeleteRegion.second) }
+
+        val userRef = db.collection(COLLECTION_USERS).document(uid)
+        userRef.update(mapOf(
+            "regionIdAll" to newRegionIdList,
+            "regionStringAll" to newRegionStringList
+        )).addOnSuccessListener {
+            App.pref.regionList = getRegionPairList(newRegionIdList, newRegionStringList)
+            App.pref.regionSelected = notDeleteRegion
             li.onSuccess()
         }.addOnFailureListener {
             li.onFailure()
