@@ -31,8 +31,13 @@
     <dimen name="separator_height">0.5dp</dimen>
     <dimen name="button_height_small">32dp</dimen>
     <dimen name="button_height_with_text_size_small">40dp</dimen>
+
     <dimen name="image_set_profile_size">240dp</dimen>
     <dimen name="image_button_with_padding">48dp</dimen>
+    <dimen name="image_biggest">60dp</dimen>
+    <dimen name="image_bigger">48dp</dimen>
+    <dimen name="image_big">36dp</dimen>
+    <dimen name="image_normal">24dp</dimen>
 
     <!-- layout size -->
     <dimen name="dialog_region_selector_width">200dp</dimen>

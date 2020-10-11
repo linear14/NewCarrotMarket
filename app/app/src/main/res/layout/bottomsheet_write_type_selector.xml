@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_sell_used_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_sell_used_item"
+            android:layout_width="@dimen/image_big"
+            android:layout_height="@dimen/image_big"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="@dimen/margin_normal"
+            android:src="@drawable/ic_outline_shop_48"
+            app:tint="@color/colorDefaultText" />
+
+        <TextView
+            android:id="@+id/title_sell_used_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="중고거래"
+            android:layout_marginStart="@dimen/margin_normal"
+            style="@style/smallTitleStyle"
+            app:layout_constraintStart_toEndOf="@id/image_sell_used_item"
+            app:layout_constraintTop_toTopOf="@id/image_sell_used_item"
+            app:layout_constraintBottom_toTopOf="@id/description_sell_used_item"/>
+
+        <TextView
+            android:id="@+id/description_sell_used_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_quarter"
+            tools:text="중고 물건을 판매할 수 있어요"
+            style="@style/descriptionStyle"
+            app:layout_constraintStart_toStartOf="@id/title_sell_used_item"
+            app:layout_constraintTop_toBottomOf="@id/title_sell_used_item"
+            app:layout_constraintBottom_toBottomOf="@id/image_sell_used_item"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_region_life"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_region_life"
+            android:layout_width="@dimen/image_big"
+            android:layout_height="@dimen/image_big"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="@dimen/margin_normal"
+            android:src="@drawable/ic_outline_community_48"
+            app:tint="@color/colorDefaultText"/>
+
+        <TextView
+            android:id="@+id/title_region_life"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="동네생활"
+            android:layout_marginStart="@dimen/margin_normal"
+            style="@style/smallTitleStyle"
+            app:layout_constraintStart_toEndOf="@id/image_region_life"
+            app:layout_constraintTop_toTopOf="@id/image_region_life"
+            app:layout_constraintBottom_toTopOf="@id/description_region_life"/>
+
+        <TextView
+            android:id="@+id/description_region_life"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_quarter"
+            tools:text="우리 동네에 관련된 질문이나 이야기를 할 수 있어요"
+            style="@style/descriptionStyle"
+            app:layout_constraintStart_toStartOf="@id/title_region_life"
+            app:layout_constraintTop_toBottomOf="@id/title_region_life"
+            app:layout_constraintBottom_toBottomOf="@id/image_region_life"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

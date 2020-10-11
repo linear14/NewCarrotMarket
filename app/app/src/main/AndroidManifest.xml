@@ -14,15 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.SetMyRegionActivity"></activity>
-        <activity
-            android:name=".ui.SplashActivity"
-            android:theme="@style/SplashTheme">
+        <activity android:name=".ui.WriteUsedItemActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.SetMyRegionActivity" />
+        <activity
+            android:name=".ui.SplashActivity"
+            android:theme="@style/SplashTheme">
+
         </activity>
         <activity
             android:name=".ui.AppSettingActivity"
@@ -30,7 +33,7 @@
         <activity android:name=".ui.RegionListActivity" />
         <activity android:name=".ui.SignUpActivity" />
         <activity android:name=".ui.SignInActivity" />
-        <activity android:name=".ui.MainActivity"></activity>
+        <activity android:name=".ui.MainActivity" />
     </application>
 
 </manifest>

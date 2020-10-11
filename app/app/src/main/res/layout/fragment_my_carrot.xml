@@ -118,6 +118,8 @@
                         android:background="@drawable/decorate_border_colorseparator_solid_colorsurface_round"
                         android:text="@string/go_detail_profile"
                         android:textSize="@dimen/text_small"
+                        android:paddingHorizontal="@dimen/padding_normal"
+                        android:paddingVertical="@dimen/padding_quarter"
                         android:textStyle="bold" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
