@@ -11,6 +11,7 @@
     <string name="nav_title_setting">Setting</string>
 
     <string name="nav_action_next">Next</string>
+    <string name="complete">OK</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
@@ -70,6 +71,23 @@
     <string name="notice">Notice</string>
     <string name="customer_center">Customer service</string>
     <string name="setting">Application setting</string>
+
+    <!-- bottomsheet_sell_used_item -->
+    <string name="sell_used_item">Sell Used Item</string>
+    <string name="sell_used_item_description">You can sell your used items</string>
+    <string name="region_life">Region Life</string>
+    <string name="region_life_description">Ask questions or stories related to our region</string>
+
+    <!-- activity_write_used_item.xml -->
+    <string name="title_write_used_item">Sell Item</string>
+    <string name="total_count_image">/10</string>
+    <string name="item_title">Title</string>
+    <string name="item_category">Category</string>
+    <string name="item_won">₩</string>
+    <string name="item_price">Price (Option)</string>
+    <string name="item_suggest_price">Possible price offer</string>
+    <string name="item_content">Please write the content of the post to be posted in xx. Posting of fake and prohibited items may be restricted.</string>
+    <string name="item_current_region">Current Selected Region : </string>
 
     <!-- activity_app_setting.xml -->
     <string name="sign_out">Sign out</string>

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dongldh.carrot.R
 import com.dongldh.carrot.util.App
 import com.dongldh.carrot.viewmodel.UserViewModel
+import com.dongldh.carrot.widget.WriteTypeSelectorBottomSheet
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,7 +26,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         when (item.itemId) {
             R.id.navigation_home -> ft.replace(R.id.fragment, HomeFragment()).commit()
             R.id.navigation_category -> ft.replace(R.id.fragment, CategoryFragment()).commit()
-            R.id.navigation_write -> ft.replace(R.id.fragment, WriteFragment()).commit()
+            R.id.navigation_write -> {
+                val bottomSheet = WriteTypeSelectorBottomSheet()
+                bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+            }
             R.id.navigation_chat -> ft.replace(R.id.fragment, ChatFragment()).commit()
             R.id.navigation_my_carrot -> ft.replace(R.id.fragment, MyCarrotFragment()).commit()
         }

@@ -11,6 +11,7 @@
     <string name="nav_title_setting">설정</string>
 
     <string name="nav_action_next">다음</string>
+    <string name="complete">완료</string>
     <string name="yes">예</string>
     <string name="no">아니오</string>
 
@@ -70,6 +71,23 @@
     <string name="notice">공지사항</string>
     <string name="customer_center">고객센터</string>
     <string name="setting">앱 설정</string>
+
+    <!-- bottomsheet_sell_used_item -->
+    <string name="sell_used_item">중고거래</string>
+    <string name="sell_used_item_description">중고 물건을 판매할 수 있어요</string>
+    <string name="region_life">동네생활</string>
+    <string name="region_life_description">우리 동네에 관련된 질문이나 이야기를 할 수 있어요</string>
+
+    <!-- activity_write_used_item.xml -->
+    <string name="title_write_used_item">중고거래 글쓰기</string>
+    <string name="total_count_image">/10</string>
+    <string name="item_title">제목</string>
+    <string name="item_category">카테고리</string>
+    <string name="item_won">₩</string>
+    <string name="item_price">가격 (선택사항)</string>
+    <string name="item_suggest_price">가격제안 받기</string>
+    <string name="item_content">xx동에 올릴 게시글 내용을 작성해주세요. 가품 및 판매금지품목은 게시가 제한될 수 있어요.</string>
+    <string name="item_current_region">현재 선택된 동네 : </string>
 
     <!-- activity_app_setting.xml -->
     <string name="sign_out">로그아웃</string>

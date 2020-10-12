@@ -11,7 +11,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorTextAccent">#7C7C7C</color>
     <color name="colorDescription">#7C7C7C</color>
-    <color name="colorHint">#DCDCDC</color>
+    <color name="colorHint">#CFCFCF</color>
 
     <color name="colorTempLow">#008000</color>
     <color name="colorTempMedium">#0000A0</color>
