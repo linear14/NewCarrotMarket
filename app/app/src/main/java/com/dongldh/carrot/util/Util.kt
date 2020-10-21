@@ -1,7 +1,10 @@
 package com.dongldh.carrot.util
 
+import android.view.View
 import android.widget.Toast
 import com.dongldh.carrot.R
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_write_used_item.*
 
 object Util {
 
@@ -15,5 +18,12 @@ object Util {
 
     fun showErrorToast() {
         toastShort(App.applicationContext().resources.getString(R.string.exceptional_error))
+    }
+
+    fun snackBarShort(view: View, msg: String) {
+        Snackbar
+            .make(view, msg, Snackbar.LENGTH_SHORT)
+            .setTextColorWhite()
+            .show()
     }
 }

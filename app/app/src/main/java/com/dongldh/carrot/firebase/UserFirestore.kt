@@ -12,7 +12,7 @@ import com.dongldh.carrot.util.SharedUtil
 import com.dongldh.carrot.util.Util
 import com.google.firebase.firestore.FirebaseFirestore
 
-object UserFirestoreManager {
+object UserFirestore {
     val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     /***
      *  새로 회원가입하는 User의 정보를 Firestore에 저장합니다.

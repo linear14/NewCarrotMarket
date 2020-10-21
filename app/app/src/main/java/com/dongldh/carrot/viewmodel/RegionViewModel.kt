@@ -4,8 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dongldh.carrot.data.Region
 import com.dongldh.carrot.data.RegionRepository
-import com.dongldh.carrot.data.User
-import com.dongldh.carrot.firebase.UserFirestoreManager
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 

@@ -45,6 +45,9 @@
     <string name="fail_add_region">Fail to add region</string>
     <string name="fail_delete_region">Fail to delete region</string>
 
+    <string name="success_enroll_item">Item enroll success</string>
+    <string name="fail_enroll_item">Fail to enroll item</string>
+
 
     <!-- 입력정보 -->
     <string name="input_id_blank">Please input your ID</string>
@@ -54,6 +57,10 @@
     <string name="input_password_too_short">Password is too short</string>
     <string name="input_nickname_too_long">Nickname is too long</string>
     <string name="input_nickname_too_short">Nickname is too short</string>
+
+    <string name="input_title_blank">Please input item title</string>
+    <string name="input_category_blank">Please choose a category</string>
+    <string name="input_content_blank">Please input some contents</string>
 
     <!-- fragment_my_carrot.xml -->
     <string name="go_detail_profile">Go on Profile</string>
@@ -88,6 +95,22 @@
     <string name="item_suggest_price">Possible price offer</string>
     <string name="item_content">Please write the content of the post to be posted in xx. Posting of fake and prohibited items may be restricted.</string>
     <string name="item_current_region">Current Selected Region : </string>
+
+    <string-array name="categories">
+        <item>"Digital"</item>
+        <item>"Furniture"</item>
+        <item>"Baby"</item>
+        <item>"Life/Food"</item>
+        <item>"Sport"</item>
+        <item>"Woman Stuff"</item>
+        <item>"Woman Cloth"</item>
+        <item>"Man"</item>
+        <item>"Game/Hobby"</item>
+        <item>"Beauty"</item>
+        <item>"Animal"</item>
+        <item>"Book/Ticker/Album"</item>
+        <item>"Extra"</item>
+    </string-array>
 
     <!-- activity_app_setting.xml -->
     <string name="sign_out">Sign out</string>

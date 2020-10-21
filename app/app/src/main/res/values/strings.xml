@@ -45,6 +45,9 @@
     <string name="fail_add_region">동네 추가에 실패하였습니다</string>
     <string name="fail_delete_region">동네 삭제에 실패하였습니다</string>
 
+    <string name="success_enroll_item">상품이 등록되었습니다</string>
+    <string name="fail_enroll_item">상품 등록에 실패하였습니다</string>
+
 
     <!-- 입력정보 -->
     <string name="input_id_blank">아이디를 입력해주세요</string>
@@ -54,6 +57,10 @@
     <string name="input_password_too_short">비밀번호가 너무 짧습니다</string>
     <string name="input_nickname_too_long">닉네임이 너무 깁니다</string>
     <string name="input_nickname_too_short">닉네임이 너무 짧습니다</string>
+
+    <string name="input_title_blank">제목을 입력해주세요</string>
+    <string name="input_category_blank">카테고리를 선택해주세요</string>
+    <string name="input_content_blank">내용을 입력해주세요</string>
 
     <!-- fragment_my_carrot.xml -->
     <string name="go_detail_profile">프로필 보기</string>
@@ -88,6 +95,22 @@
     <string name="item_suggest_price">가격제안 받기</string>
     <string name="item_content">xx동에 올릴 게시글 내용을 작성해주세요. 가품 및 판매금지품목은 게시가 제한될 수 있어요.</string>
     <string name="item_current_region">현재 선택된 동네 : </string>
+
+    <string-array name="categories">
+        <item>"디지털/가전"</item>
+        <item>"가구/인테리어"</item>
+        <item>"유아동/유아도서"</item>
+        <item>"생활/가공식품"</item>
+        <item>"스포츠/레저"</item>
+        <item>"여성잡화"</item>
+        <item>"여성의류"</item>
+        <item>"남성패션/잡화"</item>
+        <item>"게임/취미"</item>
+        <item>"뷰티/미용"</item>
+        <item>"반려동물용품"</item>
+        <item>"도서/티켓/음반"</item>
+        <item>"기타 중고물품"</item>
+    </string-array>
 
     <!-- activity_app_setting.xml -->
     <string name="sign_out">로그아웃</string>

@@ -13,7 +13,7 @@ import com.dongldh.carrot.adapter.RegionListAdapter
 import com.dongldh.carrot.data.UserCreateAccountRequest
 import com.dongldh.carrot.databinding.ActivityRegionListBinding
 import com.dongldh.carrot.firebase.UserAuth
-import com.dongldh.carrot.firebase.UserFirestoreManager
+import com.dongldh.carrot.firebase.UserFirestore
 import com.dongldh.carrot.manager.CarrotKeyBoardManager
 import com.dongldh.carrot.util.*
 import com.dongldh.carrot.viewmodel.RegionListViewModel
@@ -131,7 +131,7 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
                         add(regionList[0].second)
                         add(regionString)
                     }
-                    UserFirestoreManager.updateUserOnlyRegionList(App.pref.uid ?: UID_DETACHED, regionIdAll, regionStringAll,
+                    UserFirestore.updateUserOnlyRegionList(App.pref.uid ?: UID_DETACHED, regionIdAll, regionStringAll,
                     object: OnFinishNetworkingListener {
                         override fun onSuccess() {
                             finish()
@@ -150,7 +150,7 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
                 if(regionList[0].first == regionId) {
                     Util.toastShort(App.applicationContext().resources.getString(R.string.region_already_enroll))
                 } else {
-                    UserFirestoreManager.remainOnlyOneRegion(App.pref.uid ?: UID_DETACHED, Pair(regionId, regionString),
+                    UserFirestore.remainOnlyOneRegion(App.pref.uid ?: UID_DETACHED, Pair(regionId, regionString),
                         object: OnFinishNetworkingListener {
                             override fun onSuccess() {
                                 finish()

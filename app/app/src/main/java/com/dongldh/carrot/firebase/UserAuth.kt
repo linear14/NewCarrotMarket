@@ -17,7 +17,7 @@ class UserAuth(private val activity: Activity) {
                 if (task.isSuccessful) {
                     val uid = task.result?.user?.uid!!
                     SharedUtil.attachUidToSharedPreference(uid)
-                    UserFirestoreManager.addUserInfo(makeNewUser(uid, userAccountInfo))
+                    UserFirestore.addUserInfo(makeNewUser(uid, userAccountInfo))
                 } else {
                     Util.toastShort(activity.resources.getString(R.string.firebase_auth_create_user_error))
                 }

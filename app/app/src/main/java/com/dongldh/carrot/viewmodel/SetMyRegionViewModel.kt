@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dongldh.carrot.R
 import com.dongldh.carrot.`interface`.OnFinishNetworkingListener
-import com.dongldh.carrot.firebase.UserFirestoreManager
+import com.dongldh.carrot.firebase.UserFirestore
 import com.dongldh.carrot.util.App
 import com.dongldh.carrot.util.UID_DETACHED
 import com.dongldh.carrot.util.Util
@@ -29,7 +29,7 @@ class SetMyRegionViewModel: ViewModel() {
     }
 
     fun updateSelectedRegion(selectedPair: Pair<Long, String>) {
-        UserFirestoreManager.updateSelectedRegion(App.pref.uid ?: UID_DETACHED, selectedPair, object: OnFinishNetworkingListener {
+        UserFirestore.updateSelectedRegion(App.pref.uid ?: UID_DETACHED, selectedPair, object: OnFinishNetworkingListener {
             override fun onSuccess() {
                 regionSelectedPair.value = selectedPair
             }
@@ -41,7 +41,7 @@ class SetMyRegionViewModel: ViewModel() {
     }
 
     fun deleteRegion(remainRegion: Pair<Long, String>) {
-        UserFirestoreManager.remainOnlyOneRegion(App.pref.uid ?: UID_DETACHED, remainRegion, object: OnFinishNetworkingListener {
+        UserFirestore.remainOnlyOneRegion(App.pref.uid ?: UID_DETACHED, remainRegion, object: OnFinishNetworkingListener {
             override fun onSuccess() {
                 initLiveData()
             }

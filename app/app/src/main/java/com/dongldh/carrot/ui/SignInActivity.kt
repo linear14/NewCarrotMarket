@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dongldh.carrot.R
-import com.dongldh.carrot.firebase.UserFirestoreManager
+import com.dongldh.carrot.firebase.UserFirestore
 import com.dongldh.carrot.util.*
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -93,7 +93,7 @@ class SignInActivity : AppCompatActivity() {
 
     private fun getUserInfoFromFireStoreAndAttachAccountInfoToSharedPreference() {
         App.pref.uid?.let {
-            UserFirestoreManager.getUserInfoByUidAndSavedAccountInfoAndGoToMain(it)
+            UserFirestore.getUserInfoByUidAndSavedAccountInfoAndGoToMain(it)
         }?:Util.showErrorToast()
     }
 }
