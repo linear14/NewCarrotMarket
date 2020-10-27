@@ -9,17 +9,17 @@ import androidx.appcompat.app.AlertDialog
 import com.dongldh.carrot.R
 import kotlinx.android.synthetic.main.dialog_base_format.view.*
 
-class DialogBase(private val context: Context) {
+open class DialogBase(private val context: Context) {
 
     private val builder: AlertDialog.Builder by lazy {
         AlertDialog.Builder(context).setView(view)
     }
 
-    private val view: View by lazy {
+    protected open val view: View by lazy {
         View.inflate(context, R.layout.dialog_base_format, null)
     }
 
-    private var dialog: AlertDialog? = null
+    protected var dialog: AlertDialog? = null
 
     private val onTouchListener = View.OnTouchListener { _, motionEvent ->
         if (motionEvent.action == MotionEvent.ACTION_UP) {

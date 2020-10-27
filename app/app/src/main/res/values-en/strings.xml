@@ -96,6 +96,8 @@
     <string name="item_content">Please write the content of the post to be posted in xx. Posting of fake and prohibited items may be restricted.</string>
     <string name="item_current_region">Current Selected Region : </string>
 
+    <string name="msg_save_post_temp">The post has been temporarily saved</string>
+
     <string-array name="categories">
         <item>"Digital"</item>
         <item>"Furniture"</item>
@@ -123,6 +125,10 @@
 
     <string name="dialog_delete_region">Do you want to delete the selected region?</string>
     <string name="dialog_update_region">At least one region must be selected.\nWould you like to change the current region?</string>
+
+    <string name="dialog_have_saved">There is a temporary post.\nWould you like to write a post continue?</string>
+    <string name="negative_have_saved">No thanks, I\'ll rewrite it</string>
+    <string name="positive_have_saved">Yes, I want to load the saved post</string>
 
 
     <!-- etc -->

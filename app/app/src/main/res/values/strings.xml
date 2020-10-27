@@ -96,6 +96,8 @@
     <string name="item_content">xx동에 올릴 게시글 내용을 작성해주세요. 가품 및 판매금지품목은 게시가 제한될 수 있어요.</string>
     <string name="item_current_region">현재 선택된 동네 : </string>
 
+    <string name="msg_save_post_temp">게시글이 임시저장 되었습니다</string>
+
     <string-array name="categories">
         <item>"디지털/가전"</item>
         <item>"가구/인테리어"</item>
@@ -123,6 +125,10 @@
 
     <string name="dialog_delete_region">선택한 지역을 삭제하시겠습니까?</string>
     <string name="dialog_update_region">동네는 최소 1개이상 선택되어있어야 합니다.\n현재 설정된 동네를 변경하시겠어요?</string>
+
+    <string name="dialog_have_saved">임시 저장된 게시글이 있습니다.\n이어서 게시글을 작성하시겠어요?</string>
+    <string name="negative_have_saved">아니요, 새로 작성할래요</string>
+    <string name="positive_have_saved">네, 이어서 작성할래요</string>
 
     <!-- etc -->
     <string name="exceptional_error">알 수 없는 오류가 발생했습니다\n동일 현상이 계속 나타날 시, 고객센터에 문의해주세요</string>

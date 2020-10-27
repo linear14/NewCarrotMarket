@@ -3,6 +3,7 @@ package com.dongldh.carrot.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -28,6 +29,11 @@ class WriteUsedItemActivity : AppCompatActivity() {
 
         storage = FirebaseStorage.getInstance()
 
+        if(isSavedState()) {
+            App.pref.isSavedState = false
+            initWhenSavedState()
+        }
+
         text_current_region.text = App.pref.regionSelected.second
 
         layout_category.setOnClickListener {
@@ -52,20 +58,7 @@ class WriteUsedItemActivity : AppCompatActivity() {
 
         layout_suggest_price.setOnClickListener {
             isPriceNegotiable = !isPriceNegotiable
-
-            if(isPriceNegotiable) {
-                DrawableCompat.setTint(
-                    DrawableCompat.wrap(image_suggest_price.drawable),
-                    ContextCompat.getColor(this, R.color.colorPrimary)
-                )
-                text_suggest_price.setTextColor(ContextCompat.getColor(this@WriteUsedItemActivity, R.color.colorDefaultText))
-            } else {
-                DrawableCompat.setTint(
-                    DrawableCompat.wrap(image_suggest_price.drawable),
-                    ContextCompat.getColor(this, R.color.colorHint)
-                )
-                text_suggest_price.setTextColor(ContextCompat.getColor(this@WriteUsedItemActivity, R.color.colorHint))
-            }
+            setPriceNegotiableLayoutStyle(isPriceNegotiable)
         }
 
         action_next.setOnClickListener {
@@ -84,7 +77,11 @@ class WriteUsedItemActivity : AppCompatActivity() {
 
         }
 
-        action_back.setOnClickListener { finish() }
+        action_back.setOnClickListener {
+            saveItemTemp()
+            Util.toastShort(resources.getString(R.string.msg_save_post_temp))
+            finish()
+        }
     }
 
     private fun addItemToFirebase() {
@@ -109,5 +106,40 @@ class WriteUsedItemActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    private fun saveItemTemp() {
+        App.pref.isSavedState = true
+        App.pref.savedTitle = input_title.text.toString()
+        App.pref.savedCategory = text_category.text.toString()
+        App.pref.savedPrice = input_price.text.toString()
+        App.pref.savedPriceNegotiable = isPriceNegotiable
+        App.pref.savedContent = input_content.text.toString()
+    }
+
+    private fun isSavedState(): Boolean = App.pref.isSavedState?:false
+
+    private fun setPriceNegotiableLayoutStyle(isNegotiable: Boolean) {
+        if(isNegotiable) {
+            DrawableCompat.setTint(
+                DrawableCompat.wrap(image_suggest_price.drawable),
+                ContextCompat.getColor(this, R.color.colorPrimary)
+            )
+            text_suggest_price.setTextColor(ContextCompat.getColor(this@WriteUsedItemActivity, R.color.colorDefaultText))
+        } else {
+            DrawableCompat.setTint(
+                DrawableCompat.wrap(image_suggest_price.drawable),
+                ContextCompat.getColor(this, R.color.colorHint)
+            )
+            text_suggest_price.setTextColor(ContextCompat.getColor(this@WriteUsedItemActivity, R.color.colorHint))
+        }
+    }
+
+    private fun initWhenSavedState() {
+        input_title.setText(App.pref.savedTitle)
+        text_category.text = App.pref.savedCategory
+        input_price.setText(App.pref.savedPrice)
+        setPriceNegotiableLayoutStyle(App.pref.savedPriceNegotiable!!)
+        input_content.setText(App.pref.savedContent)
     }
 }

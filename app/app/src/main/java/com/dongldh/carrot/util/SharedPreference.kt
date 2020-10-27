@@ -1,6 +1,7 @@
 package com.dongldh.carrot.util
 
 import android.content.Context
+import com.dongldh.carrot.data.NO_PRICE
 import org.json.JSONArray
 import org.json.JSONException
 
@@ -90,4 +91,28 @@ class SharedPreference(context: Context) {
             editor.apply()
         }
 
+    // 임시 저장된 글이 존재하는지
+    var isSavedState: Boolean?
+        get() = pref.getBoolean("IS_SAVED_STATE", false)
+        set(value) = pref.edit().putBoolean("IS_SAVED_STATE", value?:false).apply()
+
+    var savedTitle: String?
+        get() = pref.getString("SAVED_TITLE", "")
+        set(value) = pref.edit().putString("SAVED_TITLE", value).apply()
+
+    var savedCategory: String?
+        get() = pref.getString("SAVED_CATEGORY", "")
+        set(value) = pref.edit().putString("SAVED_CATEGORY", value).apply()
+
+    var savedPrice: String?
+        get() = pref.getString("SAVED_PRICE", "")
+        set(value) = pref.edit().putString("SAVED_PRICE", value).apply()
+
+    var savedPriceNegotiable: Boolean?
+        get() = pref.getBoolean("SAVED_PRICE_NEGOTIABLE", false)
+        set(value) = pref.edit().putBoolean("SAVED_PRICE_NEGOTIABLE", value?:false).apply()
+
+    var savedContent: String?
+        get() = pref.getString("SAVED_CONTENT", "")
+        set(value) = pref.edit().putString("SAVED_CONTENT", value).apply()
 }
