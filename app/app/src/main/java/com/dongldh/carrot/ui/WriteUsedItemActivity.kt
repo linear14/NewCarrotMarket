@@ -3,7 +3,6 @@ package com.dongldh.carrot.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -13,6 +12,7 @@ import com.dongldh.carrot.`interface`.OnFinishNetworkingListener
 import com.dongldh.carrot.data.Item
 import com.dongldh.carrot.data.NO_PRICE
 import com.dongldh.carrot.firebase.ItemFirestore
+import com.dongldh.carrot.manager.CarrotKeyBoardManager
 import com.dongldh.carrot.util.App
 import com.dongldh.carrot.util.Util
 import com.google.firebase.storage.FirebaseStorage
@@ -74,14 +74,9 @@ class WriteUsedItemActivity : AppCompatActivity() {
                 }
                 else -> { addItemToFirebase() }
             }
-
         }
 
-        action_back.setOnClickListener {
-            saveItemTemp()
-            Util.toastShort(resources.getString(R.string.msg_save_post_temp))
-            finish()
-        }
+        action_back.setOnClickListener { verifyItemFilledAndSaveItemTemp() }
     }
 
     private fun addItemToFirebase() {
@@ -141,5 +136,26 @@ class WriteUsedItemActivity : AppCompatActivity() {
         input_price.setText(App.pref.savedPrice)
         setPriceNegotiableLayoutStyle(App.pref.savedPriceNegotiable!!)
         input_content.setText(App.pref.savedContent)
+    }
+
+    private fun isWritten() =
+        input_title.text.isNotEmpty() || text_category.text.toString() != "카테고리" ||
+                input_price.text.isNotEmpty() || input_content.text.isNotEmpty()
+
+
+    private fun verifyItemFilledAndSaveItemTemp() {
+        if(isWritten()) {
+            saveItemTemp()
+            Util.toastShort(resources.getString(R.string.msg_save_post_temp))
+        }
+        finish()
+    }
+
+    override fun onBackPressed() {
+        currentFocus?.let {
+            CarrotKeyBoardManager.keyBoardHide(it)
+        }?:verifyItemFilledAndSaveItemTemp()
+
+        super.onBackPressed()
     }
 }
