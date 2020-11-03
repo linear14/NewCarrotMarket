@@ -90,6 +90,26 @@
 
         </com.google.android.material.appbar.MaterialToolbar>
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/layout_tab"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorSurface"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_home"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/colorDefaultText"
+            app:tabIndicatorHeight="@dimen/tab_indicator_height"
+            app:tabMode="fixed"
+            app:tabTextAppearance="@style/TabLayoutTextStyle" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager_home"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="@id/layout_tab"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

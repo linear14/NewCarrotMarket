@@ -70,4 +70,9 @@
         <item name="android:textSize">@dimen/text_normal</item>
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
+
+    <style name="TabLayoutTextStyle" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/text_big</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
