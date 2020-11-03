@@ -133,4 +133,5 @@
 
     <!-- etc -->
     <string name="exceptional_error">Error Occurred!\nIf the same phenomenon continues to appear, please contact customer service</string>
+    <string name="dot">·</string>
 </resources>

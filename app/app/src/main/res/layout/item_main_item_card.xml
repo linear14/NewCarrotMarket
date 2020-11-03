@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/padding_1.5_times"
+    android:paddingTop="@dimen/padding_1.5_times">
+
+    <ImageView
+        android:id="@+id/image_used_item"
+        android:layout_width="@dimen/image_main_item_card"
+        android:layout_height="@dimen/image_main_item_card"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_used_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_1.5_times"
+        android:textSize="@dimen/text_bigger"
+        app:layout_constraintStart_toEndOf="@id/image_used_item"
+        app:layout_constraintTop_toTopOf="@id/image_used_item"
+        tools:text="상품명입니다" />
+
+    <TextView
+        android:id="@+id/text_used_item_region"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:textColor="@color/colorTextAccent"
+        android:textSize="@dimen/text_normal"
+        app:layout_constraintStart_toStartOf="@id/text_used_item_title"
+        app:layout_constraintTop_toBottomOf="@id/text_used_item_title"
+        tools:text="판매 지역" />
+
+    <TextView
+        android:id="@+id/dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginStart="@dimen/margin_half"
+        android:textColor="@color/colorTextAccent"
+        android:textSize="@dimen/text_normal"
+        app:layout_constraintStart_toEndOf="@id/text_used_item_region"
+        app:layout_constraintTop_toBottomOf="@id/text_used_item_title"
+        android:text="@string/dot" />
+
+    <TextView
+        android:id="@+id/text_used_item_time_passed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginStart="@dimen/margin_half"
+        android:textColor="@color/colorTextAccent"
+        android:textSize="@dimen/text_normal"
+        app:layout_constraintStart_toEndOf="@id/dot"
+        app:layout_constraintTop_toBottomOf="@id/text_used_item_title"
+        tools:text="1분 전" />
+
+    <TextView
+        android:id="@+id/text_used_item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:textSize="@dimen/text_bigger"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/text_used_item_title"
+        app:layout_constraintTop_toBottomOf="@id/text_used_item_region"
+        tools:text="4000원" />
+
+    <View
+        android:id="@+id/separator1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/separator_height"
+        android:background="@color/colorSeparator"
+        android:layout_marginTop="@dimen/margin_1.5_times"
+        app:layout_constraintTop_toBottomOf="@id/image_used_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

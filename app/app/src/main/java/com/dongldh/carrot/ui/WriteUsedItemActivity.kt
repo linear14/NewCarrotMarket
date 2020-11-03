@@ -152,10 +152,7 @@ class WriteUsedItemActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        currentFocus?.let {
-            CarrotKeyBoardManager.keyBoardHide(it)
-        }?:verifyItemFilledAndSaveItemTemp()
-
+        verifyItemFilledAndSaveItemTemp()
         super.onBackPressed()
     }
 }
