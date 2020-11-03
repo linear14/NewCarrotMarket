@@ -34,7 +34,7 @@
     <dimen name="button_height_with_text_size_small">40dp</dimen>
 
     <dimen name="image_set_profile_size">240dp</dimen>
-    <dimen name="image_main_item_card">160dp</dimen>
+    <dimen name="image_main_item_card">96dp</dimen>
     <dimen name="image_button_with_padding">48dp</dimen>
     <dimen name="image_biggest">60dp</dimen>
     <dimen name="image_bigger">48dp</dimen>
