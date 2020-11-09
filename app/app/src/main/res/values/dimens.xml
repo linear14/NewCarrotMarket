@@ -5,6 +5,7 @@
     <dimen name="margin_double">32dp</dimen>
     <dimen name="margin_1.5_times">24dp</dimen>
     <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_0.75_times">12dp</dimen>
     <dimen name="margin_half">8dp</dimen>
     <dimen name="margin_quarter">4dp</dimen>
     <dimen name="margin_one">1dp</dimen>
@@ -34,7 +35,7 @@
     <dimen name="button_height_with_text_size_small">40dp</dimen>
 
     <dimen name="image_set_profile_size">240dp</dimen>
-    <dimen name="image_main_item_card">96dp</dimen>
+    <dimen name="image_main_item_card">108dp</dimen>
     <dimen name="image_button_with_padding">48dp</dimen>
     <dimen name="image_biggest">60dp</dimen>
     <dimen name="image_bigger">48dp</dimen>
