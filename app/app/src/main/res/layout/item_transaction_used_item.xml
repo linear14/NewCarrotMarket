@@ -68,6 +68,7 @@
             android:textSize="@dimen/text_normal"
             app:layout_constraintStart_toEndOf="@id/dot"
             app:layout_constraintTop_toBottomOf="@id/text_used_item_title"
+            app:timeStamp="@{item.timeStamp}"
             tools:text="1분 전" />
 
         <TextView
@@ -79,6 +80,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/text_used_item_title"
             app:layout_constraintTop_toBottomOf="@id/text_used_item_region"
+            app:price="@{item.price}"
             tools:text="4000원" />
 
         <View
