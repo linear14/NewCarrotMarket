@@ -1,5 +1,6 @@
 package com.dongldh.carrot.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,7 +13,6 @@ import com.dongldh.carrot.`interface`.OnFinishNetworkingListener
 import com.dongldh.carrot.data.Item
 import com.dongldh.carrot.data.NO_PRICE
 import com.dongldh.carrot.firebase.ItemFirestore
-import com.dongldh.carrot.manager.CarrotKeyBoardManager
 import com.dongldh.carrot.util.App
 import com.dongldh.carrot.util.Util
 import com.google.firebase.storage.FirebaseStorage
@@ -59,6 +59,10 @@ class WriteUsedItemActivity : AppCompatActivity() {
         layout_suggest_price.setOnClickListener {
             isPriceNegotiable = !isPriceNegotiable
             setPriceNegotiableLayoutStyle(isPriceNegotiable)
+        }
+
+        action_add_image.setOnClickListener {
+            startActivity(Intent(this, ImagePickerActivity::class.java))
         }
 
         action_next.setOnClickListener {

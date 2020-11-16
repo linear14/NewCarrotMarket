@@ -1,8 +1,14 @@
 package com.dongldh.carrot.adapter
 
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.dongldh.carrot.R
 import com.dongldh.carrot.data.NO_PRICE
 import com.dongldh.carrot.util.App
@@ -36,4 +42,14 @@ fun bindPrice(view: TextView, price: Int) {
     } else {
         view.text = ""
     }
+}
+
+@BindingAdapter("imageFromUri")
+fun bindImageFromUri(view: ImageView, imageUri: String?) {
+    Glide.with(view.context)
+        .load(Uri.parse(imageUri))
+        .placeholder(ColorDrawable(ContextCompat.getColor(App.applicationContext(), android.R.color.white)))
+        .transition(DrawableTransitionOptions.withCrossFade())
+        .centerCrop()
+        .into(view)
 }
