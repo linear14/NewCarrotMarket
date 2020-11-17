@@ -64,7 +64,7 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="3"
         android:scrollbars="vertical"
-        tools:listitem="@layout/item_image_card"/>
+        tools:listitem="@layout/item_image_picker"/>
 
     <FrameLayout
         android:id="@+id/frame_layout"

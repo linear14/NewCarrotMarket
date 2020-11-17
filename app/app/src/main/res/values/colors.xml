@@ -24,4 +24,5 @@
     <color name="colorBottomNavigationSelected">#000000</color>
 
     <color name="colorGray">#535353</color>
+    <color name="colorGrayTransparent">#B3535353</color>
 </resources>

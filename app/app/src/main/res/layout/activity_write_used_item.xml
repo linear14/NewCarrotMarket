@@ -130,7 +130,8 @@
                 android:orientation="horizontal"
                 android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layout_marginStart="@dimen/margin_normal" />
+                android:layout_marginStart="@dimen/margin_normal"
+                tools:listitem="@layout/item_image_selected"/>
 
             <View
                 android:id="@+id/separator3"

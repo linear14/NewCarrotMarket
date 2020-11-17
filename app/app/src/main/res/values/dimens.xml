@@ -41,6 +41,8 @@
     <dimen name="image_bigger">48dp</dimen>
     <dimen name="image_big">36dp</dimen>
     <dimen name="image_normal">24dp</dimen>
+    <dimen name="image_small">20dp</dimen>
+    <dimen name="image_smaller">16dp</dimen>
 
     <!-- layout size -->
     <dimen name="dialog_region_selector_width">200dp</dimen>
