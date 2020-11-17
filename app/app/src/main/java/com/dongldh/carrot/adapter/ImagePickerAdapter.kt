@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dongldh.carrot.R
 import com.dongldh.carrot.`interface`.OnImageClickListener
 import com.dongldh.carrot.data.MediaStoreImage
-import com.dongldh.carrot.databinding.ItemImageCardBinding
+import com.dongldh.carrot.databinding.ItemImagePickerBinding
 
-class ImageAdapter: ListAdapter<MediaStoreImage, ImageAdapter.ImageViewHolder>(ImageDiffCallback()) {
+class ImagePickerAdapter: ListAdapter<MediaStoreImage, ImagePickerAdapter.ImageViewHolder>(ImageDiffCallback()) {
     private var imageClickListener: OnImageClickListener? = null
     var selectedImages = listOf<MediaStoreImage>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
-        return ImageViewHolder(ItemImageCardBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ImageViewHolder(ItemImagePickerBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
@@ -24,7 +24,7 @@ class ImageAdapter: ListAdapter<MediaStoreImage, ImageAdapter.ImageViewHolder>(I
         holder.bind(mediaStoreImage)
     }
 
-    inner class ImageViewHolder(val binding: ItemImageCardBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ImageViewHolder(val binding: ItemImagePickerBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MediaStoreImage) {
             binding.apply {
                 mediaStoreImage = item

@@ -1,5 +1,6 @@
 package com.dongldh.carrot.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -10,10 +11,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.dongldh.carrot.R
 import com.dongldh.carrot.`interface`.OnFinishNetworkingListener
+import com.dongldh.carrot.adapter.ImageAdapter
 import com.dongldh.carrot.data.Item
+import com.dongldh.carrot.data.MediaStoreImage
 import com.dongldh.carrot.data.NO_PRICE
 import com.dongldh.carrot.firebase.ItemFirestore
 import com.dongldh.carrot.util.App
+import com.dongldh.carrot.util.FROM_WRITE_USED_ITEM
 import com.dongldh.carrot.util.Util
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_write_used_item.*
@@ -22,6 +26,7 @@ class WriteUsedItemActivity : AppCompatActivity() {
 
     var storage: FirebaseStorage? = null
     var isPriceNegotiable = false
+    val adapter: ImageAdapter by lazy { ImageAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +39,10 @@ class WriteUsedItemActivity : AppCompatActivity() {
             initWhenSavedState()
         }
 
+        current_count_image.text = 0.toString()
         text_current_region.text = App.pref.regionSelected.second
+
+        recycler_image.adapter = adapter
 
         layout_category.setOnClickListener {
             val builder = AlertDialog.Builder(this).apply {
@@ -62,7 +70,7 @@ class WriteUsedItemActivity : AppCompatActivity() {
         }
 
         action_add_image.setOnClickListener {
-            startActivity(Intent(this, ImagePickerActivity::class.java))
+            startActivityForResult(Intent(this, ImagePickerActivity::class.java), FROM_WRITE_USED_ITEM)
         }
 
         action_next.setOnClickListener {
@@ -158,5 +166,21 @@ class WriteUsedItemActivity : AppCompatActivity() {
     override fun onBackPressed() {
         verifyItemFilledAndSaveItemTemp()
         super.onBackPressed()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when(requestCode) {
+            FROM_WRITE_USED_ITEM -> {
+                if(resultCode == Activity.RESULT_OK) {
+                    val tempImages = data?.getParcelableArrayExtra("IMAGE_SET")?: arrayOf()
+                    val images = tempImages.map { it as MediaStoreImage }
+
+                    current_count_image.text = images.size.toString()
+                    adapter.submitList(images.toList())
+                }
+            }
+        }
     }
 }

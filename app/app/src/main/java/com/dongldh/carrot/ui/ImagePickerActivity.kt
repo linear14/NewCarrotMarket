@@ -1,11 +1,13 @@
 package com.dongldh.carrot.ui
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -13,10 +15,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.dongldh.carrot.R
 import com.dongldh.carrot.`interface`.OnImageClickListener
-import com.dongldh.carrot.adapter.ImageAdapter
+import com.dongldh.carrot.adapter.ImagePickerAdapter
 import com.dongldh.carrot.data.MediaStoreImage
 import com.dongldh.carrot.util.Permission.haveStoragePermission
 import com.dongldh.carrot.util.Permission.requestPermission
+import com.dongldh.carrot.util.Util
 import com.dongldh.carrot.viewmodel.ImageViewModel
 import kotlinx.android.synthetic.main.activity_image_picker.*
 
@@ -27,7 +30,7 @@ class ImagePickerActivity : AppCompatActivity() {
     }
 
     private lateinit var imageViewModel: ImageViewModel
-    private lateinit var imageAdapter: ImageAdapter
+    private lateinit var imageAdapter: ImagePickerAdapter
 
     var totalImageSize: Int? = null
     var selectedPosition: Int? = null
@@ -41,7 +44,7 @@ class ImagePickerActivity : AppCompatActivity() {
             ViewModelProvider.AndroidViewModelFactory(application)
         ).get(ImageViewModel::class.java)
 
-        imageAdapter = ImageAdapter()
+        imageAdapter = ImagePickerAdapter()
             .also { recycler.adapter = it }
             .apply {
                 setOnImageClickListener(object: OnImageClickListener {
@@ -57,6 +60,16 @@ class ImagePickerActivity : AppCompatActivity() {
             }
 
         openMediaStore()
+
+        action_next.setOnClickListener {
+            if(imageViewModel.selectedImagesLiveData.value.isNullOrEmpty()) {
+                Util.toastShort("선택된 사진이 없습니다")
+            } else {
+                returnDataToPreviousActivity()
+            }
+        }
+
+        action_back.setOnClickListener { onBackPressed() }
     }
 
     private fun openMediaStore() {
@@ -124,5 +137,15 @@ class ImagePickerActivity : AppCompatActivity() {
                 return
             }
         }
+    }
+
+    private fun returnDataToPreviousActivity() {
+        /*for(i in imageViewModel.selectedImagesLiveData.value!!.toTypedArray()) {
+            Log.d("IMAGE_LOG", "id : ${i.id} __ uri : ${i.uri}")
+        }*/
+        val returnIntent = Intent()
+        returnIntent.putExtra("IMAGE_SET", imageViewModel.selectedImagesLiveData.value?.toTypedArray())
+        setResult(Activity.RESULT_OK, returnIntent)
+        finish()
     }
 }
