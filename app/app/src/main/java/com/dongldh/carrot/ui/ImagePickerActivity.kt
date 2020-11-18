@@ -33,7 +33,6 @@ class ImagePickerActivity : AppCompatActivity() {
     private lateinit var imageAdapter: ImagePickerAdapter
 
     var totalImageSize: Int? = null
-    var selectedPosition: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +89,7 @@ class ImagePickerActivity : AppCompatActivity() {
     }
 
     private fun observeSelectedImages() {
+        imageViewModel.getSelectedImages(intent)
         imageViewModel.selectedImagesLiveData.observe(this) { result ->
             imageAdapter.selectedImages = result
             imageAdapter.notifyDataSetChanged()

@@ -3,6 +3,7 @@ package com.dongldh.carrot.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AlertDialog
@@ -27,6 +28,7 @@ class WriteUsedItemActivity : AppCompatActivity() {
     var storage: FirebaseStorage? = null
     var isPriceNegotiable = false
     val adapter: ImageAdapter by lazy { ImageAdapter() }
+    var images = listOf<MediaStoreImage>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,7 +72,10 @@ class WriteUsedItemActivity : AppCompatActivity() {
         }
 
         action_add_image.setOnClickListener {
-            startActivityForResult(Intent(this, ImagePickerActivity::class.java), FROM_WRITE_USED_ITEM)
+            val intent = Intent(this, ImagePickerActivity::class.java).apply {
+                putExtra("IMAGE_SET", images.toTypedArray())
+            }
+            startActivityForResult(intent, FROM_WRITE_USED_ITEM)
         }
 
         action_next.setOnClickListener {
@@ -175,7 +180,7 @@ class WriteUsedItemActivity : AppCompatActivity() {
             FROM_WRITE_USED_ITEM -> {
                 if(resultCode == Activity.RESULT_OK) {
                     val tempImages = data?.getParcelableArrayExtra("IMAGE_SET")?: arrayOf()
-                    val images = tempImages.map { it as MediaStoreImage }
+                    images = tempImages.map { it as MediaStoreImage }
 
                     current_count_image.text = images.size.toString()
                     adapter.submitList(images.toList())

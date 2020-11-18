@@ -2,12 +2,14 @@ package com.dongldh.carrot.viewmodel
 
 import android.app.Application
 import android.content.ContentResolver
+import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.dongldh.carrot.data.MediaStoreImage
+import com.dongldh.carrot.util.Util
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -18,7 +20,7 @@ class ImageViewModel(private val app: Application) : AndroidViewModel(app) {
 
     val images: MutableLiveData<List<MediaStoreImage>> = MutableLiveData()
     val selectedImagesLiveData: MutableLiveData<List<MediaStoreImage>> = MutableLiveData()
-    private val selectedImages = mutableListOf<MediaStoreImage>()
+    private var selectedImages = mutableListOf<MediaStoreImage>()
 
     fun getImageList() {
         GlobalScope.launch {
@@ -31,8 +33,21 @@ class ImageViewModel(private val app: Application) : AndroidViewModel(app) {
         if(image in selectedImages) {
             selectedImages.remove(image)
         } else {
-            selectedImages.add(image)
+            if(selectedImages.size < 10) {
+                selectedImages.add(image)
+            } else {
+                Util.toastShort("최대 10장까지 선택 가능합니다.")
+            }
         }
+        selectedImagesLiveData.value = selectedImages
+    }
+
+    fun getSelectedImages(intent: Intent) {
+        selectedImages = intent.getParcelableArrayExtra("IMAGE_SET")
+            ?.map { it as MediaStoreImage }
+            ?.toMutableList()
+            ?:mutableListOf()
+
         selectedImagesLiveData.value = selectedImages
     }
 
