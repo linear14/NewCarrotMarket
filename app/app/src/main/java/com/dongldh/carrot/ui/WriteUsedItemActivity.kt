@@ -3,7 +3,6 @@ package com.dongldh.carrot.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AlertDialog
@@ -11,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.dongldh.carrot.R
-import com.dongldh.carrot.`interface`.OnFinishNetworkingListener
+import com.dongldh.carrot.`interface`.OnFinishItemNetworkingListener
 import com.dongldh.carrot.adapter.ImageAdapter
 import com.dongldh.carrot.data.Item
 import com.dongldh.carrot.data.MediaStoreImage
@@ -107,8 +106,8 @@ class WriteUsedItemActivity : AppCompatActivity() {
                 regionString = App.pref.regionSelected.second,
                 regionId = App.pref.regionSelected.first
             ),
-            object: OnFinishNetworkingListener {
-                override fun onSuccess() {
+            object: OnFinishItemNetworkingListener {
+                override fun onSuccess(item: Item?) {
                     finish()
                     Util.toastShort(resources.getString(R.string.success_enroll_item))
                 }

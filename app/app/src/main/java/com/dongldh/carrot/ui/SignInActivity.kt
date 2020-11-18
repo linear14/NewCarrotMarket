@@ -5,8 +5,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dongldh.carrot.R
+import com.dongldh.carrot.`interface`.OnFinishUserNetworkingListener
+import com.dongldh.carrot.data.User
 import com.dongldh.carrot.firebase.UserFirestore
 import com.dongldh.carrot.util.*
+import com.dongldh.carrot.util.Util.setUserRegionInfoToSharedPreference
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -93,7 +96,18 @@ class SignInActivity : AppCompatActivity() {
 
     private fun getUserInfoFromFireStoreAndAttachAccountInfoToSharedPreference() {
         App.pref.uid?.let {
-            UserFirestore.getUserInfoByUidAndSavedAccountInfoAndGoToMain(it)
+            UserFirestore.getUserInfoLiveDataByUid(it, object: OnFinishUserNetworkingListener {
+                override fun onSuccess(user: User?) {
+                    setUserRegionInfoToSharedPreference(user!!)
+                    
+                    val intent = Intent(App.applicationContext(), MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    App.applicationContext().startActivity(intent)
+                }
+                override fun onFailure() {
+                    Util.toastShort("회원정보를 불러오는데 실패하였습니다")
+                }
+            })
         }?:Util.showErrorToast()
     }
 }

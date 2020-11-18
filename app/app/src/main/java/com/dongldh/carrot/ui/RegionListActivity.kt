@@ -8,8 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import com.dongldh.carrot.R
-import com.dongldh.carrot.`interface`.OnFinishNetworkingListener
+import com.dongldh.carrot.`interface`.OnFinishUserNetworkingListener
 import com.dongldh.carrot.adapter.RegionListAdapter
+import com.dongldh.carrot.data.User
 import com.dongldh.carrot.data.UserCreateAccountRequest
 import com.dongldh.carrot.databinding.ActivityRegionListBinding
 import com.dongldh.carrot.firebase.UserAuth
@@ -132,8 +133,8 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
                         add(regionString)
                     }
                     UserFirestore.updateUserOnlyRegionList(App.pref.uid ?: UID_DETACHED, regionIdAll, regionStringAll,
-                    object: OnFinishNetworkingListener {
-                        override fun onSuccess() {
+                    object: OnFinishUserNetworkingListener {
+                        override fun onSuccess(user: User?) {
                             finish()
                         }
 
@@ -151,8 +152,8 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
                     Util.toastShort(App.applicationContext().resources.getString(R.string.region_already_enroll))
                 } else {
                     UserFirestore.remainOnlyOneRegion(App.pref.uid ?: UID_DETACHED, Pair(regionId, regionString),
-                        object: OnFinishNetworkingListener {
-                            override fun onSuccess() {
+                        object: OnFinishUserNetworkingListener {
+                            override fun onSuccess(user: User?) {
                                 finish()
                             }
 

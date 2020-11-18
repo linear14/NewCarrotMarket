@@ -1,15 +1,15 @@
 package com.dongldh.carrot.firebase
 
 import android.content.Intent
-import androidx.lifecycle.MutableLiveData
 import com.dongldh.carrot.R
-import com.dongldh.carrot.`interface`.OnFinishNetworkingListener
+import com.dongldh.carrot.`interface`.OnFinishUserNetworkingListener
 import com.dongldh.carrot.data.User
 import com.dongldh.carrot.ui.MainActivity
 import com.dongldh.carrot.util.App
 import com.dongldh.carrot.util.COLLECTION_USERS
-import com.dongldh.carrot.util.SharedUtil
 import com.dongldh.carrot.util.Util
+import com.dongldh.carrot.util.Util.getRegionPairList
+import com.dongldh.carrot.util.Util.setUserRegionInfoToSharedPreference
 import com.google.firebase.firestore.FirebaseFirestore
 
 object UserFirestore {
@@ -35,27 +35,15 @@ object UserFirestore {
             }
     }
 
-    fun getUserInfoLiveDataByUid(uid: String, userLiveData: MutableLiveData<User>) {
+    fun getUserInfoLiveDataByUid(uid: String, li: OnFinishUserNetworkingListener) {
         val userRef = db.collection(COLLECTION_USERS).document(uid)
         userRef.get().addOnSuccessListener {
-            val user = it.toObject(User::class.java)
-            userLiveData.value = user
+            val user = it.toObject(User::class.java)?:User()
+            li.onSuccess(user)
         }
     }
 
-    fun getUserInfoByUidAndSavedAccountInfoAndGoToMain(uid: String) {
-        val userRef = db.collection(COLLECTION_USERS).document(uid)
-        userRef.get().addOnSuccessListener {
-            val user = it.toObject(User::class.java)!!
-            setUserRegionInfoToSharedPreference(user)
-
-            val intent = Intent(App.applicationContext(), MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            App.applicationContext().startActivity(intent)
-        }
-    }
-
-    fun updateUserOnlyRegionList(uid: String, regionIdAll: ArrayList<Long>, regionStringAll: ArrayList<String>, li: OnFinishNetworkingListener) {
+    fun updateUserOnlyRegionList(uid: String, regionIdAll: ArrayList<Long>, regionStringAll: ArrayList<String>, li: OnFinishUserNetworkingListener) {
         val userRef = db.collection(COLLECTION_USERS).document(uid)
         userRef.update(mapOf(
             "regionIdAll" to regionIdAll,
@@ -68,7 +56,7 @@ object UserFirestore {
         }
     }
 
-    fun updateSelectedRegion(uid: String, regionPair: Pair<Long, String>, li: OnFinishNetworkingListener) {
+    fun updateSelectedRegion(uid: String, regionPair: Pair<Long, String>, li: OnFinishUserNetworkingListener) {
         val userRef = db.collection(COLLECTION_USERS).document(uid)
         userRef.update(mapOf(
             "regionIdSelected" to regionPair.first,
@@ -81,7 +69,7 @@ object UserFirestore {
         }
     }
 
-    fun remainOnlyOneRegion(uid: String, remainRegion: Pair<Long, String>, li: OnFinishNetworkingListener) {
+    fun remainOnlyOneRegion(uid: String, remainRegion: Pair<Long, String>, li: OnFinishUserNetworkingListener) {
         val newRegionIdList = ArrayList<Long>(1).apply { add(remainRegion.first) }
         val newRegionStringList = ArrayList<String>(1).apply { add(remainRegion.second) }
 
@@ -98,21 +86,6 @@ object UserFirestore {
         }
     }
 
-    private fun getRegionPairList(idList: List<Long>, nameList: List<String>): ArrayList<Pair<Long, String>> {
-        val list = arrayListOf<Pair<Long, String>>()
-        for(i in idList.indices) {
-            list.add(Pair(idList[i], nameList[i]))
-        }
-        return list
-    }
 
-    private fun getRegionSelectedPair(selectedId: Long, selectedName: String): Pair<Long, String> =
-        Pair(selectedId, selectedName)
-
-    private fun setUserRegionInfoToSharedPreference(user: User) {
-        val regionList = getRegionPairList(user.regionIdAll, user.regionStringAll)
-        val selectedList = getRegionSelectedPair(user.regionIdSelected!!, user.regionStringSelected!!)
-        SharedUtil.attachRegion(regionList, selectedList)
-    }
 
 }
