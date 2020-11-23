@@ -9,7 +9,7 @@ import com.dongldh.carrot.util.App
 import com.dongldh.carrot.util.COLLECTION_USERS
 import com.dongldh.carrot.util.Util
 import com.dongldh.carrot.util.Util.getRegionPairList
-import com.dongldh.carrot.util.Util.setUserRegionInfoToSharedPreference
+import com.dongldh.carrot.util.SharedUtil.attachRegionToSharedPreference
 import com.google.firebase.firestore.FirebaseFirestore
 
 object UserFirestore {
@@ -22,7 +22,7 @@ object UserFirestore {
             .document(user.uid!!)
             .set(user)
             .addOnSuccessListener {
-                setUserRegionInfoToSharedPreference(user)
+                attachRegionToSharedPreference(user)
 
                 val intent = Intent(App.applicationContext(), MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -49,7 +49,7 @@ object UserFirestore {
             "regionIdAll" to regionIdAll,
             "regionStringAll" to regionStringAll
         )).addOnSuccessListener {
-            App.pref.regionList = getRegionPairList(regionIdAll, regionStringAll)
+            App.pref.regionPairList = getRegionPairList(regionIdAll, regionStringAll)
             li.onSuccess()
         }.addOnFailureListener {
             li.onFailure()
@@ -62,7 +62,7 @@ object UserFirestore {
             "regionIdSelected" to regionPair.first,
             "regionStringSelected" to regionPair.second
         )).addOnSuccessListener {
-            App.pref.regionSelected = regionPair
+            App.pref.selectedRegionPair = regionPair
             li.onSuccess()
         }.addOnFailureListener {
             li.onFailure()
@@ -78,8 +78,8 @@ object UserFirestore {
             "regionIdAll" to newRegionIdList,
             "regionStringAll" to newRegionStringList
         )).addOnSuccessListener {
-            App.pref.regionList = getRegionPairList(newRegionIdList, newRegionStringList)
-            App.pref.regionSelected = remainRegion
+            App.pref.regionPairList = getRegionPairList(newRegionIdList, newRegionStringList)
+            App.pref.selectedRegionPair = remainRegion
             li.onSuccess()
         }.addOnFailureListener {
             li.onFailure()

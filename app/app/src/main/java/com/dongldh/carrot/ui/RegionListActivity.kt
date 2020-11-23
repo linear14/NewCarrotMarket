@@ -37,24 +37,6 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
         attachListeners()
     }
 
-    private inner class SearchTextChanged: TextWatcher {
-        override fun afterTextChanged(s: Editable?) {
-        }
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-        }
-
-        override fun onTextChanged(str: CharSequence?, start: Int, before: Int, count: Int) {
-            if(str.isNullOrEmpty()) {
-                setTextSearchFilter("")
-                sendFilteredTextToViewModel(STATE_BLANK)
-            } else {
-                val wordSearched = resources.getString(R.string.filtered_region_by_word).replace("s", str.toString())
-                setTextSearchFilter(wordSearched)
-                sendFilteredTextToViewModel(str.toString())
-            }
-        }
-    }
-
     private fun doAdapterInitialSettingAndSubscribeUi() {
         val adapter = RegionListAdapter(this)
         adapter.setHasStableIds(true)
@@ -72,6 +54,24 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
             } else {
                 binding.noResultLayoutRegionList.visibility = View.GONE
                 binding.recyclerRegionList.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private inner class SearchTextChanged: TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+        }
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(str: CharSequence?, start: Int, before: Int, count: Int) {
+            if(str.isNullOrEmpty()) {
+                setTextSearchFilter("")
+                sendFilteredTextToViewModel(STATE_BLANK)
+            } else {
+                val wordSearched = resources.getString(R.string.filtered_region_by_word).replace("s", str.toString())
+                setTextSearchFilter(wordSearched)
+                sendFilteredTextToViewModel(str.toString())
             }
         }
     }
@@ -120,7 +120,7 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
             }
 
             SET_SECOND_REGION -> {
-                val regionList = App.pref.regionList
+                val regionList = App.pref.regionPairList
                 if(regionList[0].first == regionId) {
                     Util.toastShort(App.applicationContext().resources.getString(R.string.region_already_enroll))
                 } else {
@@ -147,7 +147,7 @@ class RegionListActivity : AppCompatActivity(), RegionListAdapter.OnRegionSelect
             }
 
             CHANGE_FIRST_REGION -> {
-                val regionList = App.pref.regionList
+                val regionList = App.pref.regionPairList
                 if(regionList[0].first == regionId) {
                     Util.toastShort(App.applicationContext().resources.getString(R.string.region_already_enroll))
                 } else {

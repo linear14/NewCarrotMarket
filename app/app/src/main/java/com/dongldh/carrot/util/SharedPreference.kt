@@ -19,7 +19,7 @@ class SharedPreference(context: Context) {
         set(value) = pref.edit().putString("FAILED_SAVED_EMAIL", value).apply()
 
     // 유저 정보
-    var regionList: ArrayList<Pair<Long, String>>
+    var regionPairList: ArrayList<Pair<Long, String>>
         get() {
             val json = pref.getString("REGION_LIST", null)
             val arrayList = ArrayList<Pair<Long, String>>()
@@ -62,7 +62,7 @@ class SharedPreference(context: Context) {
             editor.apply()
         }
 
-    var regionSelected: Pair<Long, String>
+    var selectedRegionPair: Pair<Long, String>
         get() {
             val json = pref.getString("REGION_SELECTED", null)
             var pair: Pair<Long, String> = Pair(NO_REGION_DATA, "")

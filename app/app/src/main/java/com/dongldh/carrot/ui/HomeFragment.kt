@@ -51,7 +51,7 @@ class HomeFragment: Fragment() {
                 showRegionSelectorWithDialogDismissListener()
             }
 
-            setMyRegionViewModel.regionSelectedPair.observe(viewLifecycleOwner) { result ->
+            setMyRegionViewModel.selectedRegionPair.observe(viewLifecycleOwner) { result ->
                 toolbarTitleHome.text = result.second
             }
 

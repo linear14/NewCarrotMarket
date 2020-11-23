@@ -41,7 +41,7 @@ class RegionSelectorAdapter : ListAdapter<Pair<Long, String>, RecyclerView.ViewH
         }
 
         private fun accentuateSelectedRegion(regionId: Long) {
-            if(regionId == App.pref.regionSelected.first) {
+            if(regionId == App.pref.selectedRegionPair.first) {
                 binding.textRegion.setTextSize(TypedValue.COMPLEX_UNIT_SP,16f)
                 binding.textRegion.setTypeface(null, Typeface.BOLD)
             }

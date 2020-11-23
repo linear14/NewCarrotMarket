@@ -23,6 +23,6 @@ class AppSettingActivity : AppCompatActivity() {
 
     private fun detachAccountInfoFromSharedPreference() {
         SharedUtil.detachUidFromSharedPreference()
-        SharedUtil.detachRegion()
+        SharedUtil.detachRegionFromSharedPreference()
     }
 }

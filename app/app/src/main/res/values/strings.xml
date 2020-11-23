@@ -40,6 +40,7 @@
     <string name="firebase_sign_in_failed">로그인 실패</string>
     <string name="firebase_wrong_password">비밀번호가 틀렸습니다</string>
     <string name="dialog_firebase_not_exist_account">등록되지 않은 회원 정보입니다\n입력하신 정보로 회원 가입을 하시겠습니까?</string>
+    <string name="firebase_get_user_failed">회원정보를 불러오는데 실패하였습니다</string>
 
     <string name="fail_update_region">동네 변경에 실패하였습니다</string>
     <string name="fail_add_region">동네 추가에 실패하였습니다</string>

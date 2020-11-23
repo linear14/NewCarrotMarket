@@ -3,7 +3,6 @@ package com.dongldh.carrot.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dongldh.carrot.R
-import com.dongldh.carrot.`interface`.OnFinishItemNetworkingListener
 import com.dongldh.carrot.`interface`.OnFinishUserNetworkingListener
 import com.dongldh.carrot.data.User
 import com.dongldh.carrot.firebase.UserFirestore
@@ -12,13 +11,13 @@ import com.dongldh.carrot.util.UID_DETACHED
 import com.dongldh.carrot.util.Util
 
 class SetMyRegionViewModel: ViewModel() {
-    val regionList: MutableLiveData<List<Pair<Long, String>>> = MutableLiveData(App.pref.regionList)
-    val regionSelectedPair: MutableLiveData<Pair<Long, String>> = MutableLiveData(App.pref.regionSelected)
+    val regionPairList: MutableLiveData<List<Pair<Long, String>>> = MutableLiveData(App.pref.regionPairList)
+    val selectedRegionPair: MutableLiveData<Pair<Long, String>> = MutableLiveData(App.pref.selectedRegionPair)
 
     fun getSelectedPosition(): Int {
         var selectedPosition = -1
-        for((index, region) in regionList.value!!.withIndex()) {
-            if(regionSelectedPair.value?.first == region.first) {
+        for((index, region) in regionPairList.value!!.withIndex()) {
+            if(selectedRegionPair.value?.first == region.first) {
                 selectedPosition = index
             }
         }
@@ -26,15 +25,15 @@ class SetMyRegionViewModel: ViewModel() {
     }
 
     fun initLiveData() {
-        regionList.value = App.pref.regionList
-        regionSelectedPair.value = App.pref.regionSelected
+        regionPairList.value = App.pref.regionPairList
+        selectedRegionPair.value = App.pref.selectedRegionPair
     }
 
     fun updateSelectedRegion(selectedPair: Pair<Long, String>) {
         UserFirestore.updateSelectedRegion(App.pref.uid ?: UID_DETACHED, selectedPair, object:
             OnFinishUserNetworkingListener {
             override fun onSuccess(user: User?) {
-                regionSelectedPair.value = selectedPair
+                selectedRegionPair.value = selectedPair
             }
 
             override fun onFailure() {

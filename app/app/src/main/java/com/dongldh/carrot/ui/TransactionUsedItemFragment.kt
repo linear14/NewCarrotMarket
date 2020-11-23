@@ -15,22 +15,26 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class TransactionUsedItemFragment: Fragment() {
 
     val usedItemViewModel: UsedItemViewModel by viewModel()
+    val adapter: TransactionUsedItemAdapter by lazy { TransactionUsedItemAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val adapter = TransactionUsedItemAdapter()
+        val view =
+            inflater.inflate(R.layout.fragment_transaction_used_item, container, false).apply {
+                recycler_used_item_card.adapter = adapter
+            }
 
-        val view = inflater.inflate(R.layout.fragment_transaction_used_item, container, false).apply {
-            recycler_used_item_card.adapter = adapter
-        }
+        subscribeItem()
 
+        return view
+    }
+
+    private fun subscribeItem() {
         usedItemViewModel.usedItemList.observe(requireActivity()) { result ->
             adapter.submitList(result)
         }
-
-        return view
     }
 }

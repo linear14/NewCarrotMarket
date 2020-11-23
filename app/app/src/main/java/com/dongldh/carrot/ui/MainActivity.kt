@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             R.id.navigation_write -> {
                 val bottomSheet = WriteTypeSelectorBottomSheet()
                 bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+                return false
             }
             R.id.navigation_chat -> ft.replace(R.id.fragment, ChatFragment()).commit()
             R.id.navigation_my_carrot -> ft.replace(R.id.fragment, MyCarrotFragment()).commit()

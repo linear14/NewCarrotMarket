@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -19,10 +20,11 @@ import com.dongldh.carrot.firebase.ItemFirestore
 import com.dongldh.carrot.util.App
 import com.dongldh.carrot.util.FROM_WRITE_USED_ITEM
 import com.dongldh.carrot.util.Util
+import com.dongldh.carrot.util.setImageTint
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_write_used_item.*
 
-class WriteUsedItemActivity : AppCompatActivity() {
+class WriteUsedItemActivity : AppCompatActivity(), View.OnClickListener {
 
     var storage: FirebaseStorage? = null
     var isPriceNegotiable = false
@@ -41,19 +43,15 @@ class WriteUsedItemActivity : AppCompatActivity() {
         }
 
         current_count_image.text = 0.toString()
-        text_current_region.text = App.pref.regionSelected.second
+        text_current_region.text = App.pref.selectedRegionPair.second
 
         recycler_image.adapter = adapter
 
-        layout_category.setOnClickListener {
-            val builder = AlertDialog.Builder(this).apply {
-                setItems(R.array.categories) { _, pos ->
-                    val items = resources.getStringArray(R.array.categories)
-                    text_category.text = items[pos]
-                }
-            }
-            builder.create().apply{ show() }
-        }
+        layout_category.setOnClickListener(this)
+        layout_suggest_price.setOnClickListener(this)
+        action_add_image.setOnClickListener(this)
+        action_next.setOnClickListener(this)
+        action_back.setOnClickListener(this)
 
         input_price.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
@@ -64,35 +62,6 @@ class WriteUsedItemActivity : AppCompatActivity() {
                 else text_won.setTextColor(ContextCompat.getColor(this@WriteUsedItemActivity, R.color.colorHint))
             }
         })
-
-        layout_suggest_price.setOnClickListener {
-            isPriceNegotiable = !isPriceNegotiable
-            setPriceNegotiableLayoutStyle(isPriceNegotiable)
-        }
-
-        action_add_image.setOnClickListener {
-            val intent = Intent(this, ImagePickerActivity::class.java).apply {
-                putExtra("IMAGE_SET", images.toTypedArray())
-            }
-            startActivityForResult(intent, FROM_WRITE_USED_ITEM)
-        }
-
-        action_next.setOnClickListener {
-            when {
-                input_title.text.isNullOrEmpty() -> {
-                    Util.snackBarShort(layout_main, resources.getString(R.string.input_title_blank))
-                }
-                text_category.text.toString() == "카테고리" -> {
-                    Util.snackBarShort(layout_main, resources.getString(R.string.input_category_blank))
-                }
-                input_content.text.isNullOrEmpty() -> {
-                    Util.snackBarShort(layout_main, resources.getString(R.string.input_content_blank))
-                }
-                else -> { addItemToFirebase() }
-            }
-        }
-
-        action_back.setOnClickListener { verifyItemFilledAndSaveItemTemp() }
     }
 
     private fun addItemToFirebase() {
@@ -103,8 +72,8 @@ class WriteUsedItemActivity : AppCompatActivity() {
                 price = if(input_price.text.isNullOrEmpty()) NO_PRICE else input_price.text.toString().toInt(),
                 priceNegotiable = isPriceNegotiable,
                 content = input_content.text.toString(),
-                regionString = App.pref.regionSelected.second,
-                regionId = App.pref.regionSelected.first
+                regionString = App.pref.selectedRegionPair.second,
+                regionId = App.pref.selectedRegionPair.first
             ),
             object: OnFinishItemNetworkingListener {
                 override fun onSuccess(item: Item?) {
@@ -132,16 +101,10 @@ class WriteUsedItemActivity : AppCompatActivity() {
 
     private fun setPriceNegotiableLayoutStyle(isNegotiable: Boolean) {
         if(isNegotiable) {
-            DrawableCompat.setTint(
-                DrawableCompat.wrap(image_suggest_price.drawable),
-                ContextCompat.getColor(this, R.color.colorPrimary)
-            )
+            image_suggest_price.setImageTint(R.color.colorDefaultText)
             text_suggest_price.setTextColor(ContextCompat.getColor(this@WriteUsedItemActivity, R.color.colorDefaultText))
         } else {
-            DrawableCompat.setTint(
-                DrawableCompat.wrap(image_suggest_price.drawable),
-                ContextCompat.getColor(this, R.color.colorHint)
-            )
+            image_suggest_price.setImageTint(R.color.colorHint)
             text_suggest_price.setTextColor(ContextCompat.getColor(this@WriteUsedItemActivity, R.color.colorHint))
         }
     }
@@ -185,6 +148,49 @@ class WriteUsedItemActivity : AppCompatActivity() {
                     adapter.submitList(images.toList())
                 }
             }
+        }
+    }
+
+    override fun onClick(v: View?) {
+        when (v) {
+            layout_category -> {
+                val builder = AlertDialog.Builder(this).apply {
+                    setItems(R.array.categories) { _, pos ->
+                        val items = resources.getStringArray(R.array.categories)
+                        text_category.text = items[pos]
+                    }
+                }
+                builder.create().apply { show() }
+            }
+
+            layout_suggest_price -> {
+                isPriceNegotiable = !isPriceNegotiable
+                setPriceNegotiableLayoutStyle(isPriceNegotiable)
+            }
+
+            action_add_image -> {
+                val intent = Intent(this, ImagePickerActivity::class.java).apply {
+                    putExtra("IMAGE_SET", images.toTypedArray())
+                }
+                startActivityForResult(intent, FROM_WRITE_USED_ITEM)
+            }
+            action_next -> {
+                when {
+                    input_title.text.isNullOrEmpty() -> {
+                        Util.snackBarShort(layout_main, resources.getString(R.string.input_title_blank))
+                    }
+                    text_category.text.toString() == "카테고리" -> {
+                        Util.snackBarShort(layout_main, resources.getString(R.string.input_category_blank))
+                    }
+                    input_content.text.isNullOrEmpty() -> {
+                        Util.snackBarShort(layout_main, resources.getString(R.string.input_content_blank))
+                    }
+                    else -> { addItemToFirebase() }
+                }
+            }
+
+            action_back -> { verifyItemFilledAndSaveItemTemp() }
+
         }
     }
 }

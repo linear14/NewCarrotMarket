@@ -28,12 +28,6 @@ object Util {
             .show()
     }
 
-    fun setUserRegionInfoToSharedPreference(user: User) {
-        val regionList = getRegionPairList(user.regionIdAll, user.regionStringAll)
-        val selectedList = getRegionSelectedPair(user.regionIdSelected!!, user.regionStringSelected!!)
-        SharedUtil.attachRegion(regionList, selectedList)
-    }
-
     fun getRegionPairList(idList: List<Long>, nameList: List<String>): ArrayList<Pair<Long, String>> {
         val list = arrayListOf<Pair<Long, String>>()
         for(i in idList.indices) {

@@ -40,6 +40,7 @@
     <string name="firebase_sign_in_failed">Login Failed</string>
     <string name="firebase_wrong_password">Wrong password</string>
     <string name="dialog_firebase_not_exist_account">There is no account information\nYou can register as a member with the information you entered</string>
+    <string name="firebase_get_user_failed">Fail to load user info</string>
 
     <string name="fail_update_region">Fail to update region</string>
     <string name="fail_add_region">Fail to add region</string>

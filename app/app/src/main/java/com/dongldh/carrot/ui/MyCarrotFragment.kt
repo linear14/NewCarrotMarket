@@ -38,5 +38,5 @@ class MyCarrotFragment: Fragment() {
         return binding.root
     }
 
-    private fun getSelectedRegionName(): String = App.pref.regionSelected.second
+    private fun getSelectedRegionName(): String = App.pref.selectedRegionPair.second
 }

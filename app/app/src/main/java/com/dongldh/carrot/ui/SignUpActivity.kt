@@ -11,6 +11,12 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
 
+    companion object {
+        const val NICKNAME_BLANK = 0
+        const val NICKNAME_MINIMUM_LENGTH = 2
+        const val NICKNAME_MAXIMUM_LENGTH = 8
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -18,7 +24,7 @@ class SignUpActivity : AppCompatActivity() {
         initializeSettingTextInputLayoutErrorMessageAndHint()
 
         action_next.setOnClickListener {
-            if(verifyProperFormatNickname()) { moveToRegionListActivityWithAccountInfo() }
+            if(verifyProperFormatNickname()) { goRegionListActivityWithAccountInfo() }
         }
     }
 
@@ -70,7 +76,7 @@ class SignUpActivity : AppCompatActivity() {
         return correctFormat
     }
 
-    private fun moveToRegionListActivityWithAccountInfo() {
+    private fun goRegionListActivityWithAccountInfo() {
         val intent = Intent(this, RegionListActivity::class.java)
         intent.putExtra(INTENT_TYPE, SET_FIRST_REGION)
         intent.putExtra(ACCOUNT_ID, this.intent.getStringExtra(ACCOUNT_ID))
@@ -80,9 +86,4 @@ class SignUpActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    companion object {
-        const val NICKNAME_BLANK = 0
-        const val NICKNAME_MINIMUM_LENGTH = 2
-        const val NICKNAME_MAXIMUM_LENGTH = 8
-    }
 }

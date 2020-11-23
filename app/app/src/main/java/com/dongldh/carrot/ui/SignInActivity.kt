@@ -9,7 +9,7 @@ import com.dongldh.carrot.`interface`.OnFinishUserNetworkingListener
 import com.dongldh.carrot.data.User
 import com.dongldh.carrot.firebase.UserFirestore
 import com.dongldh.carrot.util.*
-import com.dongldh.carrot.util.Util.setUserRegionInfoToSharedPreference
+import com.dongldh.carrot.util.SharedUtil.attachRegionToSharedPreference
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -48,22 +48,30 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun trySignIn(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task -> trySignInResult(task) }
-    }
-
-    private fun trySignInResult(task: Task<AuthResult>) {
-        if (task.isSuccessful) {
-            Util.toastShort(resources.getString(R.string.firebase_sign_in_success))
-            attachUidToSharedPreferenceAndGoToMainActivity(task)
-        } else {
-            val errorCode = (task.exception as FirebaseAuthException).errorCode
-            actionAccordingToError(errorCode)
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+            if (task.isSuccessful) {
+                Util.toastShort(resources.getString(R.string.firebase_sign_in_success))
+                SharedUtil.attachUidToSharedPreference(task.result?.user?.uid)
+                getUserFromServer()
+            } else {
+                val errorCode = (task.exception as FirebaseAuthException).errorCode
+                actionAccordingToError(errorCode)
+            }
         }
     }
 
-    private fun attachUidToSharedPreferenceAndGoToMainActivity(task: Task<AuthResult>) {
-        SharedUtil.attachUidToSharedPreference(task.result?.user?.uid)
-        getUserInfoFromFireStoreAndAttachAccountInfoToSharedPreference()
+    private fun getUserFromServer() {
+        App.pref.uid?.let {
+            UserFirestore.getUserInfoLiveDataByUid(it, object: OnFinishUserNetworkingListener {
+                override fun onSuccess(user: User?) {
+                    attachRegionToSharedPreference(user!!)
+                    goMainPage()
+                }
+                override fun onFailure() {
+                    Util.toastShort(resources.getString(R.string.firebase_get_user_failed))
+                }
+            })
+        }?:Util.showErrorToast()
     }
 
     private fun actionAccordingToError(errorCode: String) {
@@ -78,14 +86,14 @@ class SignInActivity : AppCompatActivity() {
             .apply {
                 setMessage(resources.getString(R.string.dialog_firebase_not_exist_account))
                 setTitle(resources.getString(R.string.firebase_sign_in_failed))
-                setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->  moveSignUpPageWithAccountInfo() }
+                setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->  goSignUpPageWithAccountInfo() }
                 setNegativeButton(resources.getString(R.string.no)) { dialog, which ->  }
                 setCancelable(false)
                 show()
             }
     }
 
-    private fun moveSignUpPageWithAccountInfo() {
+    private fun goSignUpPageWithAccountInfo() {
         val intent = Intent(this@SignInActivity, SignUpActivity::class.java)
             .apply {
                 putExtra(ACCOUNT_ID, input_id.text.toString())
@@ -94,20 +102,9 @@ class SignInActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun getUserInfoFromFireStoreAndAttachAccountInfoToSharedPreference() {
-        App.pref.uid?.let {
-            UserFirestore.getUserInfoLiveDataByUid(it, object: OnFinishUserNetworkingListener {
-                override fun onSuccess(user: User?) {
-                    setUserRegionInfoToSharedPreference(user!!)
-                    
-                    val intent = Intent(App.applicationContext(), MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    App.applicationContext().startActivity(intent)
-                }
-                override fun onFailure() {
-                    Util.toastShort("회원정보를 불러오는데 실패하였습니다")
-                }
-            })
-        }?:Util.showErrorToast()
+    private fun goMainPage() {
+        val intent = Intent(App.applicationContext(), MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 }

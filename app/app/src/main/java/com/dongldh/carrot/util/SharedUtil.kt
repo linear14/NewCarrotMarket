@@ -1,5 +1,7 @@
 package com.dongldh.carrot.util
 
+import com.dongldh.carrot.data.User
+
 object SharedUtil {
     fun attachUidToSharedPreference(uid: String?) {
         App.pref.uid = uid
@@ -9,13 +11,16 @@ object SharedUtil {
         App.pref.uid = UID_DETACHED
     }
 
-    fun attachRegion(regionList: ArrayList<Pair<Long, String>>, selectedRegion: Pair<Long, String>) {
-        App.pref.regionList = regionList
-        App.pref.regionSelected = selectedRegion
+    fun attachRegionToSharedPreference(user: User) {
+        val regionPairList = Util.getRegionPairList(user.regionIdAll, user.regionStringAll)
+        val selectedRegionPair = Util.getRegionSelectedPair(user.regionIdSelected!!, user.regionStringSelected!!)
+
+        App.pref.regionPairList = regionPairList
+        App.pref.selectedRegionPair = selectedRegionPair
     }
 
-    fun detachRegion() {
-        App.pref.regionList = arrayListOf()
-        App.pref.regionSelected = Pair(NO_REGION_DATA, "")
+    fun detachRegionFromSharedPreference() {
+        App.pref.regionPairList = arrayListOf()
+        App.pref.selectedRegionPair = Pair(NO_REGION_DATA, "")
     }
 }

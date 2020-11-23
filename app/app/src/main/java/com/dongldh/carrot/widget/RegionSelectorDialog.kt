@@ -29,7 +29,7 @@ class RegionSelectorDialog : DialogFragment() {
         dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
 
         val adapter = RegionSelectorAdapter().apply {
-            submitList(App.pref.regionList)
+            submitList(App.pref.regionPairList)
             setOnRegionSelectedListener(object: RegionSelectorAdapter.OnRegionSelectedListener {
                 override fun regionSelected(region: Pair<Long, String>) {
                     this@RegionSelectorDialog.region = region
