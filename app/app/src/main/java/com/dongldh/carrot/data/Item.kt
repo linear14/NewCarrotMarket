@@ -13,7 +13,7 @@ data class Item (
     val price: Int = NO_PRICE,
     val priceNegotiable: Boolean? = null,
     val content: String? = null,
-    val imageUrl: List<String>? = mutableListOf(),
+    val imageUri: List<String>? = mutableListOf(),
     val regionString: String? = null,
     val regionId: Long? = null
 ){}

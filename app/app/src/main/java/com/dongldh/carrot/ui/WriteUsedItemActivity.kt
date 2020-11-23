@@ -9,7 +9,6 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import com.dongldh.carrot.R
 import com.dongldh.carrot.`interface`.OnFinishItemNetworkingListener
 import com.dongldh.carrot.adapter.ImageAdapter
@@ -21,12 +20,9 @@ import com.dongldh.carrot.util.App
 import com.dongldh.carrot.util.FROM_WRITE_USED_ITEM
 import com.dongldh.carrot.util.Util
 import com.dongldh.carrot.util.setImageTint
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_write_used_item.*
 
 class WriteUsedItemActivity : AppCompatActivity(), View.OnClickListener {
-
-    var storage: FirebaseStorage? = null
     var isPriceNegotiable = false
     val adapter: ImageAdapter by lazy { ImageAdapter() }
     var images = listOf<MediaStoreImage>()
@@ -34,8 +30,6 @@ class WriteUsedItemActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_used_item)
-
-        storage = FirebaseStorage.getInstance()
 
         if(isSavedState()) {
             App.pref.isSavedState = false
@@ -73,7 +67,8 @@ class WriteUsedItemActivity : AppCompatActivity(), View.OnClickListener {
                 priceNegotiable = isPriceNegotiable,
                 content = input_content.text.toString(),
                 regionString = App.pref.selectedRegionPair.second,
-                regionId = App.pref.selectedRegionPair.first
+                regionId = App.pref.selectedRegionPair.first,
+                imageUri = mapMediaStoreImageToUri()
             ),
             object: OnFinishItemNetworkingListener {
                 override fun onSuccess(item: Item?) {
@@ -192,5 +187,9 @@ class WriteUsedItemActivity : AppCompatActivity(), View.OnClickListener {
             action_back -> { verifyItemFilledAndSaveItemTemp() }
 
         }
+    }
+
+    private fun mapMediaStoreImageToUri(): List<String> {
+        return images.map { it.uri }
     }
 }
