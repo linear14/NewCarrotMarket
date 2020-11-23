@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.dongldh.carrot.R
 import com.dongldh.carrot.data.NO_PRICE
+import com.dongldh.carrot.firebase.ItemFirestore.storage
 import com.dongldh.carrot.util.App
 import java.util.*
 
@@ -52,4 +53,17 @@ fun bindImageFromUri(view: ImageView, imageUri: String?) {
         .transition(DrawableTransitionOptions.withCrossFade())
         .centerCrop()
         .into(view)
+}
+
+@BindingAdapter("itemImageFromUri")
+fun bindItemImageFromUri(view: ImageView, imageUri: String?) {
+    val gsReference = storage.getReferenceFromUrl("gs://carrot-69315.appspot.com/itemImages/$imageUri")
+    gsReference.downloadUrl.addOnSuccessListener {
+        Glide.with(view.context)
+            .load(it)
+            .placeholder(ColorDrawable(ContextCompat.getColor(App.applicationContext(), android.R.color.white)))
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .centerCrop()
+            .into(view)
+    }
 }

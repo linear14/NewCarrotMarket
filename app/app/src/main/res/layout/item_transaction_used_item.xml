@@ -14,14 +14,24 @@
         android:paddingHorizontal="@dimen/padding_normal"
         android:paddingTop="@dimen/padding_normal">
 
-        <ImageView
-            android:id="@+id/image_used_item"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_used_item"
             android:layout_width="@dimen/image_main_item_card"
             android:layout_height="@dimen/image_main_item_card"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="@dimen/corner_round_half"
+            app:cardElevation="0dp"
+            app:cardUseCompatPadding="false">
+
+            <ImageView
+                android:id="@+id/image_used_item"
+                android:layout_width="@dimen/image_main_item_card"
+                android:layout_height="@dimen/image_main_item_card"
+                tools:src="@mipmap/ic_launcher"
+                itemImageFromUri="@{item.imageUri[0]}" />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/text_used_item_title"
@@ -30,8 +40,8 @@
             android:layout_marginStart="@dimen/margin_normal"
             android:textSize="@dimen/text_big"
             android:letterSpacing="-0.02"
-            app:layout_constraintStart_toEndOf="@id/image_used_item"
-            app:layout_constraintTop_toTopOf="@id/image_used_item"
+            app:layout_constraintStart_toEndOf="@id/card_used_item"
+            app:layout_constraintTop_toTopOf="@id/card_used_item"
             android:text="@{item.title}"
             tools:text="상품명입니다" />
 
@@ -90,7 +100,7 @@
             android:layout_height="@dimen/separator_height"
             android:background="@color/colorSeparatorLight"
             android:layout_marginTop="@dimen/margin_normal"
-            app:layout_constraintTop_toBottomOf="@id/image_used_item" />
+            app:layout_constraintTop_toBottomOf="@id/card_used_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
