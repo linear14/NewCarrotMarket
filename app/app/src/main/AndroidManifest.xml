@@ -3,8 +3,8 @@
     package="com.dongldh.carrot">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".util.App"
@@ -16,8 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.WriteUsedItemActivity">
-        </activity>
+        <activity android:name=".ui.ItemDetailActivity"></activity>
+        <activity android:name=".ui.WriteUsedItemActivity"></activity>
         <activity android:name=".ui.SetMyRegionActivity" />
         <activity
             android:name=".ui.SplashActivity"
