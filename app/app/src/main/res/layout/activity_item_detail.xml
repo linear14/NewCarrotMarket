@@ -8,7 +8,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/separator4">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -211,10 +212,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_normal"
-                app:layout_constraintTop_toBottomOf="@id/user_other_selling_item"
                 android:layout_marginTop="@dimen/margin_normal"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 android:paddingBottom="@dimen/padding_normal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/user_other_selling_item"
                 app:spanCount="2" />
 
 
@@ -258,5 +259,76 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.MaterialToolbar>
+
+    <View
+        android:id="@+id/separator4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/separator_height"
+        android:background="@color/colorSeparatorLight"
+        app:layout_constraintBottom_toTopOf="@id/layout_bottom_simple_data" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_bottom_simple_data"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/button_favorite"
+            android:layout_width="@dimen/image_button_with_padding"
+            android:layout_height="@dimen/image_button_with_padding"
+            android:layout_marginStart="@dimen/margin_half"
+            android:padding="@dimen/padding_image"
+            android:src="@drawable/ic_outline_favorite_border_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/separator5"
+            android:layout_width="@dimen/separator_height"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/margin_half"
+            android:background="@color/colorSeparatorLight"
+            app:layout_constraintBottom_toBottomOf="@id/button_favorite"
+            app:layout_constraintStart_toEndOf="@id/button_favorite"
+            app:layout_constraintTop_toTopOf="@id/button_favorite" />
+
+        <TextView
+            android:id="@+id/simple_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:textSize="@dimen/text_big"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/simple_price_negotiable"
+            app:layout_constraintStart_toEndOf="@id/separator5"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="22,000원" />
+
+        <TextView
+            android:id="@+id/simple_price_negotiable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/simple_price"
+            app:layout_constraintTop_toBottomOf="@id/simple_price"
+            tools:text="가격제안하기 / 가격제안불가" />
+
+        <Button
+            android:id="@+id/action_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height_small"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:background="@drawable/decorate_border_colorprimary_solid_colorprimary_round"
+            android:paddingHorizontal="@dimen/padding_normal"
+            android:text="채팅으로 거래하기"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
