@@ -41,7 +41,7 @@ fun bindPrice(view: TextView, price: Int) {
     if(price != NO_PRICE) {
         view.text = "${price}원"
     } else {
-        view.text = ""
+        view.text = "가격 정보 없음"
     }
 }
 
@@ -65,5 +65,21 @@ fun bindItemImageFromUri(view: ImageView, imageUri: String?) {
             .transition(DrawableTransitionOptions.withCrossFade())
             .centerCrop()
             .into(view)
+    }
+}
+
+@BindingAdapter("userNameForOtherItem")
+fun bindOtherItemOfUser(view: TextView, userName: String) {
+    view.text = "${userName}님의 판매상품"
+}
+
+@BindingAdapter("negotiable")
+fun bindIsNegotiable(view: TextView, isNegotiable: Boolean) {
+    if(isNegotiable) {
+        view.text = "가격제안하기"
+        view.setTextColor(ContextCompat.getColor(App.applicationContext(), R.color.colorPrimary))
+    } else {
+        view.text = "가격제안불가"
+        view.setTextColor(ContextCompat.getColor(App.applicationContext(), R.color.colorDescription))
     }
 }

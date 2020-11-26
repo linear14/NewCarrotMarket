@@ -5,10 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.dongldh.carrot.`interface`.OnItemClickListener
 import com.dongldh.carrot.data.Item
 import com.dongldh.carrot.databinding.ItemTransactionUsedItemBinding
 
 class TransactionUsedItemAdapter: ListAdapter<Item, TransactionUsedItemAdapter.TransactionUsedItemViewHolder>(TransactionUsedItemDiffCallback()) {
+
+    var itemClickListener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionUsedItemViewHolder {
         return TransactionUsedItemViewHolder(
@@ -26,8 +29,16 @@ class TransactionUsedItemAdapter: ListAdapter<Item, TransactionUsedItemAdapter.T
             binding.apply {
                 this.item = item
                 executePendingBindings()
+
+                itemView.setOnClickListener {
+                    itemClickListener?.let { it.onClick(item) }
+                }
             }
         }
+    }
+
+    fun setOnItemClickListener(li: OnItemClickListener) {
+        this.itemClickListener = li
     }
 }
 
